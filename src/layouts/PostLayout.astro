@@ -1,10 +1,11 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import type { MarkdownHeading } from 'astro';
+import { getCollection } from 'astro:content';
 import { Picture } from 'astro:assets';
 import BaseLayout from './BaseLayout.astro';
-import TableOfContents from '@/components/TableOfContents.astro';
 import DisqusComments from '@/components/DisqusComments.astro';
+import { transliterate } from '@/utils/transliterate';
 
 interface Props {
   post: CollectionEntry<'posts'>;
@@ -13,10 +14,29 @@ interface Props {
 
 const { post, headings } = Astro.props;
 
-const date = post.data.date;
-const dateFormatted = date.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' });
-const dateIso = date.toISOString();
+const dateFormatted = post.data.date.toLocaleDateString('ru-RU', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+const dateIso = post.data.date.toISOString();
 const postUrl = new URL(`/${post.id}/`, Astro.site).href;
+
+// Пред/след
+const allPosts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+const idx = allPosts.findIndex((p) => p.id === post.id);
+const prevPost = idx < allPosts.length - 1 ? allPosts[idx + 1] : null;
+const nextPost = idx > 0 ? allPosts[idx - 1] : null;
+
+// ToC
+const tocItems = headings.filter((h) => h.depth === 2 || h.depth === 3);
+let h2n = 0;
+const tocWithNum = tocItems.map((h) => {
+  if (h.depth === 2) h2n++;
+  return { ...h, num: h.depth === 2 ? `${h2n}.` : '' };
+});
 ---
 
 <BaseLayout
@@ -26,50 +46,217 @@ const postUrl = new URL(`/${post.id}/`, Astro.site).href;
   tags={post.data.tags}
   post={post}
   type="article"
+  showProgress={true}
 >
-  <div class="container">
-    <header class="post-header">
-      <h1 class="post-header__title">{post.data.title}</h1>
-      <div class="post-header__meta">
-        <time datetime={dateIso}>{dateFormatted}</time>
-        {post.data.categories.map((cat) => (
-          <a href={`/categories/${cat}/`} class="post-tag">{cat}</a>
-        ))}
-        {post.data.tags.length > 0 && (
-          <div class="post-header__tags">
-            {post.data.tags.map((tag) => (
-              <a href={`/tags/${tag}/`} class="post-tag">{tag}</a>
-            ))}
-          </div>
-        )}
-      </div>
-    </header>
+  <div class="post-wrap">
+    <a href="/" class="back-link post-back"
+      ><svg
+        width="12"
+        height="12"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><polyline points="15 18 9 12 15 6"></polyline></svg
+      >На главную</a
+    >
 
-    {post.data.featuredImage && (
-      <div class="post-cover">
-        <Picture
-          src={post.data.featuredImage}
-          alt={post.data.title}
-          widths={[400, 800, 1200]}
-          sizes="(max-width: 768px) 100vw, 720px"
-          formats={['avif', 'webp']}
-          loading="eager"
-        />
-      </div>
-    )}
-
-    <div class="post-layout">
-      <article class="prose content-width">
-        <slot />
-      </article>
-
-      {post.data.toc && headings.length > 0 && (
-        <aside class="toc-aside">
-          <TableOfContents headings={headings} />
-        </aside>
-      )}
+    <div class="post-cats">
+      {
+        post.data.categories.map((cat) => (
+          <a href={`/categories/${transliterate(cat)}/`} class="post-tag cat">
+            {cat}
+          </a>
+        ))
+      }
     </div>
 
-    <DisqusComments slug={post.id} title={post.data.title} url={postUrl} />
+    <h1 class="post-title">{post.data.title}</h1>
+
+    <div class="post-meta">
+      <time datetime={dateIso}>{dateFormatted}</time>
+      {
+        post.data.tags.length > 0 && (
+          <>
+            <span class="post-meta-dot">·</span>
+            <div class="post-meta-tags">
+              {post.data.tags.map((tag) => (
+                <a href={`/tags/${transliterate(tag)}/`} class="post-tag">
+                  {tag}
+                </a>
+              ))}
+            </div>
+          </>
+        )
+      }
+    </div>
+
+    {
+      post.data.featuredImage && (
+        <div class="post-cover">
+          <Picture
+            src={post.data.featuredImage}
+            alt={post.data.title}
+            widths={[600, 900, 1200]}
+            formats={['avif', 'webp', 'jpeg']}
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      )
+    }
+
+    {
+      tocWithNum.length > 0 && (
+        <div class="post-toc" id="post-toc" open>
+          <button class="post-toc-toggle" id="toc-toggle">
+            Оглавление
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="post-toc-body" id="toc-body">
+            <ul class="post-toc-list">
+              {tocWithNum.map((h) => (
+                <li class={h.depth === 3 ? 'toc-h3' : ''}>
+                  <a href={`#${h.slug}`}>
+                    {h.depth === 2 && <span class="post-toc-num">{h.num}</span>}
+                    {h.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )
+    }
+
+    <div class="prose">
+      <slot />
+    </div>
+
+    {
+      post.data.tags.length > 0 && (
+        <div class="post-footer-tags">
+          {post.data.tags.map((tag) => (
+            <a href={`/tags/${transliterate(tag)}/`} class="post-tag">
+              {tag}
+            </a>
+          ))}
+        </div>
+      )
+    }
+
+    <nav class="post-nav">
+      {
+        prevPost ? (
+          <a href={`/${prevPost.id}/`} class="post-nav-link prev">
+            <span class="post-nav-label">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Предыдущий
+            </span>
+            <span class="post-nav-title">{prevPost.data.title}</span>
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      {
+        nextPost ? (
+          <a href={`/${nextPost.id}/`} class="post-nav-link next">
+            <span class="post-nav-label">
+              Следующий
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </span>
+            <span class="post-nav-title">{nextPost.data.title}</span>
+          </a>
+        ) : (
+          <span />
+        )
+      }
+    </nav>
+
+    <div class="comments">
+      <h2 class="comments-title">Комментарии</h2>
+      <DisqusComments slug={post.id} title={post.data.title} url={postUrl} />
+    </div>
   </div>
 </BaseLayout>
+
+<script>
+  // Кнопка копирования для блоков кода
+  document.querySelectorAll('.prose pre').forEach((pre) => {
+    const code = pre.querySelector('code');
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'code-block';
+    pre.parentNode!.insertBefore(wrapper, pre);
+    wrapper.appendChild(pre);
+
+    const btn = document.createElement('button');
+    btn.className = 'code-block-copy';
+    btn.title = 'Копировать';
+    btn.innerHTML =
+      '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+    btn.addEventListener('click', () => {
+      navigator.clipboard.writeText(code?.textContent ?? '').then(() => {
+        btn.innerHTML =
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML =
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    });
+    wrapper.appendChild(btn);
+  });
+
+  // ToC коллапс
+  const toc = document.getElementById('post-toc');
+  const tocBody = document.getElementById('toc-body');
+  document.getElementById('toc-toggle')?.addEventListener('click', () => {
+    const isOpen = toc?.hasAttribute('open');
+    if (isOpen) {
+      tocBody!.style.display = 'none';
+      toc!.removeAttribute('open');
+    } else {
+      tocBody!.style.display = '';
+      toc!.setAttribute('open', '');
+    }
+  });
+</script>

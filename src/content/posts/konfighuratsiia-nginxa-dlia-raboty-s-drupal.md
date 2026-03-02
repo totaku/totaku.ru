@@ -7,7 +7,7 @@ keywords: "рукоблудие, nginx, drupal"
 description: "Пример конфигурации nginx для Drupal."
 
 tags: ["nginx","drupal"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

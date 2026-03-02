@@ -7,7 +7,7 @@ keywords: "рукоблудие, nginx, let's encrypt, HTTPS, drupal, перев
 description: "Нашел хорошую заметку о дружбе Drupal 8, nginx и Let's Encrypt. Сделал для вас перевод."
 
 tags: ["drupal","nginx","let's encrypt","ssl"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

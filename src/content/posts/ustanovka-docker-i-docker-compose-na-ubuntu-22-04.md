@@ -7,7 +7,7 @@ keywords: "рукоблудие, docker, docker-compose, ubuntu"
 description: "В этом посте я расскажу как быстро и просто установить Docker и Docker-compose на Ubuntu 22.04"
 
 tags: ["docker", "docker-compose", "ubuntu"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

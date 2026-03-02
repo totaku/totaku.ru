@@ -7,7 +7,7 @@ keywords: "голубой экран, сериал, драма"
 description: "Большая маленькая ложь он же Big Little Lies охуительный 7 серийный сериал!"
 
 tags: ["tv"]
-categories: ["screen"]
+categories: ["Голубой экран"]
 
 hiddenFromHomePage: false
 

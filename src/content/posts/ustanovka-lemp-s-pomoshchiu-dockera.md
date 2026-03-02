@@ -7,7 +7,7 @@ keywords: "рукоблудие, docker, LEMP, MySQL, docker-compose, PHP, compo
 description: "Не так давно из всех углов доносились крики о докоре шморек. А я тогда использовал на локалхосте Vagrant и не понимал нафига мне переходить на Docker."
 
 tags: ["docker", "lemp", "mysql", "docker-compose", "php", "composer"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

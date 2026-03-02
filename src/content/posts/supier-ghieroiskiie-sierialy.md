@@ -7,7 +7,7 @@ keywords: "голубой экран, сериал, супергерой"
 description: "Подборка супергеройских сериалов с толикой моего мнения."
 
 tags: ["tv","superhero"]
-categories: ["screen"]
+categories: ["Голубой экран"]
 
 hiddenFromHomePage: false
 

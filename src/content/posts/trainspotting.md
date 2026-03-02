@@ -7,7 +7,7 @@ keywords: "голубой экран, цитаты"
 description: "Цитаты из фильма На игле / Trainspotting"
 
 tags: ["quotes","movie"]
-categories: ["tldr"]
+categories: ["TL;DR"]
 
 hiddenFromHomePage: false
 

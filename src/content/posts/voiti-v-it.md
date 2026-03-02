@@ -7,7 +7,7 @@ keywords: "для начинающих, рукоблудие, копипаста
 description: "Что нужно для входа в IT. И нужно ли оно вам в целом."
 
 tags: ["newbie"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

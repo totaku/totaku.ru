@@ -7,7 +7,7 @@ keywords: "рукоблудие, wordpress, PHP, MySQL, копипаста"
 description: "Восстанавливаем пароль в Wordpress одного из самых популярных движков для блогов."
 
 tags: ["wordpress","php","mysql"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

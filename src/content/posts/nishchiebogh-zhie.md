@@ -7,7 +7,7 @@ keywords: "голубой экран, аниме, приключения, ком
 description: "Я, конечно, редкий слоупок, но пропустить это аниме у меня не поднялась рука."
 
 tags: ["anime"]
-categories: ["screen"]
+categories: ["Голубой экран"]
 
 hiddenFromHomePage: false
 

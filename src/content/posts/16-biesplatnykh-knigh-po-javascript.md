@@ -7,7 +7,7 @@ keywords: "рукоблудие, для начинающих, JavaScript, кни
 description: "Коллекция бесплатных электронных книг для тех, кто хочет изучить JavaScript. Книги предоставляются в различных цифровых форматах: PDF, EPUB, HTML и др."
 
 tags: ["javascript","books","newbie"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

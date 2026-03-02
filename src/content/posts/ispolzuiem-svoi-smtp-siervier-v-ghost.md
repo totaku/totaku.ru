@@ -7,7 +7,7 @@ keywords: "рукоблудие, ghost, SMTP"
 description: "Официальная документация Ghost предлагает выбрать из 3 smtp серверов: Gmail, Amazon SES, Mailgun. В ней не слова не говорится, о собственном smpt сервере."
 
 tags: ["ghost","smtp"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

@@ -7,7 +7,7 @@ keywords: "цитаты, разное, Джордж Карлин"
 description: "Джордж Карлин — единственный, кому американцы позволили смеяться над собой. И, кажется, они ни разу об этом не пожалели."
 
 tags: ["people","quotes"]
-categories: ["tldr"]
+categories: ["TL;DR"]
 
 hiddenFromHomePage: false
 

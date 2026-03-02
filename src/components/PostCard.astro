@@ -1,23 +1,67 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { getImage } from 'astro:assets';
+import { transliterate } from '@/utils/transliterate';
 
 interface Props {
   post: CollectionEntry<'posts'>;
+  animDelay?: number;
 }
 
-const { post } = Astro.props;
+const { post, animDelay = 0 } = Astro.props;
 
-const date = post.data.date;
-const dateFormatted = date.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' });
-const dateIso = date.toISOString();
+const catName = post.data.categories[0] ?? '';
+const catSlug = catName ? transliterate(catName) : 'other';
+
+const dateFormatted = post.data.date.toLocaleDateString('ru-RU', {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric',
+});
+
+let coverSrc = '';
+if (post.data.featuredImage) {
+  const img = await getImage({
+    src: post.data.featuredImage,
+    width: 600,
+    format: 'webp',
+  });
+  coverSrc = img.src;
+}
 ---
 
-<article class="post-card">
-  <a href={`/${post.id}/`} class="post-card__title">{post.data.title}</a>
-  <div class="post-card__meta">
-    <time datetime={dateIso} class="post-card__date">{dateFormatted}</time>
-    {post.data.categories.map((cat) => (
-      <a href={`/categories/${cat}/`} class="post-card__cat">{cat}</a>
-    ))}
+<a class="card" href={`/${post.id}/`} style={`animation-delay:${animDelay}s`}>
+  <div class="card-cover">
+    {
+      coverSrc ? (
+        <img
+          src={coverSrc}
+          alt={post.data.title}
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <div class={`card-cover-placeholder placeholder-${catSlug}`}>
+          {catName}
+        </div>
+      )
+    }
   </div>
-</article>
+  <div class="card-body">
+    <div class="card-title">{post.data.title}</div>
+    {
+      post.data.description && (
+        <div class="card-desc">{post.data.description}</div>
+      )
+    }
+    <div class="card-footer">
+      <span class="card-date">{dateFormatted}</span>
+      <span
+        class="card-cat"
+        data-href={`/categories/${catSlug}/`}
+        onclick="event.stopPropagation();window.location.href=this.dataset.href"
+        >{catName}</span
+      >
+    </div>
+  </div>
+</a>

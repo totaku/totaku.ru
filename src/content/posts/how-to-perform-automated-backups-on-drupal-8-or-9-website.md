@@ -7,7 +7,7 @@ keywords: "drupal, terminal, drush"
 description: "Несколько способов автоматического резервного копирования сайтов на Drupal 8/9. На самом деле не все так сложно как кажется. Даже не обязательно иметь доступ к терминалу."
 
 tags: ["drupal", "terminal"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

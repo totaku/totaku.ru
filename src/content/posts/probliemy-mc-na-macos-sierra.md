@@ -7,7 +7,7 @@ keywords: "macOS, bash, shell, mc, рукоблудие"
 description: "Проблема старая, а решил только что. С переездом на macOS Sierra у меня перестал запускаться Midnight Commander под рутом."
 
 tags: ["macos","mc","terminal"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

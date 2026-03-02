@@ -6,8 +6,8 @@ draft: false
 keywords: "разное, юмор"
 description: "В мохнатые годы написал сие чудо, потом оно разошлось по интернету, сменило название и даже попало на няш."
 
-tags: ["lol"]
-categories: ["tldr"]
+tags: ["lol","аниме"]
+categories: ["TL;DR"]
 
 hiddenFromHomePage: false
 

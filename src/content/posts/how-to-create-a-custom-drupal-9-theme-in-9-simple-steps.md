@@ -7,7 +7,7 @@ keywords: "drupal"
 description: ""
 
 tags: ["drupal"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

@@ -7,7 +7,7 @@ keywords: "рукоблудие, линукс, nginx"
 description: "По умолчании в nginx стоит ограничение 1m на размер тела от клиента и при загрузке файла больше 1м клиент получает эту ошибку."
 
 tags: ["nginx"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

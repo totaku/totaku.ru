@@ -7,7 +7,7 @@ keywords: "рукоблудие, ghost, favicon"
 description: "Некоторые шаги могу отличается от ваших, потому что местоположение favicon зависит от настроек темы. В этом примере я буду использовать стандартную тему Casper."
 
 tags: ["ghost","favicon"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

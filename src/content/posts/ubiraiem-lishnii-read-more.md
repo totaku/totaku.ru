@@ -7,7 +7,7 @@ keywords: "рукоблудие, drupal, модули"
 description: "Постоянная присутствующая кнопка Read more меня бесила с самого начала."
 
 tags: ["drupal","module"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

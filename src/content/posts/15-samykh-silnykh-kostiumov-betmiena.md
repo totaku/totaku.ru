@@ -7,7 +7,7 @@ keywords: "разное, комикс, супергерой, Бэтмен"
 description: "Сегодня я хочу представить вам перевод статьи одного зарубежного портала о 15 самых мощных костюмах Бэтмена."
 
 tags: ["comics","batman"]
-categories: ["tldr"]
+categories: ["TL;DR"]
 
 hiddenFromHomePage: false
 

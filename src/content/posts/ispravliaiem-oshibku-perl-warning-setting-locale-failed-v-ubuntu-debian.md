@@ -7,7 +7,7 @@ keywords: "рукоблудие, ubuntu, консоль, линукс, debian"
 description: "Обычно на свежеустановленном Debian/Ubuntu появляется ошибка (например при установке пакетов)."
 
 tags: ["terminal","linux"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

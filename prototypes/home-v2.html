@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Пермяк на Неве — прототип v2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0d0f14;
+      --bg-card:      #13161e;
+      --bg-hover:     #181c27;
+      --border:       rgba(255,255,255,0.07);
+      --border-mid:   rgba(255,255,255,0.12);
+      --text:         #e8eaf0;
+      --text-muted:   #6b7485;
+      --text-dim:     #9aa0b0;
+      --accent:       #5b8dee;
+      --tag-bg:       rgba(91,141,238,0.1);
+      --tag-color:    #7ba5f0;
+      --shadow-hover: 0 8px 40px rgba(0,0,0,0.6);
+      --radius:       10px;
+    }
+
+    [data-theme="light"] {
+      --bg:           #f5f5f0;
+      --bg-card:      #ffffff;
+      --bg-hover:     #fafaf8;
+      --border:       rgba(0,0,0,0.08);
+      --border-mid:   rgba(0,0,0,0.15);
+      --text:         #1a1c22;
+      --text-muted:   #8a8f9e;
+      --text-dim:     #555a6a;
+      --accent:       #3a6fd8;
+      --tag-bg:       rgba(58,111,216,0.08);
+      --tag-color:    #3a6fd8;
+      --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Manrope', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* ── HEADER ──────────────────────────────────────────── */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .logo {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .logo em { font-style: normal; color: var(--accent); }
+    .nav {
+      display: flex;
+      gap: 0.125rem;
+      flex: 1;
+    }
+    .nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      padding: 0.3rem 0.625rem;
+      border-radius: 6px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav a:hover { color: var(--text); background: var(--border); }
+    .btn-icon {
+      width: 32px; height: 32px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: color 0.15s, background 0.15s, border-color 0.15s;
+      text-decoration: none;
+    }
+    .btn-icon:hover { color: var(--text); background: var(--bg-hover); border-color: var(--border-mid); }
+    .icon-sun  { display: block; }
+    .icon-moon { display: none; }
+    [data-theme="light"] .icon-sun  { display: none; }
+    [data-theme="light"] .icon-moon { display: block; }
+
+    /* ── HERO 9C ─────────────────────────────────────────── */
+    .hero {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 2.75rem 1.5rem 2.25rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d5fa0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: #a8c4e0;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 2px rgba(91,141,238,0.25), 0 12px 40px rgba(0,0,0,0.5);
+    }
+
+    .hero-body { flex: 1; min-width: 0; }
+
+    .hero-pre {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.8;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-name {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--text);
+    }
+    .hero-name em { font-style: normal; color: var(--accent); }
+
+    .hero-bio {
+      font-size: 0.875rem;
+      color: var(--text-dim);
+      margin-top: 0.5rem;
+      line-height: 1.6;
+      font-family: 'Source Serif 4', serif;
+      max-width: 460px;
+    }
+
+    .hero-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 0.875rem;
+      flex-wrap: wrap;
+    }
+    .hero-link {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .hero-link:hover { color: var(--accent); }
+    .hero-sep { color: var(--border-mid); font-size: 0.875rem; }
+    .hero-quote {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: 'Source Serif 4', serif;
+      font-style: italic;
+      margin-top: 0.3rem;
+      opacity: 0.7;
+    }
+
+    /* ── GRID ────────────────────────────────────────────── */
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 1.75rem 1.5rem 4rem;
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 640px)  { .posts-grid { grid-template-columns: 1fr; } }
+    @media (min-width: 1024px) { .posts-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    /* ── CARD ────────────────────────────────────────────── */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      animation: cardIn 0.4s ease both;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(91,141,238,0.2);
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-cover {
+      aspect-ratio: 16/9;
+      overflow: hidden;
+    }
+    .card-cover-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      transition: filter 0.3s;
+    }
+    .card:hover .card-cover-placeholder { filter: brightness(1.15); }
+
+    .placeholder-dev    { background: linear-gradient(135deg, #0f2744, #1a3f6f); color: #5b8dee; }
+    .placeholder-games  { background: linear-gradient(135deg, #1a0f2e, #2d1a52); color: #9b7fe8; }
+    .placeholder-screen { background: linear-gradient(135deg, #1a1200, #3d2d00); color: #d4a017; }
+    .placeholder-place  { background: linear-gradient(135deg, #0a2010, #1a4020); color: #4caf72; }
+    .placeholder-tldr   { background: linear-gradient(135deg, #1a0a0a, #3d1515); color: #e05555; }
+    .placeholder-other  { background: linear-gradient(135deg, #111318, #1e2230); color: #6b7485; }
+
+    .card-body {
+      padding: 1rem 1.125rem 1.125rem;
+      display: flex; flex-direction: column; flex: 1; gap: 0.5rem;
+    }
+    .card-title {
+      font-size: 0.9375rem; font-weight: 700;
+      color: var(--text); line-height: 1.4; letter-spacing: -0.01em;
+    }
+    .card-desc {
+      font-size: 0.8125rem; color: var(--text-dim); line-height: 1.55;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden; flex: 1;
+    }
+    .card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 0.25rem; padding-top: 0.625rem; border-top: 1px solid var(--border);
+    }
+    .card-date { font-size: 0.75rem; color: var(--text-muted); }
+    .card-cat {
+      font-size: 0.6875rem; font-weight: 600;
+      color: var(--tag-color); background: var(--tag-bg);
+      padding: 0.2em 0.6em; border-radius: 4px;
+      text-decoration: none; letter-spacing: 0.02em;
+    }
+
+    /* ── LOADER ──────────────────────────────────────────── */
+    .sentinel {
+      height: 40px; display: flex; align-items: center; justify-content: center;
+      margin: 1rem 0 2rem;
+    }
+    .loader { display: flex; gap: 6px; opacity: 0; transition: opacity 0.3s; }
+    .loader.visible { opacity: 1; }
+    .loader span {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+      animation: bounce 1.2s ease-in-out infinite;
+    }
+    .loader span:nth-child(2) { animation-delay: 0.2s; }
+    .loader span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce {
+      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+      40%            { transform: scale(1);   opacity: 1;   }
+    }
+
+    .end-marker {
+      text-align: center; color: var(--text-muted);
+      font-size: 0.8125rem; padding: 2rem 0 3rem; display: none;
+    }
+    .end-marker.visible { display: block; }
+    .end-marker::before {
+      content: '· · ·'; display: block;
+      font-size: 1.25rem; letter-spacing: 0.4em;
+      margin-bottom: 0.75rem; color: var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<!-- SVG спрайт -->
+<svg style="display:none">
+  <symbol id="ico-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></symbol>
+  <symbol id="ico-telegram" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></symbol>
+  <symbol id="ico-twitter" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63 5.905-5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></symbol>
+  <symbol id="ico-lastfm" viewBox="0 0 24 24" fill="currentColor"><path d="M10.584 17.21l-.88-2.392s-1.43 1.596-3.573 1.596c-1.897 0-3.244-1.651-3.244-4.296 0-3.385 1.706-4.596 3.381-4.596 2.41 0 3.17 1.562 3.82 3.573l.88 2.756c.87 2.65 2.524 4.774 7.274 4.774 3.409 0 5.712-1.045 5.712-3.793 0-2.218-1.265-3.363-3.625-3.913l-1.752-.38c-1.21-.275-1.567-.76-1.567-1.573 0-.924.73-1.458 1.924-1.458 1.303 0 2.002.487 2.112 1.65l2.7-.324c-.22-2.434-1.9-3.43-4.647-3.43-2.43 0-4.796.919-4.796 3.863 0 1.837.889 2.997 3.124 3.547l1.86.46c1.374.337 1.918.924 1.918 1.8 0 1.07-.986 1.513-2.896 1.513-2.806 0-3.978-1.476-4.649-3.489l-.9-2.759c-1.155-3.563-3.001-4.883-6.59-4.883C1.84 5.656 0 8.174 0 12.19 0 16.042 1.918 18.8 5.459 18.8c2.818 0 4.43-1.185 5.125-1.59z"/></symbol>
+  <symbol id="ico-rss" viewBox="0 0 24 24" fill="currentColor"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/></symbol>
+</svg>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">Totaku<em>.</em></a>
+    <nav class="nav">
+      <a href="/categories/dev/">Рукоблудие</a>
+      <a href="/categories/tldr/">TL;DR</a>
+      <a href="/categories/games/">Игры</a>
+      <a href="/categories/screen/">Голубой экран</a>
+      <a href="/categories/place/">Места</a>
+    </nav>
+    <div style="display:flex;gap:0.5rem">
+      <a href="/rss.xml" class="btn-icon" title="RSS">
+        <svg width="14" height="14"><use href="#ico-rss"/></svg>
+      </a>
+      <button class="btn-icon" id="theme-btn" title="Сменить тему">
+        <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Hero 9C -->
+<div class="hero">
+  <div class="hero-avatar">T</div>
+  <div class="hero-body">
+    <div class="hero-pre">Личный блог · с 2012</div>
+    <div class="hero-name">Totaku<em>.</em></div>
+    <div class="hero-quote">Keep your expectations low and you will never be disappointed</div>
+    <div class="hero-bio">Живу в Петербурге. Пишу про IT, игры, сериалы, аниме и места — иногда всё это в одном посте.</div>
+    <div class="hero-links">
+      <a href="https://github.com/totaku" class="hero-link"><svg width="14" height="14"><use href="#ico-github"/></svg> GitHub</a>
+      <span class="hero-sep">·</span>
+      <a href="https://t.me/totaku" class="hero-link"><svg width="14" height="14"><use href="#ico-telegram"/></svg> Telegram</a>
+      <span class="hero-sep">·</span>
+      <a href="https://twitter.com/totaku" class="hero-link"><svg width="14" height="14"><use href="#ico-twitter"/></svg> Twitter</a>
+      <span class="hero-sep">·</span>
+      <a href="https://last.fm/user/totaku-kun" class="hero-link"><svg width="14" height="14"><use href="#ico-lastfm"/></svg> Last.fm</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="posts-grid" id="grid"></div>
+  <div class="sentinel">
+    <div class="loader" id="loader"><span></span><span></span><span></span></div>
+  </div>
+  <div class="end-marker" id="end-marker">Это все посты</div>
+</div>
+
+<script>
+  const POSTS = [
+    { title: 'Установка Docker и Docker-compose на Ubuntu 24.04', desc: 'В этом посте я расскажу как быстро и просто установить Docker и Docker-compose на Ubuntu 24.04. Минимум телодвижений — максимум результата.', date: '30.04.2024', cat: 'dev' },
+    { title: 'Как встроить Youtube в сайт на Nuxt используя Markdown', desc: 'Встраивать Youtube в блог с Nuxt ещё никогда не было так просто. Подключите lite-youtube-embed, создайте плагин и компонент.', date: '04.12.2023', cat: 'dev' },
+    { title: 'Установка Docker и Docker-compose на Ubuntu 22.04', desc: 'Пошаговое руководство по установке Docker на Ubuntu 22.04. Разбираем каждый шаг и возможные грабли.', date: '30.05.2022', cat: 'dev' },
+    { title: 'Синхронизация локальных и рабочих сайтов на Drupal 8/9', desc: 'Как держать локальную и продакшн копию сайта в синхронизированном состоянии без лишней головной боли.', date: '17.05.2022', cat: 'dev' },
+    { title: 'За что я люблю Винчестеров', desc: 'Сериал Сверхъестественное шёл 15 лет. Почему я до сих пор пересматриваю его и что в нём такого особенного.', date: '12.03.2022', cat: 'screen' },
+    { title: 'Telegram: почему я перешёл и не жалею', desc: 'История перехода с других мессенджеров на Telegram, и почему большинство аргументов против — несостоятельны.', date: '01.02.2022', cat: 'tldr' },
+    { title: 'Типажи аниме персонажей которые я ненавижу', desc: 'Субъективный список раздражающих архетипов из аниме, которые встречаются в каждом втором тайтле.', date: '15.11.2021', cat: 'screen' },
+    { title: 'Drupal 9 + Docker: полный гайд', desc: 'Поднимаем Drupal 9 в Docker с нуля. PostgreSQL, Nginx, PHP-FPM, Composer — всё в одном compose файле.', date: '03.10.2021', cat: 'dev' },
+    { title: 'Лучшие игры в которые я играл в 2021', desc: 'Личный топ игр года. Без лишних слов — только то, что реально зацепило и заставило не спать ночами.', date: '31.12.2021', cat: 'games' },
+    { title: 'Бесплатные фотостоки которые я использую', desc: 'Коллекция сайтов с качественными и бесплатными изображениями для личных и рабочих проектов.', date: '19.11.2016', cat: 'tldr' },
+    { title: 'Петербург зимой: маршрут выходного дня', desc: 'Куда пойти в Петербурге зимой когда всё затянуто серостью. Личные места, которые работают в любую погоду.', date: '20.01.2022', cat: 'place' },
+    { title: 'Установка LEMP с помощью Docker', desc: 'Linux + Nginx + MySQL + PHP в Docker. Минимальная конфигурация которая реально работает в 2022 году.', date: '05.04.2022', cat: 'dev' },
+    { title: 'CSS Reset: убойная коллекция стилей', desc: 'Сборник CSS reset/normalize решений — от классических до современных. Что выбрать и почему это важно.', date: '14.09.2021', cat: 'dev' },
+    { title: 'Про Ведьмака и ожидания от экранизаций', desc: 'Сериал Netflix по Ведьмаку вызвал споры. Делюсь мыслями: что получилось, что нет, и чего ждать дальше.', date: '10.02.2020', cat: 'screen' },
+    { title: 'Как я настроил Oh My Zsh и не пожалел', desc: 'Переход с bash на zsh с Oh My Zsh — плагины, темы, конфигурация. Плюсы которые я замечаю каждый день.', date: '22.07.2021', cat: 'dev' },
+  ];
+
+  const PAGE_SIZE = 6;
+  let page = 0, loading = false;
+  const grid = document.getElementById('grid');
+  const loader = document.getElementById('loader');
+  const endMarker = document.getElementById('end-marker');
+
+  const placeholderClass = { dev:'placeholder-dev', games:'placeholder-games', screen:'placeholder-screen', place:'placeholder-place', tldr:'placeholder-tldr' };
+  const catLabel = { dev:'Рукоблудие', games:'Игры', screen:'Голубой экран', place:'Места', tldr:'TL;DR' };
+
+  function renderBatch() {
+    const start = page * PAGE_SIZE;
+    const end = Math.min(start + PAGE_SIZE, POSTS.length);
+    if (start >= POSTS.length) return false;
+    const frag = document.createDocumentFragment();
+    for (let i = start; i < end; i++) {
+      const p = POSTS[i];
+      const card = document.createElement('a');
+      card.className = 'card';
+      card.href = '#';
+      card.style.animationDelay = `${(i - start) * 0.06}s`;
+      const cls = placeholderClass[p.cat] || 'placeholder-other';
+      const lbl = catLabel[p.cat] || p.cat;
+      card.innerHTML = `
+        <div class="card-cover"><div class="card-cover-placeholder ${cls}">${lbl}</div></div>
+        <div class="card-body">
+          <div class="card-title">${p.title}</div>
+          <div class="card-desc">${p.desc}</div>
+          <div class="card-footer">
+            <span class="card-date">${p.date}</span>
+            <span class="card-cat">${lbl}</span>
+          </div>
+        </div>`;
+      frag.appendChild(card);
+    }
+    grid.appendChild(frag);
+    page++;
+    return end < POSTS.length;
+  }
+
+  async function loadMore() {
+    if (loading) return;
+    loading = true;
+    loader.classList.add('visible');
+    await new Promise(r => setTimeout(r, 500));
+    const hasMore = renderBatch();
+    loader.classList.remove('visible');
+    if (!hasMore) { endMarker.classList.add('visible'); observer.disconnect(); }
+    loading = false;
+  }
+
+  renderBatch();
+
+  const observer = new IntersectionObserver(
+    e => { if (e[0].isIntersecting) loadMore(); },
+    { rootMargin: '200px' }
+  );
+  observer.observe(document.querySelector('.sentinel'));
+
+  document.getElementById('theme-btn').addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  });
+</script>
+</body>
+</html>

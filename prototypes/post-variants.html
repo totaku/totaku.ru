@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Страница поста — вариант C</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0d0f14;
+      --bg-card:      #13161e;
+      --bg-secondary: #181c27;
+      --border:       rgba(255,255,255,0.07);
+      --border-mid:   rgba(255,255,255,0.12);
+      --text:         #e8eaf0;
+      --text-muted:   #6b7485;
+      --text-dim:     #9aa0b0;
+      --accent:       #5b8dee;
+      --tag-bg:       rgba(91,141,238,0.1);
+      --tag-color:    #7ba5f0;
+      --radius:       10px;
+    }
+
+    [data-theme="light"] {
+      --bg:           #f5f5f0;
+      --bg-card:      #ffffff;
+      --bg-secondary: #f0f0eb;
+      --border:       rgba(0,0,0,0.08);
+      --border-mid:   rgba(0,0,0,0.15);
+      --text:         #1a1c22;
+      --text-muted:   #8a8f9e;
+      --text-dim:     #555a6a;
+      --accent:       #3a6fd8;
+      --tag-bg:       rgba(58,111,216,0.08);
+      --tag-color:    #3a6fd8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Manrope', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* ── ПРОГРЕСС-БАР ЧТЕНИЯ ─────────────────────────────── */
+    .read-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 200;
+      transition: width 0.1s linear;
+      pointer-events: none;
+    }
+
+    /* ── HEADER ──────────────────────────────────────────── */
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 1140px; margin: 0 auto;
+      padding: 0 1.5rem; height: 56px;
+      display: flex; align-items: center; gap: 2rem;
+    }
+    .logo { font-size: 1rem; font-weight: 800; color: var(--text); text-decoration: none; letter-spacing: -0.01em; flex-shrink: 0; }
+    .logo em { font-style: normal; color: var(--accent); }
+    .nav { display: flex; gap: 0.125rem; flex: 1; }
+    .nav a { color: var(--text-muted); text-decoration: none; font-size: 0.8125rem; font-weight: 500; padding: 0.3rem 0.625rem; border-radius: 6px; transition: color 0.15s, background 0.15s; }
+    .nav a:hover { color: var(--text); background: var(--border); }
+    .btn-icon { width: 32px; height: 32px; border-radius: 7px; border: 1px solid var(--border); background: transparent; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: color 0.15s, background 0.15s, border-color 0.15s; }
+    .btn-icon:hover { color: var(--text); background: var(--bg-secondary); border-color: var(--border-mid); }
+    .icon-sun  { display: block; }
+    .icon-moon { display: none; }
+    [data-theme="light"] .icon-sun  { display: none; }
+    [data-theme="light"] .icon-moon { display: block; }
+
+    /* ── ОБЩИЕ ────────────────────────────────────────────── */
+    .post-tag {
+      display: inline-flex; align-items: center;
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--tag-color); background: var(--tag-bg);
+      padding: 0.2em 0.65em; border-radius: 4px;
+      text-decoration: none; letter-spacing: 0.02em;
+      transition: opacity 0.15s;
+    }
+    .post-tag:hover { opacity: 0.8; }
+    .post-tag.cat { background: transparent; border: 1px solid var(--border-mid); color: var(--text-muted); }
+    .post-tag.cat:hover { color: var(--accent); border-color: var(--accent); }
+
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-size: 0.8125rem; font-weight: 500;
+      color: var(--text-muted); text-decoration: none;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    /* ── PROSE ───────────────────────────────────────────── */
+    .prose {
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.0625rem;
+      line-height: 1.8;
+      color: var(--text);
+    }
+    .prose p { margin-bottom: 1.4em; }
+    .prose h2 { font-family: 'Manrope', sans-serif; font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; margin: 2em 0 0.6em; color: var(--text); scroll-margin-top: 80px; }
+    .prose h3 { font-family: 'Manrope', sans-serif; font-size: 1.1rem; font-weight: 700; margin: 1.6em 0 0.5em; color: var(--text); scroll-margin-top: 80px; }
+    .prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    .prose code { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 4px; padding: 0.1em 0.4em; font-size: 0.875em; font-family: 'JetBrains Mono', monospace; }
+    .prose pre { background: #1a1e2d; border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5em 0; min-width: 0; }
+    .prose pre code { background: none; border: none; padding: 0; font-size: 0.875rem; color: #e2e8f0; }
+    .prose ul, .prose ol { padding-left: 1.5em; margin-bottom: 1.4em; }
+    .prose li { margin-bottom: 0.4em; }
+    .prose blockquote { border-left: 3px solid var(--accent); padding-left: 1.25rem; color: var(--text-dim); font-style: italic; margin: 1.5em 0; }
+    .prose img { max-width: 100%; border-radius: 8px; margin: 1.5em 0; border: 1px solid var(--border); }
+    .prose hr { border: none; border-top: 1px solid var(--border); margin: 2.5em 0; }
+
+    /* ── COMMENTS ────────────────────────────────────────── */
+    .comments { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .comments-title { font-size: 1.125rem; font-weight: 700; margin-bottom: 1.5rem; }
+    .comments-placeholder { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; text-align: center; color: var(--text-muted); font-size: 0.875rem; }
+
+    /* ════════════════════════════════════════════════════════
+       СТРАНИЦА ПОСТА
+    ════════════════════════════════════════════════════════ */
+
+    /* акцентная полоска сверху */
+    .post-stripe {
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), #7ba5f0 60%, transparent);
+    }
+
+    /* центрированный контейнер */
+    .post-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 5rem;
+      min-width: 0;
+    }
+
+    /* шапка поста */
+    .post-back  { margin-bottom: 1.25rem; display: block; }
+    .post-cats  { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+
+    .post-title {
+      font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .post-meta {
+      display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+      font-size: 0.8125rem; color: var(--text-muted);
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .post-meta-dot { opacity: 0.35; }
+    .post-meta-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+    /* обложка — выступает за края контейнера */
+    .post-cover {
+      margin: 1.75rem -6rem 0;
+      aspect-ratio: 16/9;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 16px 56px rgba(0,0,0,0.45), 0 2px 10px rgba(0,0,0,0.25);
+    }
+    [data-theme="light"] .post-cover {
+      box-shadow: 0 10px 40px rgba(0,0,0,0.16), 0 2px 8px rgba(0,0,0,0.08);
+    }
+    @media (max-width: 960px) { .post-cover { margin-left: -3rem; margin-right: -3rem; } }
+    @media (max-width: 700px)  { .post-cover { margin-left: -1.5rem; margin-right: -1.5rem; border-radius: 0; } }
+
+    .post-cover img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+
+    /* ToC под обложкой с коллапсом */
+    .post-toc {
+      margin-top: 2rem;
+      margin-bottom: 2.25rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .post-toc-toggle {
+      width: 100%;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.875rem 1.25rem;
+      background: none; border: none; cursor: pointer;
+      color: var(--text-muted);
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.6875rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      transition: color 0.15s;
+    }
+    .post-toc-toggle:hover { color: var(--text); }
+    .post-toc-toggle svg {
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+    .post-toc[open] .post-toc-toggle svg { transform: rotate(180deg); }
+    .post-toc-body {
+      padding: 0 1.25rem 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+    .post-toc-list {
+      list-style: none;
+      display: flex; flex-direction: column;
+      padding-top: 0.375rem;
+    }
+    .post-toc-list li a {
+      font-size: 0.8125rem; color: var(--text-dim);
+      text-decoration: none;
+      padding: 0.3rem 0.5rem;
+      border-radius: 5px;
+      display: flex; align-items: baseline; gap: 0.4rem;
+      transition: color 0.15s, background 0.15s;
+    }
+    .post-toc-list li a:hover { color: var(--text); background: var(--bg-secondary); }
+    .post-toc-num {
+      font-size: 0.6875rem; color: var(--text-muted); font-weight: 600;
+      min-width: 1.25rem; flex-shrink: 0;
+    }
+    /* h3 — вложенные */
+    .post-toc-list .toc-h3 a {
+      padding-left: 1.75rem;
+      font-size: 0.775rem;
+      color: var(--text-muted);
+    }
+    .post-toc-list .toc-h3 a::before {
+      content: '—';
+      font-size: 0.625rem;
+      color: var(--border-mid);
+      margin-right: 0.15rem;
+    }
+
+    /* навигация между постами */
+    .post-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    @media (max-width: 560px) { .post-nav { grid-template-columns: 1fr; } }
+
+    .post-nav-link {
+      display: flex; flex-direction: column; gap: 0.3rem;
+      padding: 1rem 1.125rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .post-nav-link:hover { border-color: var(--border-mid); background: var(--bg-secondary); }
+    .post-nav-link.next { text-align: right; }
+
+    .post-nav-label {
+      font-size: 0.6875rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex; align-items: center; gap: 0.3rem;
+    }
+    .post-nav-link.next .post-nav-label { justify-content: flex-end; }
+    .post-nav-title {
+      font-size: 0.875rem; font-weight: 600;
+      color: var(--text); line-height: 1.35;
+    }
+
+    /* теги-подвал */
+    .post-footer-tags {
+      display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+      padding-top: 1.75rem; margin-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<div class="read-progress" id="read-progress"></div>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">Totaku<em>.</em></a>
+    <nav class="nav">
+      <a href="/categories/dev/">Рукоблудие</a>
+      <a href="/categories/tldr/">TL;DR</a>
+      <a href="/categories/games/">Игры</a>
+      <a href="/categories/screen/">Голубой экран</a>
+      <a href="/categories/place/">Места</a>
+    </nav>
+    <div style="display:flex;gap:0.5rem">
+      <button class="btn-icon" id="theme-btn" title="Сменить тему">
+        <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="post-stripe"></div>
+
+<div class="post-wrap">
+
+  <a href="/" class="back-link post-back">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    На главную
+  </a>
+
+  <div class="post-cats">
+    <a href="/categories/dev/" class="post-tag cat">Рукоблудие</a>
+  </div>
+
+  <h1 class="post-title">Установка Docker и Docker-compose на Ubuntu 24.04</h1>
+
+  <div class="post-meta">
+    <time>30 апреля 2024</time>
+    <span class="post-meta-dot">·</span>
+    <span>8 мин</span>
+    <span class="post-meta-dot">·</span>
+    <div class="post-meta-tags">
+      <a href="/tags/docker/" class="post-tag">docker</a>
+      <a href="/tags/ubuntu/" class="post-tag">ubuntu</a>
+      <a href="/tags/linux/" class="post-tag">linux</a>
+    </div>
+  </div>
+
+  <div class="post-cover">
+    <img src="https://totaku.ru/how-to-embed-youtube-in-nuxt-website-via-markdown-file/featured-image.jpg" alt="Обложка поста">
+  </div>
+
+  <!-- ToC с коллапсом -->
+  <div class="post-toc" id="post-toc" open>
+    <button class="post-toc-toggle" id="toc-toggle">
+      Оглавление
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="post-toc-body" id="toc-body">
+      <ul class="post-toc-list">
+        <li><a href="#requirements"><span class="post-toc-num">1.</span>Требования</a></li>
+        <li><a href="#install-docker"><span class="post-toc-num">2.</span>Установка Docker</a></li>
+        <li><a href="#install-compose"><span class="post-toc-num">3.</span>Установка Docker Compose</a></li>
+        <li><a href="#post-install"><span class="post-toc-num">4.</span>Настройка после установки</a></li>
+        <li class="toc-h3"><a href="#autostart">Автозапуск</a></li>
+        <li class="toc-h3"><a href="#firewall">Настройка файрвола</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>Docker — это платформа контейнеризации, которая позволяет запускать приложения в изолированных средах. В этом посте разберём установку Docker и Docker Compose на Ubuntu 24.04 — пошагово, без воды.</p>
+    <h2 id="requirements">Требования</h2>
+    <p>Для установки нам понадобится свежая Ubuntu 24.04 с доступом к интернету и правами sudo. Убедитесь, что система обновлена:</p>
+    <pre><code>sudo apt update && sudo apt upgrade -y</code></pre>
+    <h2 id="install-docker">Установка Docker</h2>
+    <p>Официальный способ — добавить репозиторий Docker и установить пакет оттуда. Это гарантирует актуальную версию.</p>
+    <pre><code># Добавляем GPG ключ
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+# Добавляем репозиторий
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list
+
+# Устанавливаем
+sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io</code></pre>
+    <h2 id="install-compose">Установка Docker Compose</h2>
+    <p>Docker Compose v2 теперь идёт как плагин к Docker CLI, а не отдельный бинарник. Устанавливаем:</p>
+    <pre><code>sudo apt install -y docker-compose-plugin</code></pre>
+    <p>Проверяем:</p>
+    <pre><code>docker compose version
+# Docker Compose version v2.24.0</code></pre>
+    <h2 id="post-install">Настройка после установки</h2>
+    <p>Чтобы запускать Docker без sudo, добавьте пользователя в группу <code>docker</code>:</p>
+    <pre><code>sudo usermod -aG docker $USER
+newgrp docker</code></pre>
+    <blockquote>Изменения вступят в силу после перелогина. Или используйте <code>newgrp docker</code> для текущей сессии.</blockquote>
+    <h3 id="autostart">Автозапуск</h3>
+    <p>По умолчанию Docker уже настроен на автозапуск через systemd. Проверить можно так:</p>
+    <pre><code>sudo systemctl is-enabled docker
+# enabled</code></pre>
+    <h3 id="firewall">Настройка файрвола</h3>
+    <p>Если используете ufw, имейте в виду что Docker управляет iptables напрямую и обходит ufw правила. Для корректной работы добавьте в <code>/etc/docker/daemon.json</code>:</p>
+    <pre><code>{ "iptables": false }</code></pre>
+    <hr>
+    <p>На этом всё. Docker и Docker Compose установлены и готовы к работе. В следующий раз разберём как поднять первый контейнер и написать простой compose-файл.</p>
+  </div>
+
+  <div class="post-footer-tags">
+    <a href="/tags/docker/" class="post-tag">docker</a>
+    <a href="/tags/ubuntu/" class="post-tag">ubuntu</a>
+    <a href="/tags/linux/" class="post-tag">linux</a>
+  </div>
+
+  <!-- Навигация между постами -->
+  <nav class="post-nav">
+    <a href="#" class="post-nav-link prev">
+      <span class="post-nav-label">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Предыдущий
+      </span>
+      <span class="post-nav-title">Настройка Nginx как reverse proxy для Node.js приложений</span>
+    </a>
+    <a href="#" class="post-nav-link next">
+      <span class="post-nav-label">
+        Следующий
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+      <span class="post-nav-title">Docker Compose: поднимаем первый проект с нуля</span>
+    </a>
+  </nav>
+
+  <div class="comments">
+    <h2 class="comments-title">Комментарии</h2>
+    <div class="comments-placeholder">Здесь будут комментарии Disqus</div>
+  </div>
+
+</div>
+
+<script>
+  // Тема
+  document.getElementById('theme-btn').addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  });
+
+  // ToC коллапс
+  const toc = document.getElementById('post-toc');
+  const tocBody = document.getElementById('toc-body');
+  document.getElementById('toc-toggle').addEventListener('click', () => {
+    const isOpen = toc.hasAttribute('open');
+    if (isOpen) {
+      tocBody.style.display = 'none';
+      toc.removeAttribute('open');
+    } else {
+      tocBody.style.display = '';
+      toc.setAttribute('open', '');
+    }
+  });
+
+  // Прогресс чтения
+  const bar = document.getElementById('read-progress');
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const scrolled = doc.scrollTop;
+    const total = doc.scrollHeight - doc.clientHeight;
+    bar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
+  }, { passive: true });
+</script>
+</body>
+</html>

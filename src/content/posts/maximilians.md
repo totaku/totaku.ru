@@ -7,7 +7,7 @@ keywords: "место, ресторан, Челябинск"
 description: "Не так давно с пафосом в Челябинске открылся настоящий баварский ресторан-пивоварня Maximilian’s. И вот, в прошедшую пятницу мы с друзьями решили посетить это славное место."
 
 tags: ["restaurant"]
-categories: ["place"]
+categories: ["Места"]
 
 hiddenFromHomePage: false
 

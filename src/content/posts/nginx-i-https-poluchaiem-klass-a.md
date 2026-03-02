@@ -7,7 +7,7 @@ keywords: "рукоблудие, линукс, nginx, SSL"
 description: "Как в nginx настроить HTTPS, чтобы при проверке в SSL Labs получить рейтинг А+ и обезопасить себя от последних багов с помощью выпиливания SSL"
 
 tags: ["nginx","ssl"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

@@ -7,7 +7,7 @@ keywords: "drupal, рукоблудие, drush"
 description: "В чатике DrupalRu узнал, что есть уже Drush 8 и люди им пользуется."
 
 tags: ["drupal","drush","terminal"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hero variants</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #0d0f14;
+      --bg-card:    #13161e;
+      --border:     rgba(255,255,255,0.07);
+      --border-mid: rgba(255,255,255,0.12);
+      --text:       #e8eaf0;
+      --text-muted: #6b7485;
+      --text-dim:   #9aa0b0;
+      --accent:     #5b8dee;
+      --accent2:    #ee5b8d;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Manrope', sans-serif;
+      padding: 3rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 2.5rem 0 1rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2.5rem;
+    }
+    .section-label:first-of-type { margin-top: 0; border-top: none; padding-top: 0; }
+
+    .w { max-width: 1140px; margin: 0 auto; width: 100%; }
+
+    /* ── SOCIAL LINKS shared ─────────────────────────────── */
+    .socials {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .s-link {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.3em 0.7em;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .s-link:hover { color: var(--text); border-color: var(--border-mid); background: rgba(255,255,255,0.04); }
+    .s-link svg { flex-shrink: 0; }
+
+    .s-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .s-dot:hover { color: var(--accent); }
+
+    /* ════════════════════════════════════════════════════════
+       ВАРИАНТ 1 — Горизонтальный баннер с биографией
+    ════════════════════════════════════════════════════════ */
+    .v1 {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.75rem 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .v1-avatar {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e3a5f, #2d5fa0);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; font-weight: 800; color: #a8c4e0;
+      flex-shrink: 0;
+      border: 2px solid rgba(91,141,238,0.3);
+    }
+    .v1-main { flex: 1; }
+    .v1-name { font-size: 1.125rem; font-weight: 800; letter-spacing: -0.02em; }
+    .v1-bio  { font-size: 0.8125rem; color: var(--text-dim); margin-top: 0.25rem; line-height: 1.5; }
+    .v1-socials { margin-top: 0.75rem; }
+    .v1-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+    .v1-stat { font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; }
+    .v1-stat strong { color: var(--text); font-weight: 700; }
+
+    /* ════════════════════════════════════════════════════════
+       ВАРИАНТ 2 — Минималистичная полоса с соцсетями справа
+    ════════════════════════════════════════════════════════ */
+    .v2 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .v2-left { display: flex; align-items: center; gap: 1rem; }
+    .v2-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e3a5f, #2d5fa0);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; color: #a8c4e0; font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .v2-name { font-size: 1rem; font-weight: 800; display: block; letter-spacing: -0.01em; }
+    .v2-quote {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-style: italic;
+      font-family: 'Source Serif 4', serif;
+      display: block;
+      margin-top: 0.1rem;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       ВАРИАНТ 3 — Широкий с большим именем и акцентом
+    ════════════════════════════════════════════════════════ */
+    .v3 {
+      padding: 2.5rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .v3-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .v3-name {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--text);
+    }
+    .v3-name span { color: var(--accent); }
+    .v3-tagline {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      font-family: 'Source Serif 4', serif;
+      font-style: italic;
+      margin-top: 0.5rem;
+      max-width: 420px;
+      line-height: 1.55;
+    }
+    .v3-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.75rem;
+    }
+    .v3-avatar {
+      width: 56px; height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #1e3a5f, #2d5fa0);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; font-weight: 800; color: #a8c4e0;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       ВАРИАНТ 4 — Карточка с градиентной полосой сверху
+    ════════════════════════════════════════════════════════ */
+    .v4 {
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .v4-stripe {
+      height: 4px;
+      background: linear-gradient(90deg, #5b8dee 0%, #ee5b8d 50%, #5bee8d 100%);
+    }
+    .v4-body {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1.5rem 1.75rem;
+      background: var(--bg-card);
+    }
+    .v4-avatar {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, #1e3a5f, #2d5fa0);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.35rem; font-weight: 800; color: #a8c4e0;
+      flex-shrink: 0;
+    }
+    .v4-info { flex: 1; }
+    .v4-name { font-size: 1rem; font-weight: 800; letter-spacing: -0.01em; }
+    .v4-desc { font-size: 0.8125rem; color: var(--text-dim); margin-top: 0.2rem; line-height: 1.5; }
+    .v4-socials { margin-top: 0.75rem; }
+
+    /* ════════════════════════════════════════════════════════
+       ВАРИАНТ 5 — Текстоцентричный, без аватарки, editorial
+    ════════════════════════════════════════════════════════ */
+    .v5 {
+      padding: 2rem 0 1.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .v5-pre {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .v5-name {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+    .v5-desc {
+      font-size: 0.875rem;
+      color: var(--text-dim);
+      margin-top: 0.5rem;
+      max-width: 500px;
+      line-height: 1.6;
+      font-family: 'Source Serif 4', serif;
+    }
+    .v5-bottom {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .v5-divider { color: var(--border-mid); }
+
+    /* ════════════════════════════════════════════════════════
+       ВАРИАНТ 6 — Компактная полоска как у GitHub profile
+    ════════════════════════════════════════════════════════ */
+    .v6 {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .v6-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, #1e3a5f, #2d5fa0);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; color: #a8c4e0; font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .v6-name { font-size: 0.9375rem; font-weight: 700; }
+    .v6-sep { color: var(--border-mid); font-size: 1.2rem; }
+    .v6-quote {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      font-style: italic;
+      font-family: 'Source Serif 4', serif;
+      flex: 1;
+    }
+    .v6-right { margin-left: auto; }
+
+    /* ════════════════════════════════════════════════════════
+       ВАРИАНТ 7 — Большой hero с фоновым текстом
+    ════════════════════════════════════════════════════════ */
+    .v7 {
+      position: relative;
+      padding: 3rem 2rem;
+      border-radius: 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .v7-bg-text {
+      position: absolute;
+      right: -0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 8rem;
+      font-weight: 800;
+      color: rgba(255,255,255,0.025);
+      letter-spacing: -0.05em;
+      pointer-events: none;
+      line-height: 1;
+      user-select: none;
+    }
+    .v7-content { position: relative; z-index: 1; }
+    .v7-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .v7-avatar {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: linear-gradient(135deg, #1e3a5f, #2d5fa0);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; font-weight: 800; color: #a8c4e0;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 3px rgba(91,141,238,0.2);
+    }
+    .v7-name { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.03em; }
+    .v7-city {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+    .v7-city span { color: var(--accent); }
+    .v7-bio {
+      font-size: 0.875rem;
+      color: var(--text-dim);
+      margin-top: 1rem;
+      max-width: 480px;
+      line-height: 1.6;
+      font-family: 'Source Serif 4', serif;
+    }
+    .v7-socials { margin-top: 1.25rem; }
+
+    /* ════════════════════════════════════════════════════════
+       ВАРИАНТ 8 — Две колонки: текст + соцсетки отдельно
+    ════════════════════════════════════════════════════════ */
+    .v8 {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .v8-left { display: flex; align-items: center; gap: 1.25rem; }
+    .v8-avatar {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: linear-gradient(135deg, #1e3a5f, #2d5fa0);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; font-weight: 800; color: #a8c4e0;
+      flex-shrink: 0;
+    }
+    .v8-name { font-size: 1.0625rem; font-weight: 800; letter-spacing: -0.02em; }
+    .v8-sub  { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; font-style: italic; font-family: 'Source Serif 4', serif; }
+    .v8-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+    }
+    .v8-social-row { display: flex; gap: 0.375rem; }
+    .v8-icon {
+      width: 30px; height: 30px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .v8-icon:hover { color: var(--text); border-color: var(--border-mid); background: rgba(255,255,255,0.04); }
+    .v8-email {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .v8-email:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<!-- SVG спрайт -->
+<svg style="display:none">
+  <symbol id="ico-github" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+  </symbol>
+  <symbol id="ico-telegram" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+  </symbol>
+  <symbol id="ico-twitter" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63 5.905-5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </symbol>
+  <symbol id="ico-lastfm" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M10.584 17.21l-.88-2.392s-1.43 1.596-3.573 1.596c-1.897 0-3.244-1.651-3.244-4.296 0-3.385 1.706-4.596 3.381-4.596 2.41 0 3.17 1.562 3.82 3.573l.88 2.756c.87 2.65 2.524 4.774 7.274 4.774 3.409 0 5.712-1.045 5.712-3.793 0-2.218-1.265-3.363-3.625-3.913l-1.752-.38c-1.21-.275-1.567-.76-1.567-1.573 0-.924.73-1.458 1.924-1.458 1.303 0 2.002.487 2.112 1.65l2.7-.324c-.22-2.434-1.9-3.43-4.647-3.43-2.43 0-4.796.919-4.796 3.863 0 1.837.889 2.997 3.124 3.547l1.86.46c1.374.337 1.918.924 1.918 1.8 0 1.07-.986 1.513-2.896 1.513-2.806 0-3.978-1.476-4.649-3.489l-.9-2.759c-1.155-3.563-3.001-4.883-6.59-4.883C1.84 5.656 0 8.174 0 12.19 0 16.042 1.918 18.8 5.459 18.8c2.818 0 4.43-1.185 5.125-1.59z"/>
+  </symbol>
+  <symbol id="ico-rss" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+  </symbol>
+</svg>
+
+<!-- ════════════════════════════════════════ ВАРИАНТ 1 -->
+<p class="section-label w">Вариант 1 — Карточка с биографией и статистикой</p>
+<div class="w">
+<div class="v1">
+  <div class="v1-avatar">T</div>
+  <div class="v1-main">
+    <div class="v1-name">Totaku</div>
+    <div class="v1-bio">Живу в Петербурге. Пишу про IT, игры, сериалы и всякую всячину. Бывший пермяк, нынешний петербуржец.</div>
+    <div class="v1-socials">
+      <div class="socials">
+        <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-github"/></svg> GitHub</a>
+        <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-telegram"/></svg> Telegram</a>
+        <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-twitter"/></svg> Twitter</a>
+        <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-lastfm"/></svg> Last.fm</a>
+        <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-rss"/></svg> RSS</a>
+      </div>
+    </div>
+  </div>
+  <div class="v1-stats">
+    <div class="v1-stat"><strong>112</strong> постов</div>
+    <div class="v1-stat">с <strong>2012</strong> года</div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════ ВАРИАНТ 2 -->
+<p class="section-label w">Вариант 2 — Минималистичная полоса, соцсети справа</p>
+<div class="w">
+<div class="v2">
+  <div class="v2-left">
+    <div class="v2-avatar">T</div>
+    <div>
+      <span class="v2-name">Totaku</span>
+      <span class="v2-quote">Keep your expectations low and you will never be disappointed</span>
+    </div>
+  </div>
+  <div class="socials">
+    <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-github"/></svg> GitHub</a>
+    <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-telegram"/></svg> Telegram</a>
+    <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-twitter"/></svg> Twitter</a>
+    <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-lastfm"/></svg> Last.fm</a>
+    <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-rss"/></svg> RSS</a>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════ ВАРИАНТ 3 -->
+<p class="section-label w">Вариант 3 — Большое имя в editorial-стиле</p>
+<div class="w">
+<div class="v3">
+  <div class="v3-top">
+    <div>
+      <div class="v3-name">Totaku<span>.</span></div>
+      <div class="v3-tagline">Живу в Петербурге, пишу про IT, игры, сериалы и места. Иногда про всё сразу.</div>
+      <div style="margin-top:1rem">
+        <div class="socials">
+          <a href="#" class="s-dot"><svg width="14" height="14"><use href="#ico-github"/></svg> GitHub</a>
+          <span style="color:var(--border-mid)">·</span>
+          <a href="#" class="s-dot"><svg width="14" height="14"><use href="#ico-telegram"/></svg> Telegram</a>
+          <span style="color:var(--border-mid)">·</span>
+          <a href="#" class="s-dot"><svg width="14" height="14"><use href="#ico-twitter"/></svg> Twitter</a>
+          <span style="color:var(--border-mid)">·</span>
+          <a href="#" class="s-dot"><svg width="14" height="14"><use href="#ico-lastfm"/></svg> Last.fm</a>
+          <span style="color:var(--border-mid)">·</span>
+          <a href="#" class="s-dot"><svg width="14" height="14"><use href="#ico-rss"/></svg> RSS</a>
+        </div>
+      </div>
+    </div>
+    <div class="v3-right">
+      <div class="v3-avatar">T</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════ ВАРИАНТ 4 -->
+<p class="section-label w">Вариант 4 — Карточка с радужной полосой сверху</p>
+<div class="w">
+<div class="v4">
+  <div class="v4-stripe"></div>
+  <div class="v4-body">
+    <div class="v4-avatar">T</div>
+    <div class="v4-info">
+      <div class="v4-name">Totaku</div>
+      <div class="v4-desc">Живу в Петербурге. Пишу про IT, игры, сериалы и места. Бывший пермяк.</div>
+      <div class="v4-socials">
+        <div class="socials">
+          <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-github"/></svg> GitHub</a>
+          <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-telegram"/></svg> Telegram</a>
+          <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-twitter"/></svg> Twitter</a>
+          <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-lastfm"/></svg> Last.fm</a>
+          <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-rss"/></svg> RSS</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════ ВАРИАНТ 5 -->
+<p class="section-label w">Вариант 5 — Текстоцентричный, editorial, без аватарки</p>
+<div class="w">
+<div class="v5">
+  <div class="v5-pre">Личный блог · с 2012</div>
+  <div class="v5-name">Пермяк на Неве</div>
+  <div class="v5-desc">Живу в Петербурге, пишу про всякое: девелоперство, игры, сериалы, аниме и места. Иногда всё это пересекается.</div>
+  <div class="v5-bottom">
+    <a href="#" class="s-dot"><svg width="14" height="14"><use href="#ico-github"/></svg> GitHub</a>
+    <span class="v5-divider">·</span>
+    <a href="#" class="s-dot"><svg width="14" height="14"><use href="#ico-telegram"/></svg> Telegram</a>
+    <span class="v5-divider">·</span>
+    <a href="#" class="s-dot"><svg width="14" height="14"><use href="#ico-twitter"/></svg> Twitter</a>
+    <span class="v5-divider">·</span>
+    <a href="#" class="s-dot"><svg width="14" height="14"><use href="#ico-lastfm"/></svg> Last.fm</a>
+    <span class="v5-divider">·</span>
+    <a href="#" class="s-dot"><svg width="14" height="14"><use href="#ico-rss"/></svg> RSS</a>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════ ВАРИАНТ 6 -->
+<p class="section-label w">Вариант 6 — Суперкомпактная строка</p>
+<div class="w">
+<div class="v6">
+  <div class="v6-avatar">T</div>
+  <span class="v6-name">Totaku</span>
+  <span class="v6-sep">/</span>
+  <span class="v6-quote">Keep your expectations low and you will never be disappointed</span>
+  <div class="v6-right">
+    <div class="socials">
+      <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-github"/></svg></a>
+      <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-telegram"/></svg></a>
+      <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-twitter"/></svg></a>
+      <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-lastfm"/></svg></a>
+      <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-rss"/></svg></a>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════ ВАРИАНТ 7 -->
+<p class="section-label w">Вариант 7 — Большой hero с декоративным фоном</p>
+<div class="w">
+<div class="v7">
+  <div class="v7-bg-text">totaku</div>
+  <div class="v7-content">
+    <div class="v7-row">
+      <div class="v7-avatar">T</div>
+      <div>
+        <div class="v7-name">Totaku</div>
+        <div class="v7-city">Пермь → <span>Петербург</span></div>
+      </div>
+    </div>
+    <div class="v7-bio">Пишу про IT, игры, сериалы, аниме и места. Иногда всё это в одном посте. Блог существует с 2012 года — сначала Wordpress, потом Drupal, Hugo, теперь Astro.</div>
+    <div class="v7-socials">
+      <div class="socials">
+        <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-github"/></svg> GitHub</a>
+        <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-telegram"/></svg> Telegram</a>
+        <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-twitter"/></svg> Twitter</a>
+        <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-lastfm"/></svg> Last.fm</a>
+        <a href="#" class="s-link"><svg width="13" height="13"><use href="#ico-rss"/></svg> RSS</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════ ВАРИАНТ 8 -->
+<p class="section-label w">Вариант 8 — Две колонки: инфо слева, иконки справа</p>
+<div class="w">
+<div class="v8">
+  <div class="v8-left">
+    <div class="v8-avatar">T</div>
+    <div>
+      <div class="v8-name">Totaku</div>
+      <div class="v8-sub">Keep your expectations low and you will never be disappointed</div>
+    </div>
+  </div>
+  <div class="v8-right">
+    <div class="v8-social-row">
+      <a href="#" class="v8-icon" title="GitHub"><svg width="15" height="15"><use href="#ico-github"/></svg></a>
+      <a href="#" class="v8-icon" title="Telegram"><svg width="15" height="15"><use href="#ico-telegram"/></svg></a>
+      <a href="#" class="v8-icon" title="Twitter"><svg width="15" height="15"><use href="#ico-twitter"/></svg></a>
+      <a href="#" class="v8-icon" title="Last.fm"><svg width="15" height="15"><use href="#ico-lastfm"/></svg></a>
+      <a href="#" class="v8-icon" title="RSS"><svg width="15" height="15"><use href="#ico-rss"/></svg></a>
+    </div>
+    <a href="mailto:admin@totaku.su" class="v8-email">admin@totaku.su</a>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════ ВАРИАНТ 9 -->
+<p class="section-label w">Вариант 9 — оригинал (для сравнения)</p>
+<div class="w">
+<style>
+.v9 {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 2rem;
+  padding: 2.5rem 0 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.v9-name {
+  font-size: 2.75rem;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  color: var(--text);
+}
+.v9-name em {
+  font-style: normal;
+  color: var(--accent);
+}
+.v9-bio {
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  margin-top: 0.625rem;
+  line-height: 1.6;
+  font-family: 'Source Serif 4', serif;
+  max-width: 460px;
+}
+.v9-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.v9-link {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.v9-link:hover { color: var(--accent); }
+.v9-sep { color: var(--border-mid); font-size: 0.875rem; }
+.v9-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d5fa0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #a8c4e0;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  box-shadow: 0 0 0 1px rgba(91,141,238,0.25), 0 8px 24px rgba(0,0,0,0.4);
+}
+</style>
+<div class="v9">
+  <div>
+    <div class="v9-name">Totaku<em>.</em></div>
+    <div class="v9-bio">Живу в Петербурге. Пишу про IT, игры, сериалы, аниме и места — иногда всё это в одном посте.</div>
+    <div class="v9-links">
+      <a href="#" class="v9-link"><svg width="14" height="14"><use href="#ico-github"/></svg> GitHub</a>
+      <span class="v9-sep">·</span>
+      <a href="#" class="v9-link"><svg width="14" height="14"><use href="#ico-telegram"/></svg> Telegram</a>
+      <span class="v9-sep">·</span>
+      <a href="#" class="v9-link"><svg width="14" height="14"><use href="#ico-twitter"/></svg> Twitter</a>
+      <span class="v9-sep">·</span>
+      <a href="#" class="v9-link"><svg width="14" height="14"><use href="#ico-lastfm"/></svg> Last.fm</a>
+      <span class="v9-sep">·</span>
+      <a href="#" class="v9-link"><svg width="14" height="14"><use href="#ico-rss"/></svg> RSS</a>
+    </div>
+  </div>
+  <div class="v9-avatar">T</div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════ ВАРИАНТ 9A -->
+<p class="section-label w">Вариант 9A — без аватарки, метка «личный блог»</p>
+<div class="w">
+<style>
+.v9x {
+  padding: 2.5rem 0 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.v9x-pre {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+.v9x-name {
+  font-size: 2.75rem;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+.v9x-name em { font-style: normal; color: var(--accent); }
+.v9x-bio {
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  margin-top: 0.625rem;
+  line-height: 1.6;
+  font-family: 'Source Serif 4', serif;
+  max-width: 500px;
+}
+.v9x-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.v9x-link {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.v9x-link:hover { color: var(--accent); }
+.v9x-sep { color: var(--border-mid); }
+</style>
+<div class="v9x">
+  <div class="v9x-pre">Личный блог · с 2012</div>
+  <div class="v9x-name">Totaku<em>.</em></div>
+  <div class="v9x-bio">Живу в Петербурге. Пишу про IT, игры, сериалы, аниме и места — иногда всё это в одном посте.</div>
+  <div class="v9x-links">
+    <a href="#" class="v9x-link"><svg width="14" height="14"><use href="#ico-github"/></svg> GitHub</a>
+    <span class="v9x-sep">·</span>
+    <a href="#" class="v9x-link"><svg width="14" height="14"><use href="#ico-telegram"/></svg> Telegram</a>
+    <span class="v9x-sep">·</span>
+    <a href="#" class="v9x-link"><svg width="14" height="14"><use href="#ico-twitter"/></svg> Twitter</a>
+    <span class="v9x-sep">·</span>
+    <a href="#" class="v9x-link"><svg width="14" height="14"><use href="#ico-lastfm"/></svg> Last.fm</a>
+    <span class="v9x-sep">·</span>
+    <a href="#" class="v9x-link"><svg width="14" height="14"><use href="#ico-rss"/></svg> RSS</a>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════ ВАРИАНТ 9B -->
+<p class="section-label w">Вариант 9B — большая аватарка (96px), метка «личный блог»</p>
+<div class="w">
+<style>
+.v9b {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 2rem;
+  padding: 2.5rem 0 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.v9b-pre {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+.v9b-name {
+  font-size: 2.75rem;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+.v9b-name em { font-style: normal; color: var(--accent); }
+.v9b-bio {
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  margin-top: 0.625rem;
+  line-height: 1.6;
+  font-family: 'Source Serif 4', serif;
+  max-width: 460px;
+}
+.v9b-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.v9b-link {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.v9b-link:hover { color: var(--accent); }
+.v9b-sep { color: var(--border-mid); }
+.v9b-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d5fa0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #a8c4e0;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px rgba(91,141,238,0.2), 0 8px 32px rgba(0,0,0,0.5);
+}
+</style>
+<div class="v9b">
+  <div>
+    <div class="v9b-pre">Личный блог · с 2012</div>
+    <div class="v9b-name">Totaku<em>.</em></div>
+    <div class="v9b-bio">Живу в Петербурге. Пишу про IT, игры, сериалы, аниме и места — иногда всё это в одном посте.</div>
+    <div class="v9b-links">
+      <a href="#" class="v9b-link"><svg width="14" height="14"><use href="#ico-github"/></svg> GitHub</a>
+      <span class="v9b-sep">·</span>
+      <a href="#" class="v9b-link"><svg width="14" height="14"><use href="#ico-telegram"/></svg> Telegram</a>
+      <span class="v9b-sep">·</span>
+      <a href="#" class="v9b-link"><svg width="14" height="14"><use href="#ico-twitter"/></svg> Twitter</a>
+      <span class="v9b-sep">·</span>
+      <a href="#" class="v9b-link"><svg width="14" height="14"><use href="#ico-lastfm"/></svg> Last.fm</a>
+      <span class="v9b-sep">·</span>
+      <a href="#" class="v9b-link"><svg width="14" height="14"><use href="#ico-rss"/></svg> RSS</a>
+    </div>
+  </div>
+  <div class="v9b-avatar">T</div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════ ВАРИАНТ 9C -->
+<p class="section-label w">Вариант 9C — очень большая аватарка слева (120px)</p>
+<div class="w">
+<style>
+.v9c {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.5rem 0 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.v9c-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d5fa0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: #a8c4e0;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(91,141,238,0.25), 0 12px 40px rgba(0,0,0,0.5);
+}
+.v9c-pre {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+  opacity: 0.8;
+}
+.v9c-name {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.v9c-name em { font-style: normal; color: var(--accent); }
+.v9c-bio {
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  margin-top: 0.5rem;
+  line-height: 1.6;
+  font-family: 'Source Serif 4', serif;
+  max-width: 460px;
+}
+.v9c-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.875rem;
+  flex-wrap: wrap;
+}
+.v9c-link {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.v9c-link:hover { color: var(--accent); }
+.v9c-sep { color: var(--border-mid); }
+</style>
+<div class="v9c">
+  <div class="v9c-avatar">T</div>
+  <div>
+    <div class="v9c-pre">Личный блог · с 2012</div>
+    <div class="v9c-name">Totaku<em>.</em></div>
+    <div class="v9c-bio">Живу в Петербурге. Пишу про IT, игры, сериалы, аниме и места — иногда всё это в одном посте.</div>
+    <div class="v9c-links">
+      <a href="#" class="v9c-link"><svg width="14" height="14"><use href="#ico-github"/></svg> GitHub</a>
+      <span class="v9c-sep">·</span>
+      <a href="#" class="v9c-link"><svg width="14" height="14"><use href="#ico-telegram"/></svg> Telegram</a>
+      <span class="v9c-sep">·</span>
+      <a href="#" class="v9c-link"><svg width="14" height="14"><use href="#ico-twitter"/></svg> Twitter</a>
+      <span class="v9c-sep">·</span>
+      <a href="#" class="v9c-link"><svg width="14" height="14"><use href="#ico-lastfm"/></svg> Last.fm</a>
+      <span class="v9c-sep">·</span>
+      <a href="#" class="v9c-link"><svg width="14" height="14"><use href="#ico-rss"/></svg> RSS</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<div style="height:4rem"></div>
+
+</body>
+</html>

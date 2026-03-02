@@ -6,8 +6,8 @@ draft: false
 keywords: "drupal, drush, drupal 9, синхронизация, разработка"
 description: "Как синхронизировать локальную и рабочую копию сайта на Drupal 8/9. Да все очень просто и логично!"
 
-tags: ['drupal']
-categories: ['dev']
+tags: ["drupal"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

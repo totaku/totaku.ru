@@ -7,7 +7,7 @@ keywords: "рукоблудие, nginx"
 description: "Nginx — это прекрасный быстрый веб-сервер, на котором работает что-то около половины интернета. Увы, достоинство, которым nginx не обладает, — это простота настройки."
 
 tags: ["nginx"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

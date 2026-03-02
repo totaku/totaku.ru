@@ -7,7 +7,7 @@ keywords: "docker, drupla 9, ddev"
 description: "Устанавливаем Drupal 9 использую DDEV для локальной разработки."
 
 tags: ["docker","drupal"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

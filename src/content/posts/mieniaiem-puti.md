@@ -7,7 +7,7 @@ keywords: "рукоблудие, drupal, модули"
 description: "Чем-то меня это все не устраивало, не хотелось мне стандартных путей, как то пошло это."
 
 tags: ["drupal","module"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

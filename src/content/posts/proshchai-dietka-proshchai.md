@@ -7,7 +7,7 @@ keywords: "голубой экран, детектив, драма, фильм"
 description: "Отличный фильм. Аффлеки молодцы. Если не смотрели то стоит посмотреть."
 
 tags: ["movie"]
-categories: ["screen"]
+categories: ["Голубой экран"]
 
 hiddenFromHomePage: false
 

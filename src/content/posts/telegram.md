@@ -7,7 +7,7 @@ keywords: "telegram, каналы"
 description: "Просто списочек моих телеграм каналов и чатов. Дуров — верни стену!"
 
 tags: ["telegram"]
-categories: ["tldr"]
+categories: ["TL;DR"]
 
 hiddenFromHomePage: false
 

@@ -7,7 +7,7 @@ keywords: "рукоблудие, gulp, favicon"
 description: "Инструкция предполагает, что вы знакомы с Gulp и у вас уже есть проект. Если не знакомы, то для начала можете почитать как создать Gulp проект."
 
 tags: ["gulp","favicon"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

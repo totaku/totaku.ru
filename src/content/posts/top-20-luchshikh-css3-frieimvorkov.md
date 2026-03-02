@@ -7,7 +7,7 @@ keywords: "рукоблудие, CSS, фреймворк"
 description: "CSS фреймворки — это как полуфабрикаты, первичная структура уже есть, но чтоб продукт был готов надо приложить собственные рученьки к этому."
 
 tags: ["css", "framework"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

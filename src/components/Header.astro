@@ -1,78 +1,109 @@
 ---
 const nav = [
-  { label: 'Рукоблудие', href: '/categories/dev/' },
-  { label: 'TL;DR', href: '/categories/tldr/' },
-  { label: 'Игры', href: '/categories/games/' },
-  { label: 'Голубой экран', href: '/categories/screen/' },
-  { label: 'Места', href: '/categories/place/' },
+  { label: 'Рукоблудие', href: '/categories/rukobludie/' },
+  { label: 'TL;DR', href: '/categories/tl-dr/' },
+  { label: 'Игры', href: '/categories/igry/' },
+  { label: 'Голубой экран', href: '/categories/goluboy-ekran/' },
+  { label: 'Места', href: '/categories/mesta/' },
 ];
 
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="site-header">
-  <div class="container">
-    <div class="site-header__inner">
-      <a href="/" class="site-header__logo">Пермяк на Неве</a>
-      <nav class="site-header__nav" aria-label="Основное меню">
-        {nav.map((item) => (
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">Totaku<em>.</em></a>
+    <nav class="nav" aria-label="Основное меню">
+      {
+        nav.map((item) => (
           <a
             href={item.href}
-            aria-current={currentPath.startsWith(item.href) ? 'page' : undefined}
+            aria-current={
+              currentPath.startsWith(item.href) ? 'page' : undefined
+            }
           >
             {item.label}
           </a>
-        ))}
-      </nav>
-      <div class="site-header__actions">
-        <a
-          href="/rss.xml"
-          class="theme-toggle"
-          title="RSS"
-          aria-label="RSS фид"
+        ))
+      }
+    </nav>
+    <div style="display:flex;gap:0.5rem">
+      <a href="/rss.xml" class="btn-icon" title="RSS" aria-label="RSS фид">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"
+          ></path>
+        </svg>
+      </a>
+      <button
+        class="btn-icon"
+        id="theme-toggle"
+        title="Переключить тему"
+        aria-label="Переключить тему"
+      >
+        <svg
+          class="icon-sun"
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
-          </svg>
-        </a>
-        <button
-          class="theme-toggle"
-          id="theme-toggle"
-          title="Переключить тему"
-          aria-label="Переключить тему"
+          <circle cx="12" cy="12" r="5"></circle><line
+            x1="12"
+            y1="1"
+            x2="12"
+            y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line
+            x1="18.36"
+            y1="18.36"
+            x2="19.78"
+            y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line><line
+            x1="21"
+            y1="12"
+            x2="23"
+            y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line
+            x1="18.36"
+            y1="5.64"
+            x2="19.78"
+            y2="4.22"></line>
+        </svg>
+        <svg
+          class="icon-moon"
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
         >
-          <svg class="icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7l2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.58-.73 2.43L3.34 7m.02 10l1.87-3.93c.04.85.29 1.69.73 2.43a7.2 7.2 0 0 0 1.56 1.85L3.36 17M20.65 7l-1.87 3.93a7.2 7.2 0 0 0-.73-2.43 7.2 7.2 0 0 0-1.56-1.85L20.65 7m-.01 10l-4.16.35c.74-.56 1.35-1.24 1.82-2.03A6.9 6.9 0 0 0 19 12.93L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.86 0 1.67-.17 2.41-.44L12 22z"/>
-          </svg>
-          <svg class="icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display:none">
-            <path d="M17.75 4.09l-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94 3.17-.09L12 1l1.38 3 3.17.09m3.5 6.91l-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.06L18.5 9l.69 1.94 2.06.06m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.84.72-1.4.72-.24 0-.48-.05-.7-.15a4.75 4.75 0 0 1-2.81 3.29 4.82 4.82 0 0 1-4.89-.87 4.78 4.78 0 0 1-1.29-5.3 4.77 4.77 0 0 1 3.85-2.93c.5-.05.97.15 1.3.52a5.94 5.94 0 0 0 4.75 2.87"/>
-          </svg>
-        </button>
-      </div>
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
     </div>
   </div>
 </header>
 
 <script>
   const btn = document.getElementById('theme-toggle');
-  const sun = btn?.querySelector('.icon-sun') as HTMLElement | null;
-  const moon = btn?.querySelector('.icon-moon') as HTMLElement | null;
 
   function applyTheme(theme: string) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
-    if (sun && moon) {
-      sun.style.display = theme === 'dark' ? 'none' : 'block';
-      moon.style.display = theme === 'dark' ? 'block' : 'none';
-    }
   }
 
-  // Инициализируем иконку по текущей теме
-  const current = document.documentElement.getAttribute('data-theme') || 'light';
-  applyTheme(current);
-
   btn?.addEventListener('click', () => {
-    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    const next =
+      document.documentElement.getAttribute('data-theme') === 'dark'
+        ? 'light'
+        : 'dark';
     applyTheme(next);
   });
 </script>

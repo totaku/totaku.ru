@@ -7,7 +7,7 @@ keywords: "рукоблудие, drupal, bash"
 description: "Если ты ленивый и безумный, то этот пост для тебя! Одна команда как которая сделает все за тебя, но лучше исключительно на локалхосте."
 
 tags: ["drupal","terminal"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

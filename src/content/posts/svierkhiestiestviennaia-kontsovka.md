@@ -7,7 +7,7 @@ keywords: "сериал, Сверхъестественное"
 description: "Вот именно этим кадром надо было закончить весь сериал. Просто взять и закончить."
 
 tags: ["tv"]
-categories: ["screen"]
+categories: ["Голубой экран"]
 
 hiddenFromHomePage: false
 

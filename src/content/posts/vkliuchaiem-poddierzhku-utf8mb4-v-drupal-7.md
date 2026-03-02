@@ -7,7 +7,7 @@ keywords: "рукоблудие, drupal, MySQL"
 description: "Drupal 7 с версии 7.50, научился поддерживать UTF8MB4, но по умолчанию оно не работает."
 
 tags: ["drupal","mysql"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

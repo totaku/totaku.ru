@@ -7,7 +7,7 @@ keywords: "рукоблудие, ghost, disqus"
 description: "Для начала нужно зарегистрировать на сайте Disqus. Там нет ничего сложного, думаю вы справитесь."
 
 tags: ["ghost","disqus"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

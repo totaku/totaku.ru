@@ -7,7 +7,7 @@ keywords: "место"
 description: "Как то раз меня жена затащила на фотосессию в [Miass Studio](http://miass-studio.ru/). В самой студии я пробыл минут 10-15, сделали совместные кадры меня и жены."
 
 tags: ["che"]
-categories: ["place"]
+categories: ["Места"]
 
 hiddenFromHomePage: false
 

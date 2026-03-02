@@ -7,7 +7,7 @@ keywords: "рукоблудие, линукс, drupal, bash"
 description: "Есть у меня один клиент к которому несколько раз в месяц нужно заходить на сервер и обновлять Drupal."
 
 tags: ["drupal", "terminal", "drush"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

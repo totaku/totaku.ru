@@ -7,7 +7,7 @@ keywords: "рукоблудие, Atom, macOS"
 description: "Решаем проблему Could not create temporary directory: Permission denied при обновление Atom на macOS. "
 
 tags: ["atom","macos"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

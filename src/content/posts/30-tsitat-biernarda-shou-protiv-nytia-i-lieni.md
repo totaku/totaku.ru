@@ -7,7 +7,7 @@ keywords: "цитаты, разное, Бернард Шоу"
 description: "Бернард Шоу — единственный человек, удостоенный одновременно и Нобелевской премии в области литературы, и премии «Оскар» за сценарий фильма «Пигмалион»."
 
 tags: ["people","quotes"]
-categories: ["tldr"]
+categories: ["TL;DR"]
 
 hiddenFromHomePage: false
 

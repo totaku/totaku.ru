@@ -7,7 +7,7 @@ keywords: ""
 description: ""
 
 tags: ["docker", "github"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

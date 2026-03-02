@@ -7,7 +7,7 @@ keywords: "drupal, terminal, drush"
 description: "Встраивать Youtube в блог с Nuxt еще никогда не было так просто. Подключите к нему пакет `lite-youtube-embed`, создайте плагин и компонент Nuxt, и все. Дальше вы сможете использовать этот компонент во всех своимх Markdown файлах."
 
 tags: ["js","vue","nuxt","markdown"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

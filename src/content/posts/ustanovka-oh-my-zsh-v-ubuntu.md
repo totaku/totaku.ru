@@ -7,7 +7,7 @@ keywords: "рукоблудие, линукс, ubuntu, zsh, консоль"
 description: "Oh My ZSH! — это фреймворк с открытым исходным кодом, предназначенный для управления конфигурацией оболочки ZSH."
 
 tags: ["linux","zsh","terminal"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

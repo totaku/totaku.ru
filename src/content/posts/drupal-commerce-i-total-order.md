@@ -7,7 +7,7 @@ keywords: "рукоблудие, drupal"
 description: "Если вы хоть раз делали сайт на Drupal Commerce, то сталкивались с непереводимой строкой Order Total. В сети достаточно решений этой проблемы, но вот самое простое."
 
 tags: ["drupal"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

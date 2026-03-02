@@ -7,7 +7,7 @@ keywords: "рукоблудие, wordpress, markdown"
 description: "Небольшая инструкция о том как начать писать посты в WordPress и оформлять их в разметке Markdown или MD, как ее называют в сокращенном варианте."
 
 tags: ["markdown","wordpress"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

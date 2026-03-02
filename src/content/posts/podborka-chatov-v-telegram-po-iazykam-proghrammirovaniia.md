@@ -7,7 +7,7 @@ keywords: "рукоблудие, телеграм"
 description: "Подборка телеграм чатов и каналов про программированию."
 
 tags: ["telegram"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

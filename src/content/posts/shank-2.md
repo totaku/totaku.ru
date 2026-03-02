@@ -7,7 +7,7 @@ keywords: "Shank 2, игра, платформер, экшен, кровь, су
 description: "Все история как обычно завязана на мести. В первой части мстим за убийство девочки, во второй спасаем какую-то тетки и просто отрываемся."
 
 tags: ["platformer"]
-categories: ["games"]
+categories: ["Игры"]
 
 hiddenFromHomePage: false
 

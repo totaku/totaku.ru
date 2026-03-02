@@ -7,7 +7,7 @@ keywords: "рукоблудие, drupal, модули"
 description: "Делая сайт для «любимой» работы, я решил использовать Nivo Slider, ведь слайды — это так модно. На родном сайте ничего не говорится про друпал."
 
 tags: ["drupal","module"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

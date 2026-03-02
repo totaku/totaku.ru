@@ -8,10 +8,7 @@ interface Props {
 const { slug, title, url } = Astro.props;
 ---
 
-<section class="comments-section" id="comments">
-  <h2 class="comments-section__title">Комментарии</h2>
-  <div id="disqus_thread"></div>
-</section>
+<div id="disqus_thread"></div>
 
 <script is:inline define:vars={{ slug, title, url }}>
   var disqus_config = function () {
@@ -19,7 +16,6 @@ const { slug, title, url } = Astro.props;
     this.page.identifier = slug;
     this.page.title = title;
   };
-
   (function () {
     var d = document,
       s = d.createElement('script');

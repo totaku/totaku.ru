@@ -7,7 +7,7 @@ keywords: "ghost, systemd, linux, рукоблудие"
 description: "Простой Systemd service для Ghost."
 
 tags: ["ghost","linux"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

@@ -7,7 +7,7 @@ keywords: "разное, комикс, Дэдпул"
 description: "Говорят, что подражание - высшая форма лести. Если это так, то довольно много персонажей должны чувствовать себя польщенными Дэдпулом."
 
 tags: ["comics","deadpool"]
-categories: ["tldr"]
+categories: ["TL;DR"]
 
 toc: false
 featuredImage: "./images/cover/15-cluchaiev-kopirovaniia-dedpulom-drughikh-piersonazhiei-komiksov.jpg"

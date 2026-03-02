@@ -8,21 +8,32 @@ interface Props {
 const { currentPage, totalPages, baseUrl } = Astro.props;
 
 const prevUrl =
-  currentPage === 2 ? baseUrl : currentPage > 2 ? `${baseUrl}page/${currentPage - 1}/` : null;
-const nextUrl = currentPage < totalPages ? `${baseUrl}page/${currentPage + 1}/` : null;
+  currentPage === 2
+    ? baseUrl
+    : currentPage > 2
+      ? `${baseUrl}page/${currentPage - 1}/`
+      : null;
+const nextUrl =
+  currentPage < totalPages ? `${baseUrl}page/${currentPage + 1}/` : null;
 ---
 
 {
   totalPages > 1 && (
     <nav class="pagination" aria-label="Пагинация">
       {prevUrl ? (
-        <a href={prevUrl} class="pagination__link" rel="prev">← Назад</a>
+        <a href={prevUrl} class="pagination__link" rel="prev">
+          ← Назад
+        </a>
       ) : (
         <span />
       )}
-      <span class="pagination__info">{currentPage} / {totalPages}</span>
+      <span class="pagination__info">
+        {currentPage} / {totalPages}
+      </span>
       {nextUrl ? (
-        <a href={nextUrl} class="pagination__link" rel="next">Вперёд →</a>
+        <a href={nextUrl} class="pagination__link" rel="next">
+          Вперёд →
+        </a>
       ) : (
         <span />
       )}

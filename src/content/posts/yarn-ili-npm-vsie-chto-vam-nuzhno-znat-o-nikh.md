@@ -7,7 +7,7 @@ keywords: "рукоблудие, yarn, JavaScript"
 description: "Yarn это новый менеджер пакетов, совместно созданный Facebook,  Google, Exponent и Tilde."
 
 tags: ["javascript","yarn"]
-categories: ["dev"]
+categories: ["Рукоблудие"]
 
 hiddenFromHomePage: false
 

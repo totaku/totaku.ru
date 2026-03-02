@@ -7,7 +7,7 @@ keywords: "голубой экран, цитаты"
 description: "Цитата ил фильма или книги Бойцовский клуб"
 
 tags: ["quotes","books"]
-categories: ["tldr"]
+categories: ["TL;DR"]
 
 hiddenFromHomePage: false
 
