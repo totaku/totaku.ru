@@ -1,14 +1,21 @@
 ---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PostCard from '@/components/PostCard.astro';
+import Pagination from '@/components/Pagination.astro';
+import { POSTS_PER_PAGE } from '@/utils/posts';
 
+const allPosts = await getCollection('posts', ({ data }) => !data.draft && !data.hiddenFromHomePage);
+allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const page = 1;
+const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+const posts = allPosts.slice(0, POSTS_PER_PAGE);
 ---
 
-<html lang="ru">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>totaku.ru</title>
-  </head>
-  <body>
-    <p>WIP</p>
-  </body>
-</html>
+<BaseLayout title="Пермяк на Неве" description="Пишу про разное в том числе и про АйТи">
+  <div class="posts-list">
+    {posts.map((post) => <PostCard post={post} />)}
+  </div>
+  <Pagination currentPage={page} totalPages={totalPages} baseUrl="/" />
+</BaseLayout>

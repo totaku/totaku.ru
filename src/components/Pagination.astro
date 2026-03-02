@@ -1,0 +1,24 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  baseUrl: string;
+}
+const { currentPage, totalPages, baseUrl } = Astro.props;
+
+const prevUrl =
+  currentPage === 2 ? baseUrl : currentPage > 2 ? `${baseUrl}page/${currentPage - 1}/` : null;
+const nextUrl = currentPage < totalPages ? `${baseUrl}page/${currentPage + 1}/` : null;
+---
+
+{
+  totalPages > 1 && (
+    <nav>
+      {prevUrl && <a href={prevUrl}>← Назад</a>}
+      <span>
+        {currentPage} / {totalPages}
+      </span>
+      {nextUrl && <a href={nextUrl}>Вперёд →</a>}
+    </nav>
+  )
+}

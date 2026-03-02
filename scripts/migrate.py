@@ -156,6 +156,21 @@ def transform_frontmatter(fm: str, slug: str, cover_path: str | None) -> str:
 
 # ── Shortcodes ────────────────────────────────────────────────────────────────
 
+def replace_md_images(body: str, img_mapping: dict[str, str]) -> str:
+    """![alt](img/foo.png "title") → ![alt](./images/content/foo.png "title")"""
+    def replacer(m: re.Match) -> str:
+        alt = m.group(1)
+        src = m.group(2)
+        title = m.group(3) or ''
+        fname = Path(src).name
+        new_path = img_mapping.get(fname, f'./images/content/{fname}')
+        if title:
+            return f'![{alt}]({new_path} {title})'
+        return f'![{alt}]({new_path})'
+
+    return re.sub(r'!\[([^\]]*)\]\(img/([^)\s]+)(\s+"[^"]*")?\)', replacer, body)
+
+
 def replace_figure(body: str, img_mapping: dict[str, str]) -> str:
     """{{< figure src="img/foo.png" title="" alt="bar" >}} → ![bar](path)"""
     def replacer(m: re.Match) -> str:
@@ -271,6 +286,8 @@ def migrate_post(post_dir: Path):
     fm_new = transform_frontmatter(fm_raw, slug, cover_path)
 
     # 3. Заменяем шорткоды
+    body = body.replace('<!--more-->', '')
+    body = replace_md_images(body, img_mapping)
     body = replace_figure(body, img_mapping)
     body = replace_admonition(body)
 

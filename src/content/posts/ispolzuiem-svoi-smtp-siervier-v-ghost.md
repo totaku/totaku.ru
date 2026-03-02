@@ -16,7 +16,7 @@ featuredImage: "./images/cover/ispolzuiem-svoi-smtp-siervier-v-ghost.jpg"
 ---
 
 Официальная [документация](http://docs.ghost.org/mail/) Ghost предлагает выбрать из 3 smtp серверов: Gmail, Amazon SES, Mailgun. В ней не слова не говорится, о собственном smpt сервере.
-<!--more-->
+
 Вот протстое решение (подсмотрел в настройках [nodemailer](https://github.com/andris9/Nodemailer#setting-up-smtp)):
 ```json
 mail: {

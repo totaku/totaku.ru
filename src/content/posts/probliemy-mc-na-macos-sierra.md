@@ -16,7 +16,7 @@ featuredImage: "./images/cover/probliemy-mc-na-macos-sierra.png"
 ---
 
 Проблема старая, а решил только что. С переездом на macOS Sierra у меня перестал запускаться Midnight Commander под рутом. Команда `sudo mc` выдавала вот такую ошибку:
-<!--more-->
+
 ```bash
 common.c: unimplemented subshell type 1
 read (subshell_pty...): No such file or directory (2)

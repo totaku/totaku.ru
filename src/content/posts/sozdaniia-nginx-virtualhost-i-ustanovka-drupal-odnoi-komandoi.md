@@ -15,7 +15,7 @@ toc: false
 featuredImage: "./images/cover/sozdaniia-nginx-virtualhost-i-ustanovka-drupal-odnoi-komandoi.jpg"
 ---
 Если ты ленивый и безумный, то этот пост для тебя! Одна команда как которая сделает все за тебя, но лучше исключительно на локалхосте.
-<!--more-->
+
 Для начала нам нужно создать файл с конфигом Nginx для Drupal. Создадим папку `conf`. В ней файл `drupal` и в вставим в него:
 ```nginx
 server {

@@ -24,7 +24,7 @@ featuredImage: "./images/cover/15-cluchaiev-kopirovaniia-dedpulom-drughikh-piers
 ## 15. Дефстроук
 
 ![](./images/content/15-cluchaiev-kopirovaniia-dedpulom-drughikh-piersonazhiei-komiksov-15.jpg)
-![](img/15-cluchaiev-kopirovaniia-dedpulom-drughikh-piersonazhiei-komiksov-15.jpg "ghbdtn vbh")
+![](./images/content/15-cluchaiev-kopirovaniia-dedpulom-drughikh-piersonazhiei-komiksov-15.jpg  "ghbdtn vbh")
 
 И вот очевидный кандидат. Если вы действительно знаете Дэдпула, вы уже знаете, что он был ответом Марвела на Дефстроука DC. Дефстроук был представлен в то время, когда смелые и мрачные персонажи были в новинку, и люди начали считать это довольно глупым. Так Marvel представил Уэйда Уилсона как Дэдпула в качестве своеобразного ответа на Слэйда Уилсона.
 

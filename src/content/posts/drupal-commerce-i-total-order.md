@@ -16,7 +16,7 @@ featuredImage: "./images/cover/drupal-commerce-i-total-order.jpg"
 ---
 
 Если вы хоть раз делали сайт на Drupal Commerce, то сталкивались с непереводимой строкой Order Total. В сети достаточно решений этой проблемы, но вот самое простое. Прописываем в `template.php` следующую конструкцию:
-<!--more-->
+
 ```php
 function theme_name_commerce_price_formatted_components($vars) {
   $vars['components']['commerce_price_formatted_amount']['title'] = t('Order total');

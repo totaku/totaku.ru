@@ -16,7 +16,7 @@ featuredImage: "./images/cover/gienieriruiem-favicon-s-pomoshchiu-gulp.png"
 ---
 
 Инструкция предполагает, что вы знакомы с Gulp и у вас уже есть проект. Если не знакомы, то для начала можете почитать как создать [Gulp проект](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md).
-<!--more-->
+
 1. Устанавливаем `gulp-real-favicon`:
 ```bash
     npm install gulp-real-favicon --save-dev

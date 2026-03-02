@@ -16,7 +16,7 @@ featuredImage: "./images/cover/kak-dobavit-izmienit-favicon-v-blog-na-ghost.jpg"
 ---
 
 Все знают, что это? Надеюсь, что да, но если нет, то вот вам из вики:
-<!--more-->
+
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 

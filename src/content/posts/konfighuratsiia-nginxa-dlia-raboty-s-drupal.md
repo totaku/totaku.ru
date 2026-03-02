@@ -16,7 +16,7 @@ featuredImage: "./images/cover/konfighuratsiia-nginxa-dlia-raboty-s-drupal.png"
 ---
 
 Пример конфигурации [nginx](http://nginx.org/) для запуска [Drupal](https://www.drupal.org).
-<!--more-->
+
 Конфигурация родилась как форк [yhager's](https://github.com/perusio/drupal-with-nginx/blob/D7/github.com/yhager/nginx_drupal). Но в последствии автор существенно его изменил. Вкусняшки и советы автор получил из рассылки nginx и [nginx в вики](http://wiki.nginx.org/).
 
 Все [подробности](https://github.com/perusio/drupal-with-nginx).

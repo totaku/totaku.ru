@@ -16,7 +16,7 @@ featuredImage: "./images/cover/ispravliaiem-oshibku-perl-warning-setting-locale-
 ---
 
 Обычно на свежеустановленном Debian/Ubuntu появляется ошибка (например при установке пакетов):
-<!--more-->
+
 ```bash
     perl: warning: Setting locale failed.
     perl: warning: Please check that your locale settings:

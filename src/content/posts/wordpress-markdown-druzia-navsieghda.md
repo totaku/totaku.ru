@@ -16,7 +16,7 @@ featuredImage: "./images/cover/wordpress-markdown-druzia-navsieghda.png"
 ---
 
 Небольшая инструкция о том как начать писать посты в [WordPress](https://ru.wordpress.org/) и оформлять их в разметке [Markdown](https://daringfireball.net/projects/markdown/syntax) или MD, как ее называют в сокращенном варианте. Из коробки stand-alone WordPress сайт не поддерживает этот тип разметки. Поэтому его надо установить.
-<!--more-->
+
 ## Как установить Markdown разметку в WordPress
 
 Чтобы его установить есть два варианта.
