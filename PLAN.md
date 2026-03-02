@@ -17,7 +17,7 @@
 ## Структура проекта Astro
 
 ```
-totaku.ru/new/                        ← новая папка рядом со old/
+totaku.ru/                            ← проект в корне репозитория
 ├── astro.config.mjs
 ├── package.json
 ├── tsconfig.json
@@ -385,7 +385,7 @@ src/content/posts/    ← не форматировать MD-файлы конт
 ## Порядок реализации
 
 ### Шаг 1: Инициализация проекта
-- `pnpm create astro@latest new` (в папке рядом с `old/`)
+- `pnpm create astro@latest .` (в корне репозитория)
 - Установить все пакеты (см. секцию Пакеты)
 - Настроить `astro.config.mjs`, `tsconfig.json`
 - Настроить ESLint (`.eslintrc.cjs`) и Prettier (`.prettierrc`)
