@@ -14,8 +14,24 @@ const posts = allPosts.slice(0, POSTS_PER_PAGE);
 ---
 
 <BaseLayout title="Пермяк на Неве" description="Пишу про разное в том числе и про АйТи">
-  <div class="posts-list">
-    {posts.map((post) => <PostCard post={post} />)}
+  <div class="container">
+    <div class="home-profile">
+      <img
+        src="/img/avatar-zima.svg"
+        alt="Totaku"
+        class="home-profile__avatar"
+        width="64"
+        height="64"
+      />
+      <div>
+        <p class="home-profile__name">Totaku</p>
+        <p class="home-profile__subtitle">Keep your expectations low and you will never be disappointed</p>
+      </div>
+    </div>
+
+    <div class="posts-list">
+      {posts.map((post) => <PostCard post={post} />)}
+    </div>
+    <Pagination currentPage={page} totalPages={totalPages} baseUrl="/" />
   </div>
-  <Pagination currentPage={page} totalPages={totalPages} baseUrl="/" />
 </BaseLayout>

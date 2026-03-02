@@ -4,6 +4,7 @@ interface Props {
   totalPages: number;
   baseUrl: string;
 }
+
 const { currentPage, totalPages, baseUrl } = Astro.props;
 
 const prevUrl =
@@ -13,12 +14,18 @@ const nextUrl = currentPage < totalPages ? `${baseUrl}page/${currentPage + 1}/` 
 
 {
   totalPages > 1 && (
-    <nav>
-      {prevUrl && <a href={prevUrl}>← Назад</a>}
-      <span>
-        {currentPage} / {totalPages}
-      </span>
-      {nextUrl && <a href={nextUrl}>Вперёд →</a>}
+    <nav class="pagination" aria-label="Пагинация">
+      {prevUrl ? (
+        <a href={prevUrl} class="pagination__link" rel="prev">← Назад</a>
+      ) : (
+        <span />
+      )}
+      <span class="pagination__info">{currentPage} / {totalPages}</span>
+      {nextUrl ? (
+        <a href={nextUrl} class="pagination__link" rel="next">Вперёд →</a>
+      ) : (
+        <span />
+      )}
     </nav>
   )
 }

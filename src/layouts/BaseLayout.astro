@@ -1,6 +1,9 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import SEO from '@/components/SEO.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import '@/styles/global.css';
 
 interface Props {
   title: string;
@@ -20,6 +23,7 @@ const { title, description, keywords, tags, canonical, post, type } = Astro.prop
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <SEO
       title={title}
       description={description}
@@ -29,8 +33,21 @@ const { title, description, keywords, tags, canonical, post, type } = Astro.prop
       post={post}
       type={type}
     />
+    <!-- Антифлеш: восстанавливаем тему до рендера -->
+    <script is:inline>
+      (function () {
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = saved || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
   </head>
   <body>
-    <slot />
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>

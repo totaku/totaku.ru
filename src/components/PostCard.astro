@@ -4,9 +4,28 @@ import type { CollectionEntry } from 'astro:content';
 interface Props {
   post: CollectionEntry<'posts'>;
 }
+
 const { post } = Astro.props;
+
+const date = post.data.date;
+const dateFormatted = date.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' });
+const dateIso = date.toISOString();
 ---
 
-<article>
-  <a href={`/${post.id}/`}>{post.data.title}</a>
+<article class="post-card">
+  <div>
+    <a href={`/${post.id}/`} class="post-card__title">{post.data.title}</a>
+    {post.data.categories.length > 0 && (
+      <div class="post-card__meta">
+        <div class="post-card__cats">
+          {post.data.categories.map((cat) => (
+            <a href={`/categories/${cat}/`} class="post-card__cat">{cat}</a>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+  <div class="post-card__meta">
+    <time datetime={dateIso} class="post-card__date">{dateFormatted}</time>
+  </div>
 </article>

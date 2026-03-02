@@ -37,9 +37,14 @@ const baseUrl = `/tags/${tag}/`;
 ---
 
 <BaseLayout title={`#${tag} — Пермяк на Неве`}>
-  <h1 class="taxonomy-title">#{tag}</h1>
-  <div class="posts-list">
-    {posts.map((post) => <PostCard post={post} />)}
+  <div class="container">
+    <div class="taxonomy-header">
+      <p class="taxonomy-header__label">Тег</p>
+      <h1 class="taxonomy-header__title">#{tag}</h1>
+    </div>
+    <div class="posts-list">
+      {posts.map((post) => <PostCard post={post} />)}
+    </div>
+    <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl={baseUrl} />
   </div>
-  <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl={baseUrl} />
 </BaseLayout>

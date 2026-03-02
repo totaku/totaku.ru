@@ -1,0 +1,739 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* ============================================================
+   Тема: CSS переменные
+   ============================================================ */
+
+@theme {
+  --color-accent: oklch(55% 0.2 250);
+  --color-accent-hover: oklch(48% 0.22 250);
+  --color-accent-dark: oklch(70% 0.18 250);
+  --color-accent-dark-hover: oklch(75% 0.2 250);
+
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f8f9fa;
+  --color-text: #1a1a1a;
+  --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+
+  --color-bg-dark: #0f1117;
+  --color-bg-secondary-dark: #1a1d27;
+  --color-text-dark: #e2e8f0;
+  --color-text-muted-dark: #94a3b8;
+  --color-border-dark: #2d3748;
+}
+
+/* ============================================================
+   Базовые стили
+   ============================================================ */
+
+:root {
+  --accent: var(--color-accent);
+  --bg: var(--color-bg);
+  --bg-secondary: var(--color-bg-secondary);
+  --text: var(--color-text);
+  --text-muted: var(--color-text-muted);
+  --border: var(--color-border);
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent: var(--color-accent-dark);
+    --bg: var(--color-bg-dark);
+    --bg-secondary: var(--color-bg-secondary-dark);
+    --text: var(--color-text-dark);
+    --text-muted: var(--color-text-muted-dark);
+    --border: var(--color-border-dark);
+  }
+}
+
+:root[data-theme="dark"] {
+  --accent: var(--color-accent-dark);
+  --bg: var(--color-bg-dark);
+  --bg-secondary: var(--color-bg-secondary-dark);
+  --text: var(--color-text-dark);
+  --text-muted: var(--color-text-muted-dark);
+  --border: var(--color-border-dark);
+}
+
+:root[data-theme="light"] {
+  --accent: var(--color-accent);
+  --bg: var(--color-bg);
+  --bg-secondary: var(--color-bg-secondary);
+  --text: var(--color-text);
+  --text-muted: var(--color-text-muted);
+  --border: var(--color-border);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ============================================================
+   Скрипт: тема до рендера (вставляется inline, без flash)
+   ============================================================ */
+
+/* ============================================================
+   Типографика для prose (статьи)
+   ============================================================ */
+
+.prose {
+  --tw-prose-body: var(--text);
+  --tw-prose-headings: var(--text);
+  --tw-prose-links: var(--accent);
+  --tw-prose-bold: var(--text);
+  --tw-prose-counters: var(--text-muted);
+  --tw-prose-bullets: var(--text-muted);
+  --tw-prose-hr: var(--border);
+  --tw-prose-quotes: var(--text);
+  --tw-prose-quote-borders: var(--accent);
+  --tw-prose-captions: var(--text-muted);
+  --tw-prose-code: var(--text);
+  --tw-prose-pre-code: #e2e8f0;
+  --tw-prose-pre-bg: #1e2533;
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
+  max-width: 720px;
+}
+
+.prose img {
+  border-radius: 6px;
+}
+
+.prose a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.prose h2,
+.prose h3 {
+  scroll-margin-top: 80px;
+}
+
+/* Code blocks */
+.prose pre {
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+/* Inline code */
+.prose :not(pre) > code {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.1em 0.4em;
+  font-size: 0.875em;
+}
+
+.prose :not(pre) > code::before,
+.prose :not(pre) > code::after {
+  content: none;
+}
+
+/* Admonitions */
+.admonition {
+  border-left: 4px solid var(--accent);
+  background: var(--bg-secondary);
+  border-radius: 0 6px 6px 0;
+  padding: 0.75rem 1rem;
+  margin: 1.5rem 0;
+}
+
+.admonition.warning {
+  border-color: #f59e0b;
+}
+
+.admonition.danger,
+.admonition.error {
+  border-color: #ef4444;
+}
+
+.admonition.success,
+.admonition.tip {
+  border-color: #10b981;
+}
+
+.admonition.note,
+.admonition.info {
+  border-color: #3b82f6;
+}
+
+.admonition p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================================
+   Лейаут
+   ============================================================ */
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.content-width {
+  max-width: 720px;
+}
+
+main {
+  flex: 1;
+}
+
+/* ============================================================
+   Хедер
+   ============================================================ */
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: 3.5rem;
+}
+
+.site-header__logo {
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-header__logo:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.site-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.site-header__nav a {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+  text-decoration: none;
+}
+
+.site-header__nav a:hover {
+  color: var(--text);
+  background: var(--bg-secondary);
+  text-decoration: none;
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Кнопка переключения темы */
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+  background: var(--bg-secondary);
+  border-color: var(--text-muted);
+}
+
+/* ============================================================
+   Профиль на главной
+   ============================================================ */
+
+.home-profile {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 2.5rem 0 2rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+
+.home-profile__avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--bg-secondary);
+}
+
+.home-profile__name {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 0.25rem;
+}
+
+.home-profile__subtitle {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0;
+  font-style: italic;
+}
+
+/* ============================================================
+   Список постов
+   ============================================================ */
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ============================================================
+   Карточка поста
+   ============================================================ */
+
+.post-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.25rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.post-card:first-child {
+  border-top: 1px solid var(--border);
+}
+
+@media (min-width: 640px) {
+  .post-card {
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 1rem;
+  }
+}
+
+.post-card__title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  line-height: 1.5;
+  transition: color 0.15s;
+}
+
+.post-card__title:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.post-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.2rem;
+}
+
+@media (min-width: 640px) {
+  .post-card__meta {
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 0;
+    gap: 0.25rem;
+  }
+}
+
+.post-card__date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.post-card__cats {
+  display: flex;
+  gap: 0.375rem;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 640px) {
+  .post-card__cats {
+    justify-content: flex-end;
+  }
+}
+
+.post-card__cat {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0.1em 0.45em;
+  text-decoration: none;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.post-card__cat:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+/* ============================================================
+   Пагинация
+   ============================================================ */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem 0;
+}
+
+.pagination__link {
+  color: var(--accent);
+  font-size: 0.875rem;
+  padding: 0.4rem 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  transition: background 0.15s, border-color 0.15s;
+  text-decoration: none;
+}
+
+.pagination__link:hover {
+  background: var(--bg-secondary);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+.pagination__info {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   Страница поста
+   ============================================================ */
+
+.post-header {
+  padding: 2rem 0 1.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+
+.post-header__title {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--text);
+  margin: 0 0 0.875rem;
+}
+
+.post-header__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.post-header__meta time {
+  white-space: nowrap;
+}
+
+.post-header__tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.post-tag {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.15em 0.55em;
+  text-decoration: none;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.post-tag:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+.post-cover {
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.post-cover img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.post-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .post-layout {
+    grid-template-columns: 1fr 220px;
+    align-items: start;
+  }
+}
+
+/* ============================================================
+   Оглавление (ToC)
+   ============================================================ */
+
+.toc {
+  font-size: 0.875rem;
+}
+
+@media (min-width: 1024px) {
+  .toc {
+    position: sticky;
+    top: 4.5rem;
+    max-height: calc(100dvh - 5rem);
+    overflow-y: auto;
+  }
+}
+
+.toc__title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 0.625rem;
+}
+
+.toc__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.toc__list--nested {
+  padding-left: 0.875rem;
+  margin-top: 0.1rem;
+}
+
+.toc__link {
+  display: block;
+  color: var(--text-muted);
+  padding: 0.2rem 0.375rem;
+  border-radius: 4px;
+  border-left: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.toc__link:hover {
+  color: var(--text);
+  background: var(--bg-secondary);
+  text-decoration: none;
+}
+
+.toc__link.is-active {
+  color: var(--accent);
+  border-left-color: var(--accent);
+  background: var(--bg-secondary);
+}
+
+/* ============================================================
+   Комментарии Disqus
+   ============================================================ */
+
+.comments-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.comments-section__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+/* ============================================================
+   Футер
+   ============================================================ */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 0;
+  margin-top: auto;
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: center;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+@media (min-width: 640px) {
+  .site-footer__inner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.site-footer__links {
+  display: flex;
+  gap: 1rem;
+}
+
+.site-footer__links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.site-footer__links a:hover {
+  color: var(--accent);
+}
+
+/* ============================================================
+   Taxonomy страницы
+   ============================================================ */
+
+.taxonomy-header {
+  padding: 2rem 0 1.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+
+.taxonomy-header__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.375rem;
+}
+
+.taxonomy-header__title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+/* ============================================================
+   Страница "О блоге"
+   ============================================================ */
+
+.about-page {
+  padding: 2rem 0 3rem;
+}
+
+/* ============================================================
+   Скроллбар (webkit)
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}

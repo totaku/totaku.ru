@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <circle cx="40" cy="40" r="40" fill="#1a472a"/>
+  <circle cx="40" cy="32" r="14" fill="#a8d5b5"/>
+  <path d="M10 72c0-16.569 13.431-30 30-30s30 13.431 30 30" fill="#a8d5b5"/>
+  <text x="40" y="36" text-anchor="middle" font-family="system-ui" font-size="14" font-weight="700" fill="#1a472a">T</text>
+</svg>

@@ -3,8 +3,19 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="О блоге — Пермяк на Неве" description="Пишу про разное в том числе и про АйТи">
-  <article class="prose">
-    <h1>О блоге</h1>
-    <p>Привет, я Totaku. Пишу про разное: IT, игры, сериалы, аниме, места.</p>
-  </article>
+  <div class="container">
+    <div class="about-page">
+      <article class="prose content-width">
+        <h1>О блоге</h1>
+        <p>Привет, я Totaku. Пишу про разное: IT, игры, сериалы, аниме, места.</p>
+        <p>Блог существует с 2012 года. Сначала был на Wordpress, потом на Drupal, потом на Hugo, теперь на Astro.</p>
+        <h2>Контакты</h2>
+        <ul>
+          <li><a href="https://github.com/totaku" rel="noopener noreferrer" target="_blank">GitHub</a></li>
+          <li><a href="https://t.me/totaku" rel="noopener noreferrer" target="_blank">Telegram</a></li>
+          <li><a href="mailto:admin@totaku.su">admin@totaku.su</a></li>
+        </ul>
+      </article>
+    </div>
+  </div>
 </BaseLayout>

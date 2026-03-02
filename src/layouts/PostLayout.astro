@@ -1,14 +1,22 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import type { MarkdownHeading } from 'astro';
+import { Picture } from 'astro:assets';
 import BaseLayout from './BaseLayout.astro';
+import TableOfContents from '@/components/TableOfContents.astro';
+import DisqusComments from '@/components/DisqusComments.astro';
 
 interface Props {
   post: CollectionEntry<'posts'>;
   headings: MarkdownHeading[];
 }
 
-const { post, headings: _headings } = Astro.props;
+const { post, headings } = Astro.props;
+
+const date = post.data.date;
+const dateFormatted = date.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' });
+const dateIso = date.toISOString();
+const postUrl = new URL(`/${post.id}/`, Astro.site).href;
 ---
 
 <BaseLayout
@@ -19,7 +27,49 @@ const { post, headings: _headings } = Astro.props;
   post={post}
   type="article"
 >
-  <article>
-    <slot />
-  </article>
+  <div class="container">
+    <header class="post-header">
+      <h1 class="post-header__title">{post.data.title}</h1>
+      <div class="post-header__meta">
+        <time datetime={dateIso}>{dateFormatted}</time>
+        {post.data.categories.map((cat) => (
+          <a href={`/categories/${cat}/`} class="post-tag">{cat}</a>
+        ))}
+        {post.data.tags.length > 0 && (
+          <div class="post-header__tags">
+            {post.data.tags.map((tag) => (
+              <a href={`/tags/${tag}/`} class="post-tag">{tag}</a>
+            ))}
+          </div>
+        )}
+      </div>
+    </header>
+
+    {post.data.featuredImage && (
+      <div class="post-cover">
+        <Picture
+          src={post.data.featuredImage}
+          alt={post.data.title}
+          widths={[400, 800, 1200]}
+          sizes="(max-width: 768px) 100vw, 720px"
+          formats={['avif', 'webp']}
+          loading="eager"
+        />
+      </div>
+    )}
+
+    <div class="post-layout">
+      <article class="prose content-width">
+        <slot />
+      </article>
+
+      {post.data.toc && headings.length > 0 && (
+        <aside>
+          <TableOfContents headings={headings} />
+        </aside>
+      )}
+    </div>
+
+    <DisqusComments slug={post.id} title={post.data.title} url={postUrl} />
+  </div>
 </BaseLayout>
