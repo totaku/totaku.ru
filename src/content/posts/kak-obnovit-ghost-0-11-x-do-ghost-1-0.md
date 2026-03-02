@@ -1,0 +1,107 @@
+---
+title: "Обновляем Ghost 0.11.x до Ghost 1.0"
+date: 2017-07-28T12:12:03+03:00
+lastmod: 2020-11-03T03:54:21+03:00
+draft: false
+keywords: "рукоблудие, ghost"
+description: "Вчера анонсировали версию Ghost 1.0. Посмотрев на изменения я решил обновиться. Если вы тоже хотите это сделать, то это статья для вас. Ну а если вы хотите первый раз установить Ghost, то часть этой статьи тоже вам подойдет. Погнали!"
+
+tags: ["ghost"]
+categories: ["dev"]
+
+hiddenFromHomePage: false
+
+toc: false
+featuredImage: "./images/cover/kak-obnovit-ghost-0-11-x-do-ghost-1-0.jpg"
+---
+
+Вчера анонсировали версию [Ghost 1.0](https://blog.ghost.org/1-0/). Посмотрев на изменения я решил обновиться. Если вы тоже хотите это сделать, то это статья для вас. Ну а если вы хотите первый раз установить Ghost, то часть этой статьи тоже вам подойдет. Погнали!
+
+1. Подключаемся по SSH к серверу:
+```bash
+ssh [username]@[your_url.com]
+```    
+
+2. Переходим в браузере по адресу `[yourblog].com/ghost/settings/labs/`, жмем кнопку `Export` и сохраняем ваши данные на компьютер.
+3. Останавливаем блог: `service ghost stop` или `systemctl stop ghost` или `forever ghost stop` или `pm2 stop all`
+4. Для установки версии 1.0 переходим в папку `/var/www` или в ту где живет ваш Ghost:
+```bash
+    cd /var/www
+```
+
+5. Переименовываем существующую папку и создаем новую:
+```bash
+sudo mv ghost ghost-old
+sudo mkdir ghost
+```    
+
+6. Устанавливаем Ghost-CLI и MySQL:
+```bash
+sudo npm install -g ghost-cli
+sudo apt-get install mysql-server
+```    
+
+7. Устанавливаем права на нашу новую папку для юзера ghost (ну или какого вы там используете) и переходим в нее:
+```
+sudo chown -R ghost:ghost ghost/
+cd ghost/
+```    
+
+8. Устанавливае Ghost:
+```bash
+ghost install
+```    
+
+<div class="admonition tip">
+<p class="admonition-title">Совет</p>
+
+Если ругается на версию NodeJS, то выполняем эти команды и пробуем еще раз
+```bash
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+</div>   
+
+9. Отвечаем на вопросы установщика. Ниже просто пример, у вас не обязательно будет так же:
+```bash
+blog url: [your full url]
+MySQL Hostname: localhost
+MySQL Username: root
+MySQL Password: [password you created when you installed MySQL]
+Database Name: [can be anything, but the name of your blog makes most sense. Aka: ghostforbeginners]
+Setup Nginx: no
+Setup Ghost MySQL User: yes
+Setup Ghost System User: yes
+Setup systemd: yes
+Start Ghost: yes
+```
+
+10. CLI установит и запустит ваш блог на Ghost.
+11. Теперь надо перенести все материалы из старого блога в новый. Переходим по адресу `yoursite.com/ghost` и создаем нового пользователя.
+12. Далее переходим в  `Settings -> Labs` и импортируем, файл который мы сохранили на 2 шаге.
+13. Теперь нужно восстановить картинки. Возвращаемся в консоль:
+```bash
+sudo cp -R ../ghost-old/content/images/* content/images/.
+sudo chown -R ghost:ghost ./*
+```    
+
+14. Установим вашу тему. Самый простой путь перейти по адресу `yoursite.com/ghost/#/settings/design` и там установить, но если по какой-то причине не получается, то можно скопировать из старого блога:
+```bash
+sudo cp -R ../ghost-old/content/themes/[theme_name] content/themes/.
+sudo chown -R ghost:ghost ./*
+```    
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+
+Темы притерпели небольшие изменения, поэтому вам надо будет подправить вашу тему. Проверить вашу тему можно [тут](https://gscan.ghost.org/), а вот [чейнджлог](https://themes.ghost.org/docs/changelog#ghost-100-beta).
+
+</div>
+
+15. Перезапускаем Ghost
+```bash
+ghost restart
+```
+
+16. Все готово, теперь ваш блог обновлен. Теперь вы можете наслаждаться всеми прелестями версии 1.0.

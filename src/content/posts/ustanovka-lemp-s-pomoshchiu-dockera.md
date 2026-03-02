@@ -1,0 +1,253 @@
+---
+title: "Установка LEMP с помощью Docker'а"
+date: 2017-08-02T15:19:52+03:00
+lastmod: 2020-11-03T04:03:36+03:00
+draft: false
+keywords: "рукоблудие, docker, LEMP, MySQL, docker-compose, PHP, composer"
+description: "Не так давно из всех углов доносились крики о докоре шморек. А я тогда использовал на локалхосте Vagrant и не понимал нафига мне переходить на Docker."
+
+tags: ["docker", "lemp", "mysql", "docker-compose", "php", "composer"]
+categories: ["dev"]
+
+hiddenFromHomePage: false
+
+toc: true
+featuredImage: "./images/cover/ustanovka-lemp-s-pomoshchiu-dockera.png"
+---
+
+Не так давно из всех углов доносились крики о докоре шморек. А я тогда использовал на локалхосте [Vagrant](https://www.vagrantup.com/) и не понимал нафига мне переходить на [Docker](https://www.docker.com/). Если честно я до сих пор этого не понимаю, но очередной сбой в вагранте (я сам виноват, инфа 146%) сподвиг меня хоть чуть чуть разобраться с докером. Вообще, если быть честным это не первый мой опыт, у меня одно время локально крутился Ghost на нем, а дальше дело не пошло. Предлагаемое решение больше для локалхоста, но принципы понятны и его можно будет адаптировать для production-ready решение.
+
+## Что такое докер
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+
+Docker — программное обеспечение для автоматизации развёртывания и управления приложениями в среде виртуализации на уровне операционной системы. Позволяет «упаковать» приложение со всем его окружением и зависимостями в контейнер, который может быть перенесён на любую Linux-систему с поддержкой cgroups в ядре, а также предоставляет среду по управлению контейнерами. Изначально использовал возможности LXC, с 2015 года применял собственную библиотеку, абстрагирующую виртуализационные возможности ядра Linux — libcontainer. С появлением Open Container Initiative начался переход от монолитной к модульной архитектуре. 
+
+[Википедия](https://ru.wikipedia.org/wiki/Docker)
+
+</div>
+
+Углубляться в то, что же это зазверь и как он работает я не буду, это тема для отдельного разговора да и есть отличный [хелп](https://docs.docker.com/) у них на сайте.
+
+## Что будет в сборке
+
+Самая простая и примитивная среда разработки:
+
+- сам PHP
+- Composer
+- MariaDB
+- Nginx с мультихостами
+- PhpMyAdmin
+
+## Установка
+
+На этом пункте я тоже заострять внимание не буду ибо все и так просто, но вот инструкции:
+
+- [Ubuntu](https://docs.docker.com/engine/installation/linux/ubuntu/)
+- [macOS](https://docs.docker.com/docker-for-mac/install/)
+- [Windows](https://docs.docker.com/docker-for-windows/install/)
+
+Так же нам потребуется `docker-compose`, как его установить читайте [тут](https://docs.docker.com/compose/install/).
+
+## Структура проекта
+
+Создадим какую нибудь папку, где будет лежать наш проект. В ней нам нужно будет создать вот такие папки:
+
+- **www** — в этой папке будут лежать файлы наших проектов, по директории на каждый проект
+- **mysql** — в этой папке будут храниться файлы наших баз данных
+- **logs** — здесь будет собрирать логи из разных образов
+- **hosts** — здесь будут храниться файлы конфигурации nginx для наших проектов
+- **images** — папка с нашими образами
+
+Еще не помешает создать папку с нашим дефолтным проектом для проверки нашей сборки. В папке `www` создадим папку с нашим проектом, например `hello.test`. В ней создадим файл `index.php` со следующим содержанием:
+```php
+<?php phpinfo();
+```    
+
+Так же давайте сразу создадим в папке с нашими образами папку php, а в ней файлы `php.ini` (можем в нем определять свои значения конфига) и `Dockerfile` (тут будут настройки нашего образа).
+
+Для ленивых вот команда которая сделает все сама:
+```bash
+mkdir www www/hello.test mysql logs hosts images images/php && echo "<?php phpinfo();" > www/hello.test/index.php && touch images/php/php.ini && touch images/php/Dockerfile && touch docker-compose.yml
+```
+
+## Собираем наш PHP образ
+
+Официальный образ PHP не включает в себя никаких модулей, для того чтобы их включить, мы соберем собственный образ на основе официального. В файл `images/php/Dockerfile` пропишем следующее:
+```Dockerfile
+# Для начала указываем исходный образ, он будет использован как основа
+FROM php:7.4-fpm
+
+# RUN выполняет идущую за ней команду в контексте нашего образа.
+# В данном случае мы установим некоторые зависимости и модули PHP.
+# Для установки модулей используем команду docker-php-ext-install.
+# На каждый RUN создается новый слой в образе, поэтому рекомендуется объединять команды.
+RUN apt-get update && apt-get install -y \
+        curl \
+        wget \
+        git \
+        libfreetype6-dev \
+        libonig-dev \
+        libpq-dev \
+        libjpeg62-turbo-dev \
+        libmcrypt-dev \
+        libpng-dev \
+        libzip-dev \
+    && pecl install mcrypt-1.0.3 \
+    && docker-php-ext-install -j$(nproc) iconv mbstring mysqli pdo_mysql zip \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd \
+    && docker-php-ext-enable mcrypt
+
+# Куда же без composer'а.
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Добавим свой php.ini, можем в нем определять свои значения конфига
+ADD php.ini /usr/local/etc/php/conf.d/40-custom.ini
+
+# Указываем рабочую директорию для PHP
+WORKDIR /var/www
+
+# Запускаем контейнер
+# Из документации: The main purpose of a CMD is to provide defaults for an executing container. These defaults can include an executable,
+# or they can omit the executable, in which case you must specify an ENTRYPOINT instruction as well.
+CMD ["php-fpm"]
+```
+
+## Docker Compose
+
+Docker Compose упрощает жизнь если у вас больше одного контейнера. С помощью одного, а иногда нескольких файлов, мы описываем какие контейнеры запускать, их настройки и связи между контейнерами. Начиная со второй версии docker compose поддерживает наследование и можно с его помощью описывать разные конфигурации для разных окружений. Мы сейчас не будем заострять на этом внимание, у нас одно окружение и один файл. В файл `docker-compose.yml` пропишем следующее:
+```yaml
+version: '2'
+services:
+    nginx:
+      # используем последний стабильный образ nginx
+        image: nginx:latest
+        # маршрутизируем порты
+        ports:
+            - "8000:80"
+        # монтируем директории, слева директории на основной машине, справа - куда они монтируются в контейнере
+        volumes:
+            - ./hosts:/etc/nginx/conf.d
+            - ./www:/var/www
+            - ./logs:/var/log/nginx
+        # nginx должен общаться с php контейнером
+        links:
+            - php
+    php:
+        # у нас свой образ для PHP, указываем путь к нему и говорим что его надо собрать
+        build: ./images/php
+        # этот образ будет общаться с mysql
+        links:
+            - mysql
+        # монтируем директорию с проектами
+        volumes:
+            - ./www:/var/www
+    mysql:
+        image: mariadb
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./mysql:/var/lib/mysql
+        # задаем пароль для root пользователя
+        environment:
+            MYSQL_ROOT_PASSWORD: secret
+    pma:
+      # используем последний стабильный образ phpmyadmin
+        image: phpmyadmin/phpmyadmin
+        restart: always
+        links:
+            - mysql:mysql
+        ports:
+            - 8183:80
+        environment:
+            # прописываем название нашего MySQL хоста
+            PMA_HOST: mysql
+            MYSQL_USERNAME: root
+            MYSQL_ROOT_PASSWORD: secret
+``` 
+
+## Конфигурация nginx для проектов
+
+Мы уже сосдали тестовый проект `hello.test`, создадить для этого проекта nginx конфиг. В папке `hosts` cоздадим файлик `hello-test.conf`:
+```nginx
+server {
+    index index.php;
+    server_name hello.test;
+    error_log  /var/log/nginx/error.log;
+    access_log /var/log/nginx/access.log;
+    root /var/www/hello.test;
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass php:9000;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+    }
+}
+```
+
+Конфиг nginx для докер контейнеров ничем не отличается от обычного конфига для сайта. Стоит лишь обратить внимание на директиву `fastcgi_pass`, где мы используем не путь к unix-сокету, а адрес `php:9000`. Здесь присутствует немного магии docker'а: php - это хост по которому доступен наш php контейнер внутри контейнера `nginx`, ну а 9000 - порт, по которому можно достучаться до fpm-сокета.
+
+## Погнали!
+
+<div class="admonition warning">
+<p class="admonition-title">Внимание</p>
+
+Хост для доступа к MySQL — `mysql`. Не `localhost`, а именно `mysql`.
+
+</div>
+
+Минимальная конфигурация для нашей локальной разработки готовы. Осталось только запустить ее и проверить, работает ли оно. Переходит в корень нашего проекта, где лежит файл `docker-compose.yml`. Выполняем команду `docker-compose up -d` и ждем. Первый запуск он самый долгий, потому что докеру нужно скачать образы и собрать наш образ php.
+
+В самом конце мы увидим заветные строки:
+```bash
+Starting source_mysql_1 ... 
+Starting source_mysql_1 ... done
+Starting source_php_1 ... 
+Starting source_php_1 ... done
+Starting source_nginx_1 ... 
+Starting source_nginx_1 ... done
+Starting source_pma_1 ... 
+Starting source_pma_1 ... done
+```
+
+Они сообщают нам, что все 4 контейнера поднялись и работают. Проверим все ли так. Открываем браузер и переходим по адресу `http://hello.test:8000/` и нихрена не открывается. Все потому, что нам надо в файл `host` прописать следующею строку:
+```txt
+127.0.0.1 hello.test
+```    
+
+Обновляем страницу и видим:
+
+![](https://fairu.totaku.ru/shotsmwsu.png)
+
+Все готово, все работает. Для создания дополнительного хоста нам нужно в папке `www` создать папку проекта, а в папке `hosts` создать для него конфиг nginx и перезапустить контейнеры. Удачи!
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+
+Т.к. сейчас хром да и все остальные по умолчанию пытаются стучать в https рекмендую для локальной разработки создавать домены вида `domain-name.test`. Хром успокаивается и пускает вас поработать.
+
+</div>
+
+## Github
+
+- [totaku/lemp4docker](https://github.com/totaku/lemp4docker)
+
+## Используемые образы
+
+- [PHP](https://hub.docker.com/_/php/)
+- [Nginx](https://hub.docker.com/_/nginx/)
+- [MariaDB](https://hub.docker.com/_/mariadb/)
+- [PhpMyAdmin](https://hub.docker.com/r/phpmyadmin/phpmyadmin/)
+
+<div class="admonition warning">
+<p class="admonition-title">Внимание</p>
+
+Хост для доступа к MySQL — `mysql`. Не `localhost`, а именно `mysql`.
+
+</div>

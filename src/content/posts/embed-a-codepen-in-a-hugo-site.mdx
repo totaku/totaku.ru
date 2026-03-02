@@ -1,0 +1,51 @@
+---
+title: Встраиваем Codepen в сайт на Hugo
+date: 2020-11-03T14:20:31+03:00
+lastmod: 2020-11-03T14:20:31+03:00
+draft: false
+keywords: "hugo, codepen"
+description: "Codepen можно очень просто встроить в посты на hugo используя кастомные шорткоды."
+
+tags: ["hugo"]
+categories: ["dev"]
+
+hiddenFromHomePage: false
+
+toc: false
+featuredImage: "./images/cover/embed-a-codepen-in-a-hugo-site.png"
+---
+
+import { YouTube } from 'astro-embed';
+import CodePen from '@/components/CodePen.astro';
+
+Codepen можно очень просто встроить в посты на hugo используя кастомные шорткоды. Синтаксис будет выглядеть примерно так:
+<!--more-->
+```markdown
+{{ < codepen id="#####" > }}
+```
+
+Просто создаем в папке с нашей темой файл `/layouts/shortcodes/codepen.html` и прописываем в него следующий код:
+
+```html
+{{/* DEFAULTS */}}
+{{ $user    := "your_username" }}
+{{ $height  := 500 }}
+{{ $tab     := "result" }}{{/* html|css|js|result */}}
+{{ $theme   := 8862 }}{{/* create on codepen.io */}}
+
+
+<script
+    data-slug-hash="{{ .Get "id" }}"
+    data-user="{{ or (.Get "user") $user }}"
+    data-height="{{ or (.Get "height") $height }}"
+    data-default-tab="{{ or (.Get "tab") $tab }}"
+    data-theme-id="{{ or (.Get "theme") $theme }}"
+    class='codepen'
+    async
+    src="//codepen.io/assets/embed/ei.js"
+></script>
+```
+
+Все. Больше ничего делать не надо. Дальше в посте пользуемся нашим шорткодом и все прекрасно работает. Вот пример:
+
+<CodePen id="bOxqKj" />
