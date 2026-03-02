@@ -1,18 +1,34 @@
 ---
+import type { CollectionEntry } from 'astro:content';
+import SEO from '@/components/SEO.astro';
+
 interface Props {
   title: string;
   description?: string;
+  keywords?: string;
+  tags?: string[];
+  canonical?: string;
+  post?: CollectionEntry<'posts'>;
+  type?: 'website' | 'article';
 }
-const { title, description } = Astro.props;
+
+const { title, description, keywords, tags, canonical, post, type } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{title}</title>
-    {description && <meta name="description" content={description} />}
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <SEO
+      title={title}
+      description={description}
+      keywords={keywords}
+      tags={tags}
+      canonical={canonical}
+      post={post}
+      type={type}
+    />
   </head>
   <body>
     <slot />

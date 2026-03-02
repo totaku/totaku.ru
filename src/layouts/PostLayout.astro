@@ -7,10 +7,18 @@ interface Props {
   post: CollectionEntry<'posts'>;
   headings: MarkdownHeading[];
 }
+
 const { post, headings: _headings } = Astro.props;
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description}>
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  keywords={post.data.keywords}
+  tags={post.data.tags}
+  post={post}
+  type="article"
+>
   <article>
     <slot />
   </article>

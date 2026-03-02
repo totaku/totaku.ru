@@ -1,0 +1,161 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getImage } from 'astro:assets';
+
+interface Props {
+  title: string;
+  description?: string;
+  keywords?: string;
+  tags?: string[];
+  canonical?: string;
+  post?: CollectionEntry<'posts'>;
+  type?: 'website' | 'article';
+}
+
+const {
+  title,
+  description,
+  keywords,
+  tags = [],
+  canonical,
+  post,
+  type = 'website',
+} = Astro.props;
+
+const siteTitle = 'Пермяк на Неве';
+const siteDescription = 'Пишу про разное в том числе и про АйТи';
+const siteUrl = 'https://totaku.ru';
+const authorName = 'Totaku';
+const twitterSite = '@totaku';
+
+const pageTitle = title === siteTitle ? title : `${title} — ${siteTitle}`;
+const pageDescription = description || siteDescription;
+const pageKeywords = keywords || (tags.length > 0 ? tags.join(', ') : 'drupal, программирование, сериалы, аниме, игры');
+const pageCanonical = canonical || Astro.url.href;
+
+// OG image
+let ogImageUrl: string | undefined;
+let ogImageWidth: number | undefined;
+let ogImageHeight: number | undefined;
+
+if (post?.data.featuredImage) {
+  try {
+    const img = await getImage({ src: post.data.featuredImage, width: 1200, format: 'webp' });
+    ogImageUrl = new URL(img.src, siteUrl).href;
+    ogImageWidth = img.attributes.width as number | undefined;
+    ogImageHeight = img.attributes.height as number | undefined;
+  } catch {
+    // fallback — no OG image
+  }
+}
+
+// JSON-LD
+const datePublished = post?.data.date.toISOString();
+const dateModified = (post?.data.lastmod || post?.data.date)?.toISOString();
+const postDescription = post?.data.description || siteDescription;
+
+const jsonLd = type === 'article' && post
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: post.data.title,
+      inLanguage: 'ru',
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': pageCanonical,
+      },
+      ...(ogImageUrl
+        ? {
+            image: [
+              {
+                '@type': 'ImageObject',
+                url: ogImageUrl,
+                ...(ogImageWidth ? { width: ogImageWidth } : {}),
+                ...(ogImageHeight ? { height: ogImageHeight } : {}),
+              },
+            ],
+          }
+        : {}),
+      ...(post.data.tags.length > 0 ? { keywords: post.data.tags.join(', ') } : {}),
+      url: pageCanonical,
+      datePublished,
+      ...(dateModified ? { dateModified } : {}),
+      author: {
+        '@type': 'Person',
+        name: authorName,
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: siteTitle,
+      },
+      description: postDescription,
+    }
+  : {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      url: siteUrl + '/',
+      inLanguage: 'ru',
+      name: siteTitle,
+      description: siteDescription,
+      author: {
+        '@type': 'Person',
+        name: authorName,
+      },
+    };
+---
+
+<!-- Basic -->
+<title>{pageTitle}</title>
+<meta name="description" content={pageDescription} />
+<meta name="keywords" content={pageKeywords} />
+<link rel="canonical" href={pageCanonical} />
+
+<!-- Verifications -->
+<meta name="yandex-verification" content="bcf062eda39841d7" />
+<meta name="yandex-verification" content="7ce8e380c28fe9bd" />
+<meta name="p:domain_verify" content="319c291f435d12cdbe0857fa0deb5b4e" />
+<meta name="zen-verification" content="hzyzu3gDjer1nR5xFe5UR4aIsiTA6h26Sf2uqVtXOukT2uw80JPITAb6rUM0R829" />
+
+<!-- Open Graph -->
+<meta property="og:type" content={type === 'article' ? 'article' : 'website'} />
+<meta property="og:url" content={pageCanonical} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={pageDescription} />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:site_name" content={siteTitle} />
+{ogImageUrl && (
+  <>
+    <meta property="og:image" content={ogImageUrl} />
+    {ogImageWidth && <meta property="og:image:width" content={String(ogImageWidth)} />}
+    {ogImageHeight && <meta property="og:image:height" content={String(ogImageHeight)} />}
+    <meta property="og:image:type" content="image/webp" />
+  </>
+)}
+{type === 'article' && post && (
+  <>
+    <meta property="article:published_time" content={datePublished} />
+    {dateModified && <meta property="article:modified_time" content={dateModified} />}
+    <meta property="article:author" content={authorName} />
+    {post.data.tags.map((tag) => (
+      <meta property="article:tag" content={tag} />
+    ))}
+  </>
+)}
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content={ogImageUrl ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:site" content={twitterSite} />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={pageDescription} />
+{ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
+
+<!-- RSS -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title={`RSS — ${siteTitle}`}
+  href={`${siteUrl}/rss.xml`}
+/>
+
+<!-- JSON-LD -->
+<script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
