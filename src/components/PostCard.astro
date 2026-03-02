@@ -13,19 +13,11 @@ const dateIso = date.toISOString();
 ---
 
 <article class="post-card">
-  <div>
-    <a href={`/${post.id}/`} class="post-card__title">{post.data.title}</a>
-    {post.data.categories.length > 0 && (
-      <div class="post-card__meta">
-        <div class="post-card__cats">
-          {post.data.categories.map((cat) => (
-            <a href={`/categories/${cat}/`} class="post-card__cat">{cat}</a>
-          ))}
-        </div>
-      </div>
-    )}
-  </div>
+  <a href={`/${post.id}/`} class="post-card__title">{post.data.title}</a>
   <div class="post-card__meta">
     <time datetime={dateIso} class="post-card__date">{dateFormatted}</time>
+    {post.data.categories.map((cat) => (
+      <a href={`/categories/${cat}/`} class="post-card__cat">{cat}</a>
+    ))}
   </div>
 </article>

@@ -64,7 +64,7 @@ const postUrl = new URL(`/${post.id}/`, Astro.site).href;
       </article>
 
       {post.data.toc && headings.length > 0 && (
-        <aside>
+        <aside class="toc-aside">
           <TableOfContents headings={headings} />
         </aside>
       )}
