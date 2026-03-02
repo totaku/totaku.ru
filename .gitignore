@@ -1,0 +1,15 @@
+# Старый Hugo сайт
+old/
+
+# Astro
+dist/
+node_modules/
+.astro/
+
+# Env
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
