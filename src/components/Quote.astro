@@ -18,12 +18,12 @@ const { author, variant = 'border' } = Astro.props;
 </blockquote>
 
 <style>
-    .quote p {
+    .quote :global(p) {
         font-size: 1.0625rem;
         font-style: italic;
         color: var(--text);
         line-height: 1.7;
-        margin-bottom: 0;
+        margin-bottom: 0 !important;
     }
 
     .quote-author {
@@ -79,7 +79,7 @@ const { author, variant = 'border' } = Astro.props;
         border-right: 2px solid var(--accent);
     }
 
-    .quote-corners p {
+    .quote-corners :global(p) {
         font-size: 1.125rem;
         color: var(--text);
     }
