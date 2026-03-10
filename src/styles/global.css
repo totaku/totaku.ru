@@ -261,7 +261,7 @@ img {
 
 /* ── HERO (главная) ──────────────────────────────────────── */
 .hero {
-  max-width: 1140px;
+  max-width: 71.25rem;
   margin: 0 auto;
   padding: 2.75rem 1.5rem 2.25rem;
   display: flex;
