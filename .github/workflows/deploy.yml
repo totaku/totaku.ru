@@ -1,0 +1,59 @@
+name: Deploy to Timeweb via FTP
+
+on:
+    push:
+        branches: [main]
+    workflow_dispatch:
+        inputs:
+            clean_slate:
+                description: 'Удалить все файлы на сервере перед деплоем'
+                type: boolean
+                default: false
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 9
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
+                  cache: 'pnpm'
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Cache Astro assets
+              uses: actions/cache@v4
+              with:
+                  path: |
+                      .astro
+                      node_modules/.astro
+                  key: ${{ runner.os }}-astro-assets-${{ hashFiles('src/content/posts/images/**/*', 'public/images/**/*', 'astro.config.mjs') }}
+                  restore-keys: |
+                      ${{ runner.os }}-astro-assets-
+
+            - name: Build project
+              run: pnpm build
+
+            - name: Deploy to FTP
+              uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+              with:
+                  server: ${{ secrets.FTP_SERVER }}
+                  username: ${{ secrets.FTP_USERNAME }}
+                  password: ${{ secrets.FTP_PASSWORD }}
+                  local-dir: ./dist/
+                  server-dir: ${{ secrets.FTP_SERVER_DIR }}
+                  dangerous-clean-slate: ${{ github.event.inputs.clean_slate == 'true' }}
+                  exclude: |
+                      **/.git*
+                      **/.git*/**
