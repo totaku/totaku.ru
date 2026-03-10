@@ -6,19 +6,19 @@ import PostCard from '@/components/PostCard.astro';
 import { transliterate } from '@/utils/transliterate';
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection('posts', ({ data }) => !data.draft);
-  const tags = [...new Set(allPosts.flatMap((p) => p.data.tags))];
+    const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+    const tags = [...new Set(allPosts.flatMap((p) => p.data.tags))];
 
-  return tags.map((tag) => {
-    const tagPosts = allPosts
-      .filter((p) => p.data.tags.includes(tag))
-      .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+    return tags.map((tag) => {
+        const tagPosts = allPosts
+            .filter((p) => p.data.tags.includes(tag))
+            .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-    return {
-      params: { tag: transliterate(tag), page: undefined },
-      props: { posts: tagPosts, tag },
-    };
-  });
+        return {
+            params: { tag: transliterate(tag), page: undefined },
+            props: { posts: tagPosts, tag },
+        };
+    });
 }
 
 const { posts, tag } = Astro.props;
@@ -27,128 +27,134 @@ const INITIAL = 9;
 const initialPosts = posts.slice(0, INITIAL);
 
 const postsData = await Promise.all(
-  posts.map(async (p) => {
-    let coverSrc = '';
-    if (p.data.featuredImage) {
-      const img = await getImage({
-        src: p.data.featuredImage,
-        width: 600,
-        format: 'webp',
-      });
-      coverSrc = img.src;
-    }
-    const catName = p.data.categories[0] ?? '';
-    return {
-      id: p.id,
-      title: p.data.title,
-      description: p.data.description ?? '',
-      date: p.data.date.toLocaleDateString('ru-RU', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-      }),
-      cat: catName,
-      catSlug: catName ? transliterate(catName) : 'other',
-      coverSrc,
-    };
-  })
+    posts.map(async (p) => {
+        let coverSrc = '';
+        if (p.data.featuredImage) {
+            const img = await getImage({
+                src: p.data.featuredImage,
+                width: 600,
+                format: 'webp',
+            });
+            coverSrc = img.src;
+        }
+        const catName = p.data.categories[0] ?? '';
+        return {
+            id: p.id,
+            title: p.data.title,
+            description: p.data.description ?? '',
+            date: p.data.date.toLocaleDateString('ru-RU', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+            }),
+            cat: catName,
+            catSlug: catName ? transliterate(catName) : 'other',
+            coverSrc,
+        };
+    })
 );
 ---
 
 <BaseLayout title={`#${tag} — Пермяк на Неве`}>
-  <div class="taxonomy-wrap">
-    <a href="/" class="taxonomy-back back-link"
-      ><svg
-        width="12"
-        height="12"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        ><polyline points="15 18 9 12 15 6"></polyline></svg
-      >На главную</a
-    >
-    <div class="taxonomy-label">Тег</div>
-    <div class="taxonomy-title">#{tag}</div>
-    <div class="taxonomy-count">
-      {posts.length}
-      {posts.length === 1 ? 'пост' : posts.length < 5 ? 'поста' : 'постов'}
-    </div>
-  </div>
-
-  <div class="posts-wrap">
-    <div class="posts-grid" id="posts-grid">
-      {
-        initialPosts.map((post, i) => (
-          <PostCard post={post} animDelay={i * 0.06} />
-        ))
-      }
+    <div class="taxonomy-wrap">
+        <a href="/" class="taxonomy-back back-link"
+            ><svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><polyline points="15 18 9 12 15 6"></polyline></svg
+            >На главную</a
+        >
+        <div class="taxonomy-label">Тег</div>
+        <div class="taxonomy-title">#{tag}</div>
+        <div class="taxonomy-count">
+            {posts.length}
+            {
+                posts.length === 1
+                    ? 'пост'
+                    : posts.length < 5
+                      ? 'поста'
+                      : 'постов'
+            }
+        </div>
     </div>
 
-    <div
-      class="sentinel"
-      style="height:40px;display:flex;align-items:center;justify-content:center;margin:1rem 0 2rem"
-    >
-      <div class="posts-loader" id="posts-loader">
-        <span></span><span></span><span></span>
-      </div>
+    <div class="posts-wrap">
+        <div class="posts-grid" id="posts-grid">
+            {
+                initialPosts.map((post, i) => (
+                    <PostCard post={post} animDelay={i * 0.06} />
+                ))
+            }
+        </div>
+
+        <div
+            class="sentinel"
+            style="height:40px;display:flex;align-items:center;justify-content:center;margin:1rem 0 2rem"
+        >
+            <div class="posts-loader" id="posts-loader">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="posts-end" id="posts-end">Это все посты</div>
+        <div id="scroll-trigger" style="height:1px"></div>
     </div>
-    <div class="posts-end" id="posts-end">Это все посты</div>
-    <div id="scroll-trigger" style="height:1px"></div>
-  </div>
 </BaseLayout>
 
-<script define:vars={{ postsData, INITIAL }}>
-  const grid = document.getElementById('posts-grid');
-  const loader = document.getElementById('posts-loader');
-  const endMsg = document.getElementById('posts-end');
-  const trigger = document.getElementById('scroll-trigger');
+<script is:inline define:vars={{ postsData, INITIAL }}>
+    const grid = document.getElementById('posts-grid');
+    const loader = document.getElementById('posts-loader');
+    const endMsg = document.getElementById('posts-end');
+    const trigger = document.getElementById('scroll-trigger');
 
-  loader.style.opacity = '0';
-  endMsg.style.display = 'none';
-
-  let offset = INITIAL;
-  let loading = false;
-
-  function buildCard(post, delay) {
-    const label = post.cat || '';
-    const slug = post.catSlug || 'other';
-    const coverHtml = post.coverSrc
-      ? `<img src="${post.coverSrc}" alt="${post.title}" loading="lazy" decoding="async">`
-      : `<div class="card-cover-placeholder placeholder-${slug}">${label}</div>`;
-    return `<a class="card" href="/${post.id}/" style="animation-delay:${delay}s"><div class="card-cover">${coverHtml}</div><div class="card-body"><div class="card-title">${post.title}</div>${post.description ? `<div class="card-desc">${post.description}</div>` : ''}<div class="card-footer"><span class="card-date">${post.date}</span><span class="card-cat" data-href="/categories/${slug}/" onclick="event.stopPropagation();window.location.href=this.dataset.href">${label}</span></div></div></a>`;
-  }
-
-  async function loadMore() {
-    if (loading || offset >= postsData.length) return;
-    loading = true;
-    loader.style.opacity = '1';
-    await new Promise((r) => setTimeout(r, 400));
-    const batch = postsData.slice(offset, offset + 6);
-    batch.forEach((post, i) => {
-      grid.insertAdjacentHTML('beforeend', buildCard(post, i * 0.06));
-    });
-    offset += batch.length;
-    loading = false;
     loader.style.opacity = '0';
-    if (offset >= postsData.length) {
-      endMsg.style.display = 'block';
-      observer.disconnect();
+    endMsg.style.display = 'none';
+
+    let offset = INITIAL;
+    let loading = false;
+
+    function buildCard(post, delay) {
+        const label = post.cat || '';
+        const slug = post.catSlug || 'other';
+        const coverHtml = post.coverSrc
+            ? `<img src="${post.coverSrc}" alt="${post.title}" loading="lazy" decoding="async">`
+            : `<div class="card-cover-placeholder placeholder-${slug}">${label}</div>`;
+        return `<a class="card" href="/${post.id}/" style="animation-delay:${delay}s"><div class="card-cover">${coverHtml}</div><div class="card-body"><div class="card-title">${post.title}</div>${post.description ? `<div class="card-desc">${post.description}</div>` : ''}<div class="card-footer"><span class="card-date">${post.date}</span><span class="card-cat" data-href="/categories/${slug}/" onclick="event.stopPropagation();window.location.href=this.dataset.href">${label}</span></div></div></a>`;
     }
-  }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      if (entries[0].isIntersecting) loadMore();
-    },
-    { rootMargin: '200px' }
-  );
+    async function loadMore() {
+        if (loading || offset >= postsData.length) return;
+        loading = true;
+        loader.style.opacity = '1';
+        await new Promise((r) => setTimeout(r, 400));
+        const batch = postsData.slice(offset, offset + 6);
+        batch.forEach((post, i) => {
+            grid.insertAdjacentHTML('beforeend', buildCard(post, i * 0.06));
+        });
+        offset += batch.length;
+        loading = false;
+        loader.style.opacity = '0';
+        if (offset >= postsData.length) {
+            endMsg.style.display = 'block';
+            observer.disconnect();
+        }
+    }
 
-  if (offset < postsData.length) {
-    observer.observe(trigger);
-  } else {
-    endMsg.style.display = 'block';
-  }
+    const observer = new IntersectionObserver(
+        (entries) => {
+            if (entries[0].isIntersecting) loadMore();
+        },
+        { rootMargin: '200px' }
+    );
+
+    if (offset < postsData.length) {
+        observer.observe(trigger);
+    } else {
+        endMsg.style.display = 'block';
+    }
 </script>

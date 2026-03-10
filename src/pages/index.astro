@@ -4,17 +4,14 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import InfinitePostList from '@/components/InfinitePostList.astro';
 
-const allPosts = await getCollection(
-  'posts',
-  ({ data }) => !data.draft
-);
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <BaseLayout
-  title="Totaku — личный блог"
-  description="Пишу про разное в том числе и про АйТи"
+    title="Totaku — личный блог"
+    description="Пишу про разное в том числе и про АйТи"
 >
-  <Hero />
-  <InfinitePostList posts={allPosts} />
+    <Hero />
+    <InfinitePostList posts={allPosts} />
 </BaseLayout>

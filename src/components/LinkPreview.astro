@@ -32,15 +32,25 @@ async function fetchMetadata(url: string): Promise<Metadata> {
         const doc = parse(html);
 
         const title =
-            doc.querySelector('meta[property="og:title"]')?.getAttribute('content') ||
-            doc.querySelector('title')?.text || '';
+            doc
+                .querySelector('meta[property="og:title"]')
+                ?.getAttribute('content') ||
+            doc.querySelector('title')?.text ||
+            '';
 
         const description =
-            doc.querySelector('meta[property="og:description"]')?.getAttribute('content') ||
-            doc.querySelector('meta[name="description"]')?.getAttribute('content') || '';
+            doc
+                .querySelector('meta[property="og:description"]')
+                ?.getAttribute('content') ||
+            doc
+                .querySelector('meta[name="description"]')
+                ?.getAttribute('content') ||
+            '';
 
         const image =
-            doc.querySelector('meta[property="og:image"]')?.getAttribute('content') || '';
+            doc
+                .querySelector('meta[property="og:image"]')
+                ?.getAttribute('content') || '';
 
         return { title, description, image };
     } catch {
@@ -53,17 +63,29 @@ const displayImage = customImage || meta.image;
 const displayDesc = customDescription || meta.description;
 ---
 
-<a href={url} target="_blank" rel="noopener noreferrer" class:list={['link-preview', extraClass]}>
+<a
+    href={url}
+    target="_blank"
+    rel="noopener noreferrer"
+    class:list={['link-preview', extraClass]}
+>
     <div class="link-preview-body">
         <p class="link-preview-title">{meta.title || url}</p>
         {displayDesc && <p class="link-preview-desc">{displayDesc}</p>}
         {showUrl && <p class="link-preview-url">{url}</p>}
     </div>
-    {showImage && displayImage && (
-        <div class="link-preview-image">
-            <img src={displayImage} alt={meta.title || 'Preview'} loading="lazy" decoding="async" />
-        </div>
-    )}
+    {
+        showImage && displayImage && (
+            <div class="link-preview-image">
+                <img
+                    src={displayImage}
+                    alt={meta.title || 'Preview'}
+                    loading="lazy"
+                    decoding="async"
+                />
+            </div>
+        )
+    }
 </a>
 
 <style>
@@ -104,7 +126,9 @@ const displayDesc = customDescription || meta.description;
         transition: color 0.15s;
     }
 
-    .link-preview:hover .link-preview-title { color: var(--accent); }
+    .link-preview:hover .link-preview-title {
+        color: var(--accent);
+    }
 
     .link-preview-desc {
         font-size: 0.8125rem;

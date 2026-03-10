@@ -9,36 +9,65 @@ interface Props {
 const { prevPost, nextPost } = Astro.props;
 ---
 
-{(prevPost || nextPost) && (
-    <nav class="post-nav-component" aria-label="Навигация по постам">
-        <div class="post-nav-item">
-            {prevPost && (
-                <a href={`/${prevPost.id}/`} class="post-nav-link">
-                    <span class="post-nav-label">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M19 12H5M12 5l-7 7 7 7"/>
-                        </svg>
-                        Предыдущий
-                    </span>
-                    <span class="post-nav-title">{prevPost.data.title}</span>
-                </a>
-            )}
-        </div>
-        <div class="post-nav-item post-nav-item--right">
-            {nextPost && (
-                <a href={`/${nextPost.id}/`} class="post-nav-link post-nav-link--right">
-                    <span class="post-nav-label post-nav-label--right">
-                        Следующий
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </span>
-                    <span class="post-nav-title post-nav-title--right">{nextPost.data.title}</span>
-                </a>
-            )}
-        </div>
-    </nav>
-)}
+{
+    (prevPost || nextPost) && (
+        <nav class="post-nav-component" aria-label="Навигация по постам">
+            <div class="post-nav-item">
+                {prevPost && (
+                    <a href={`/${prevPost.id}/`} class="post-nav-link">
+                        <span class="post-nav-label">
+                            <svg
+                                width="12"
+                                height="12"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <path d="M19 12H5M12 5l-7 7 7 7" />
+                            </svg>
+                            Предыдущий
+                        </span>
+                        <span class="post-nav-title">
+                            {prevPost.data.title}
+                        </span>
+                    </a>
+                )}
+            </div>
+            <div class="post-nav-item post-nav-item--right">
+                {nextPost && (
+                    <a
+                        href={`/${nextPost.id}/`}
+                        class="post-nav-link post-nav-link--right"
+                    >
+                        <span class="post-nav-label post-nav-label--right">
+                            Следующий
+                            <svg
+                                width="12"
+                                height="12"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                        <span class="post-nav-title post-nav-title--right">
+                            {nextPost.data.title}
+                        </span>
+                    </a>
+                )}
+            </div>
+        </nav>
+    )
+}
 
 <style>
     .post-nav-component {

@@ -7,7 +7,12 @@ interface Props {
 const { author, variant = 'border' } = Astro.props;
 ---
 
-<blockquote class:list={['quote', variant === 'corners' ? 'quote-corners' : 'quote-border']}>
+<blockquote
+    class:list={[
+        'quote',
+        variant === 'corners' ? 'quote-corners' : 'quote-border',
+    ]}
+>
     <p class={author ? 'mb-3' : ''}><slot /></p>
     {author && <footer class="quote-author">{author}</footer>}
 </blockquote>

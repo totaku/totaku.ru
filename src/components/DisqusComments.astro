@@ -1,8 +1,8 @@
 ---
 interface Props {
-  slug: string;
-  title: string;
-  url: string;
+    slug: string;
+    title: string;
+    url: string;
 }
 
 const { slug, title, url } = Astro.props;
@@ -11,20 +11,20 @@ const { slug, title, url } = Astro.props;
 <div id="disqus_thread"></div>
 
 <script is:inline define:vars={{ slug, title, url }}>
-  var disqus_config = function () {
-    this.page.url = url;
-    this.page.identifier = slug;
-    this.page.title = title;
-  };
-  (function () {
-    var d = document,
-      s = d.createElement('script');
-    s.src = 'https://devtotakusu.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
+    window.disqus_config = function () {
+        this.page.url = url;
+        this.page.identifier = slug;
+        this.page.title = title;
+    };
+    (function () {
+        var d = document,
+            s = d.createElement('script');
+        s.src = 'https://devtotakusu.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
 <noscript>
-  Для комментариев включите JavaScript.
-  <a href="https://disqus.com/?ref_noscript">Комментарии на Disqus</a>
+    Для комментариев включите JavaScript.
+    <a href="https://disqus.com/?ref_noscript">Комментарии на Disqus</a>
 </noscript>

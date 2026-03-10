@@ -1,4 +1,5 @@
 ---
+
 ---
 
 <div id="reading-progress-container" aria-hidden="true">
@@ -36,7 +37,8 @@
 
         function update() {
             const scrollTop = window.scrollY;
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const maxScroll =
+                document.documentElement.scrollHeight - window.innerHeight;
             const pct = maxScroll > 0 ? (scrollTop / maxScroll) * 100 : 0;
 
             bar!.style.width = `${Math.min(pct, 100)}%`;
@@ -45,7 +47,10 @@
 
         function onScroll() {
             if (!ticking) {
-                requestAnimationFrame(() => { update(); ticking = false; });
+                requestAnimationFrame(() => {
+                    update();
+                    ticking = false;
+                });
                 ticking = true;
             }
         }

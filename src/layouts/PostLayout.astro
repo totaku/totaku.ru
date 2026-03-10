@@ -11,153 +11,164 @@ import ShareButtons from '@/components/ShareButtons.astro';
 import { transliterate } from '@/utils/transliterate';
 
 interface Props {
-  post: CollectionEntry<'posts'>;
-  headings: MarkdownHeading[];
+    post: CollectionEntry<'posts'>;
+    headings: MarkdownHeading[];
 }
 
 const { post, headings } = Astro.props;
 
 const dateFormatted = post.data.date.toLocaleDateString('ru-RU', {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
 });
 const dateIso = post.data.date.toISOString();
 const postUrl = new URL(`/${post.id}/`, Astro.site).href;
 
 // Пред/след
 const allPosts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+    (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
 const idx = allPosts.findIndex((p) => p.id === post.id);
 const prevPost = idx < allPosts.length - 1 ? allPosts[idx + 1] : null;
 const nextPost = idx > 0 ? allPosts[idx - 1] : null;
-
 ---
 
 <BaseLayout
-  title={post.data.title}
-  description={post.data.description}
-  post={post}
-  type="article"
-  showProgress={true}
+    title={post.data.title}
+    description={post.data.description}
+    post={post}
+    type="article"
+    showProgress={true}
 >
-  <div class="post-wrap">
-    <a href="/" class="back-link post-back"
-      ><svg
-        width="12"
-        height="12"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        ><polyline points="15 18 9 12 15 6"></polyline></svg
-      >На главную</a
-    >
+    <div class="post-wrap">
+        <a href="/" class="back-link post-back"
+            ><svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><polyline points="15 18 9 12 15 6"></polyline></svg
+            >На главную</a
+        >
 
-    <div class="post-cats">
-      {
-        post.data.categories.map((cat) => (
-          <a href={`/categories/${transliterate(cat)}/`} class="post-tag cat">
-            {cat}
-          </a>
-        ))
-      }
-    </div>
-
-    <h1 class="post-title">{post.data.title}</h1>
-
-    <div class="post-meta">
-      <time datetime={dateIso}>{dateFormatted}</time>
-      {
-        post.data.tags.length > 0 && (
-          <>
-            <span class="post-meta-dot">·</span>
-            <div class="post-meta-tags">
-              {post.data.tags.map((tag) => (
-                <a href={`/tags/${transliterate(tag)}/`} class="post-tag">
-                  {tag}
-                </a>
-              ))}
-            </div>
-          </>
-        )
-      }
-    </div>
-
-    {
-      post.data.featuredImage && (
-        <div class="post-cover">
-          <Picture
-            src={post.data.featuredImage}
-            alt={post.data.title}
-            widths={[600, 900, 1200]}
-            formats={['avif', 'webp', 'jpeg']}
-            loading="eager"
-            decoding="async"
-          />
+        <div class="post-cats">
+            {
+                post.data.categories.map((cat) => (
+                    <a
+                        href={`/categories/${transliterate(cat)}/`}
+                        class="post-tag cat"
+                    >
+                        {cat}
+                    </a>
+                ))
+            }
         </div>
-      )
-    }
 
-    <TableOfContents headings={headings} />
+        <h1 class="post-title">{post.data.title}</h1>
 
-    <div class="prose">
-      <slot />
-    </div>
-
-    {
-      post.data.tags.length > 0 && (
-        <div class="post-footer-tags">
-          {post.data.tags.map((tag) => (
-            <a href={`/tags/${transliterate(tag)}/`} class="post-tag">
-              {tag}
-            </a>
-          ))}
+        <div class="post-meta">
+            <time datetime={dateIso}>{dateFormatted}</time>
+            {
+                post.data.tags.length > 0 && (
+                    <>
+                        <span class="post-meta-dot">·</span>
+                        <div class="post-meta-tags">
+                            {post.data.tags.map((tag) => (
+                                <a
+                                    href={`/tags/${transliterate(tag)}/`}
+                                    class="post-tag"
+                                >
+                                    {tag}
+                                </a>
+                            ))}
+                        </div>
+                    </>
+                )
+            }
         </div>
-      )
-    }
 
-    <ShareButtons url={postUrl} title={post.data.title} />
-    <PostNavigation prevPost={prevPost} nextPost={nextPost} />
+        {
+            post.data.featuredImage && (
+                <div class="post-cover">
+                    <Picture
+                        src={post.data.featuredImage}
+                        alt={post.data.title}
+                        widths={[600, 900, 1200]}
+                        formats={['avif', 'webp', 'jpeg']}
+                        loading="eager"
+                        decoding="async"
+                    />
+                </div>
+            )
+        }
 
-    <div class="comments">
-      <h2 class="comments-title">Комментарии</h2>
-      <DisqusComments slug={post.id} title={post.data.title} url={postUrl} />
+        <TableOfContents headings={headings} />
+
+        <div class="prose">
+            <slot />
+        </div>
+
+        {
+            post.data.tags.length > 0 && (
+                <div class="post-footer-tags">
+                    {post.data.tags.map((tag) => (
+                        <a
+                            href={`/tags/${transliterate(tag)}/`}
+                            class="post-tag"
+                        >
+                            {tag}
+                        </a>
+                    ))}
+                </div>
+            )
+        }
+
+        <ShareButtons url={postUrl} title={post.data.title} />
+        <PostNavigation prevPost={prevPost} nextPost={nextPost} />
+
+        <div class="comments">
+            <h2 class="comments-title">Комментарии</h2>
+            <DisqusComments
+                slug={post.id}
+                title={post.data.title}
+                url={postUrl}
+            />
+        </div>
     </div>
-  </div>
 </BaseLayout>
 
 <script>
-  // Кнопка копирования для блоков кода
-  document.querySelectorAll('.prose pre').forEach((pre) => {
-    const code = pre.querySelector('code');
+    // Кнопка копирования для блоков кода
+    document.querySelectorAll('.prose pre').forEach((pre) => {
+        const code = pre.querySelector('code');
 
-    const wrapper = document.createElement('div');
-    wrapper.className = 'code-block';
-    pre.parentNode!.insertBefore(wrapper, pre);
-    wrapper.appendChild(pre);
+        const wrapper = document.createElement('div');
+        wrapper.className = 'code-block';
+        pre.parentNode!.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
 
-    const btn = document.createElement('button');
-    btn.className = 'code-block-copy';
-    btn.title = 'Копировать';
-    btn.innerHTML =
-      '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
-    btn.addEventListener('click', () => {
-      navigator.clipboard.writeText(code?.textContent ?? '').then(() => {
+        const btn = document.createElement('button');
+        btn.className = 'code-block-copy';
+        btn.title = 'Копировать';
         btn.innerHTML =
-          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
-        btn.classList.add('copied');
-        setTimeout(() => {
-          btn.innerHTML =
             '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
-          btn.classList.remove('copied');
-        }, 2000);
-      });
+        btn.addEventListener('click', () => {
+            navigator.clipboard.writeText(code?.textContent ?? '').then(() => {
+                btn.innerHTML =
+                    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerHTML =
+                        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+        wrapper.appendChild(btn);
     });
-    wrapper.appendChild(btn);
-  });
-
 </script>

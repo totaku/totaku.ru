@@ -16,12 +16,12 @@ interface Props {
 
 const { headings, initiallyOpen = true } = Astro.props;
 
-const filtered = headings.filter(h => h.depth === 2 || h.depth === 3);
+const filtered = headings.filter((h) => h.depth === 2 || h.depth === 3);
 
 const grouped: GroupedHeading[] = [];
 let currentH2: GroupedHeading | null = null;
 
-filtered.forEach(h => {
+filtered.forEach((h) => {
     if (h.depth === 2) {
         currentH2 = { ...h, children: [] };
         grouped.push(currentH2);
@@ -31,36 +31,44 @@ filtered.forEach(h => {
 });
 ---
 
-{grouped.length > 0 && (
-    <div class="toc-wrapper">
-        <details open={initiallyOpen}>
-            <summary class="toc-summary">
-                <span class="toc-label">Содержание</span>
-                <svg class="toc-arrow" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M6 9l6 6 6-6"/>
-                </svg>
-            </summary>
-            <nav class="toc-body" aria-label="Оглавление статьи">
-                <ul class="toc-list">
-                    {grouped.map(h2 => (
-                        <li class="toc-h2">
-                            <a href={`#${h2.slug}`}>{h2.text}</a>
-                            {h2.children.length > 0 && (
-                                <ul>
-                                    {h2.children.map(h3 => (
-                                        <li class="toc-h3">
-                                            <a href={`#${h3.slug}`}>{h3.text}</a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </li>
-                    ))}
-                </ul>
-            </nav>
-        </details>
-    </div>
-)}
+{
+    grouped.length > 0 && (
+        <div class="toc-wrapper">
+            <details open={initiallyOpen}>
+                <summary class="toc-summary">
+                    <span class="toc-label">Содержание</span>
+                    <svg
+                        class="toc-arrow"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </summary>
+                <nav class="toc-body" aria-label="Оглавление статьи">
+                    <ul class="toc-list">
+                        {grouped.map((h2) => (
+                            <li class="toc-h2">
+                                <a href={`#${h2.slug}`}>{h2.text}</a>
+                                {h2.children.length > 0 && (
+                                    <ul>
+                                        {h2.children.map((h3) => (
+                                            <li class="toc-h3">
+                                                <a href={`#${h3.slug}`}>
+                                                    {h3.text}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            </details>
+        </div>
+    )
+}
 
 <style>
     .toc-wrapper {
@@ -87,8 +95,12 @@ filtered.forEach(h => {
         border-bottom-color: var(--border);
     }
 
-    .toc-summary::-webkit-details-marker { display: none; }
-    .toc-summary::marker { display: none; }
+    .toc-summary::-webkit-details-marker {
+        display: none;
+    }
+    .toc-summary::marker {
+        display: none;
+    }
 
     .toc-label {
         font-size: 0.6875rem;
@@ -121,8 +133,14 @@ filtered.forEach(h => {
     }
 
     @keyframes tocFadeIn {
-        from { opacity: 0; transform: translateY(-0.25rem); }
-        to   { opacity: 1; transform: translateY(0); }
+        from {
+            opacity: 0;
+            transform: translateY(-0.25rem);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .toc-list {
@@ -143,7 +161,9 @@ filtered.forEach(h => {
         line-height: 1.4;
     }
 
-    .toc-h2 > a:hover { color: var(--accent); }
+    .toc-h2 > a:hover {
+        color: var(--accent);
+    }
 
     .toc-h2 > ul {
         list-style: none;
@@ -167,5 +187,7 @@ filtered.forEach(h => {
         color: var(--border-mid);
     }
 
-    .toc-h3 > a:hover { color: var(--text-dim); }
+    .toc-h3 > a:hover {
+        color: var(--text-dim);
+    }
 </style>

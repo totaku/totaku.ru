@@ -1,8 +1,8 @@
 import astro from 'eslint-plugin-astro';
 
 export default [
-  ...astro.configs.recommended,
-  {
-    ignores: ['dist/', 'node_modules/', 'old/', '.astro/'],
-  },
+    ...astro.configs.recommended,
+    {
+        ignores: ['dist/', 'node_modules/', 'old/', '.astro/'],
+    },
 ];

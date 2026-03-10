@@ -1,18 +1,34 @@
 ---
+
 ---
 
 <!-- Overlay -->
-<div
-    id="search-overlay"
-    class="search-overlay"
-    aria-hidden="true"
->
+<div id="search-overlay" class="search-overlay" aria-hidden="true">
     <div class="search-container">
-        <div class="search-modal" role="dialog" aria-modal="true" aria-label="Поиск">
+        <div
+            class="search-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Поиск"
+        >
             <!-- Input -->
             <div class="search-header">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <circle cx="11" cy="11" r="8"></circle><line
+                        x1="21"
+                        y1="21"
+                        x2="16.65"
+                        y2="16.65"></line>
                 </svg>
                 <input
                     id="search-input"
@@ -22,9 +38,26 @@
                     autocomplete="off"
                     aria-label="Поиск"
                 />
-                <button id="search-close" class="search-close" aria-label="Закрыть поиск">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                <button
+                    id="search-close"
+                    class="search-close"
+                    aria-label="Закрыть поиск"
+                >
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <line x1="18" y1="6" x2="6" y2="18"></line><line
+                            x1="6"
+                            y1="6"
+                            x2="18"
+                            y2="18"></line>
                     </svg>
                 </button>
             </div>
@@ -32,8 +65,22 @@
             <!-- Results -->
             <div id="search-results" class="search-results">
                 <div id="search-state-empty" class="search-state">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    <svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <circle cx="11" cy="11" r="8"></circle><line
+                            x1="21"
+                            y1="21"
+                            x2="16.65"
+                            y2="16.65"></line>
                     </svg>
                     <p>Введите запрос для поиска</p>
                 </div>
@@ -41,9 +88,24 @@
                     <div class="search-spinner"></div>
                     <p>Поиск...</p>
                 </div>
-                <div id="search-state-empty-results" class="search-state hidden">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/>
+                <div
+                    id="search-state-empty-results"
+                    class="search-state hidden"
+                >
+                    <svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"
+                        ></path><polyline points="13 2 13 9 20 9"></polyline>
                     </svg>
                     <p>Ничего не найдено</p>
                 </div>
@@ -52,7 +114,8 @@
 
             <!-- Footer -->
             <div class="search-footer">
-                <kbd>↑↓</kbd> — выбрать &nbsp;·&nbsp; <kbd>↵</kbd> — открыть &nbsp;·&nbsp; <kbd>ESC</kbd> — закрыть
+                <kbd>↑↓</kbd> — выбрать &nbsp;·&nbsp; <kbd>↵</kbd> — открыть &nbsp;·&nbsp;
+                <kbd>ESC</kbd> — закрыть
             </div>
         </div>
     </div>
@@ -93,7 +156,9 @@
         box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
         opacity: 0;
         transform: scale(0.96) translateY(-8px);
-        transition: opacity 0.15s, transform 0.15s;
+        transition:
+            opacity 0.15s,
+            transform 0.15s;
     }
 
     .search-overlay.visible .search-modal {
@@ -120,7 +185,9 @@
         font-family: inherit;
     }
 
-    .search-input::placeholder { color: var(--text-muted); }
+    .search-input::placeholder {
+        color: var(--text-muted);
+    }
 
     .search-close {
         background: transparent;
@@ -133,7 +200,9 @@
         line-height: 0;
     }
 
-    .search-close:hover { color: var(--text); }
+    .search-close:hover {
+        color: var(--text);
+    }
 
     .search-results {
         max-height: 60vh;
@@ -153,7 +222,9 @@
         font-size: 0.875rem;
     }
 
-    .search-state p { margin: 0; }
+    .search-state p {
+        margin: 0;
+    }
 
     .search-spinner {
         width: 2rem;
@@ -164,7 +235,11 @@
         animation: spin 0.6s linear infinite;
     }
 
-    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
 
     .search-list {
         list-style: none;
@@ -191,7 +266,9 @@
         font-size: 0.7rem;
     }
 
-    .hidden { display: none !important; }
+    .hidden {
+        display: none !important;
+    }
 
     /* Результат поиска */
     :global(.search-result) {
@@ -201,7 +278,9 @@
         background: var(--bg-secondary);
         border: 1px solid var(--border);
         text-decoration: none;
-        transition: border-color 0.15s, background 0.15s;
+        transition:
+            border-color 0.15s,
+            background 0.15s;
         animation: resultIn 0.15s ease;
     }
 
@@ -211,8 +290,14 @@
     }
 
     @keyframes resultIn {
-        from { opacity: 0; transform: translateY(-4px); }
-        to   { opacity: 1; transform: translateY(0); }
+        from {
+            opacity: 0;
+            transform: translateY(-4px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     :global(.search-result-title) {
@@ -247,15 +332,23 @@
 
 <script>
     declare global {
-        interface Window { openSearchModal?: () => void; }
+        interface Window {
+            openSearchModal?: () => void;
+        }
     }
 
     interface PagefindResult {
         id: string;
-        data: () => Promise<{ url: string; excerpt: string; meta: { title: string } }>;
+        data: () => Promise<{
+            url: string;
+            excerpt: string;
+            meta: { title: string };
+        }>;
     }
 
-    let pagefind: { search: (q: string) => Promise<{ results: PagefindResult[] }> } | null = null;
+    let pagefind: {
+        search: (q: string) => Promise<{ results: PagefindResult[] }>;
+    } | null = null;
 
     async function loadPagefind() {
         if (pagefind) return pagefind;
@@ -269,36 +362,46 @@
             await mod.init();
             pagefind = mod;
             return pagefind;
-        } catch { return null; }
+        } catch {
+            return null;
+        }
     }
 
     function init() {
-        const overlay    = document.getElementById('search-overlay');
-        const input      = document.getElementById('search-input') as HTMLInputElement;
-        const closeBtn   = document.getElementById('search-close');
-        const list       = document.getElementById('search-list');
-        const stEmpty    = document.getElementById('search-state-empty');
-        const stLoading  = document.getElementById('search-state-loading');
-        const stNoResult = document.getElementById('search-state-empty-results');
+        const overlay = document.getElementById('search-overlay');
+        const input = document.getElementById(
+            'search-input'
+        ) as HTMLInputElement;
+        const closeBtn = document.getElementById('search-close');
+        const list = document.getElementById('search-list');
+        const stEmpty = document.getElementById('search-state-empty');
+        const stLoading = document.getElementById('search-state-loading');
+        const stNoResult = document.getElementById(
+            'search-state-empty-results'
+        );
         if (!overlay || !input || !list) return;
 
         let timer: ReturnType<typeof setTimeout>;
         let activeIndex = -1;
 
         function getLinks(): HTMLAnchorElement[] {
-            return Array.from(list!.querySelectorAll<HTMLAnchorElement>('.search-result'));
+            return Array.from(
+                list!.querySelectorAll<HTMLAnchorElement>('.search-result')
+            );
         }
 
         function setActive(index: number) {
             const links = getLinks();
             if (!links.length) return;
             activeIndex = Math.max(0, Math.min(index, links.length - 1));
-            links.forEach((a, i) => a.classList.toggle('active', i === activeIndex));
+            links.forEach((a, i) =>
+                a.classList.toggle('active', i === activeIndex)
+            );
             links[activeIndex].scrollIntoView({ block: 'nearest' });
         }
 
         function clearActive() {
-            getLinks().forEach(a => a.classList.remove('active'));
+            getLinks().forEach((a) => a.classList.remove('active'));
             activeIndex = -1;
         }
 
@@ -328,19 +431,28 @@
         }
 
         async function search(q: string) {
-            if (!q.trim()) { setState('empty'); return; }
+            if (!q.trim()) {
+                setState('empty');
+                return;
+            }
             setState('loading');
             const pf = await loadPagefind();
             if (!pf) {
                 if (import.meta.env.DEV) {
-                    stNoResult!.innerHTML = '<p style="padding:2rem;text-align:center;color:var(--text-muted);font-size:0.875rem">Поиск недоступен в dev-режиме.<br>Запустите <code>pnpm build && pnpm preview</code></p>';
+                    stNoResult!.innerHTML =
+                        '<p style="padding:2rem;text-align:center;color:var(--text-muted);font-size:0.875rem">Поиск недоступен в dev-режиме.<br>Запустите <code>pnpm build && pnpm preview</code></p>';
                     setState('no-results');
-                } else { setState('no-results'); }
+                } else {
+                    setState('no-results');
+                }
                 return;
             }
             try {
                 const { results } = await pf.search(q);
-                if (!results.length) { setState('no-results'); return; }
+                if (!results.length) {
+                    setState('no-results');
+                    return;
+                }
                 list!.innerHTML = '';
                 for (const r of results.slice(0, 10)) {
                     const d = await r.data();
@@ -354,19 +466,37 @@
                 }
                 clearActive();
                 setState('results');
-            } catch { setState('no-results'); }
+            } catch {
+                setState('no-results');
+            }
         }
 
-        input.addEventListener('input', e => {
+        input.addEventListener('input', (e) => {
             clearTimeout(timer);
-            timer = setTimeout(() => search((e.target as HTMLInputElement).value), 300);
+            timer = setTimeout(
+                () => search((e.target as HTMLInputElement).value),
+                300
+            );
         });
 
         closeBtn?.addEventListener('click', close);
-        overlay.addEventListener('click', e => { if (e.target === overlay || (e.target as Element).closest('.search-container') === e.target) close(); });
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape' && overlay.classList.contains('visible')) { close(); return; }
-            if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); open(); return; }
+        overlay.addEventListener('click', (e) => {
+            if (
+                e.target === overlay ||
+                (e.target as Element).closest('.search-container') === e.target
+            )
+                close();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && overlay.classList.contains('visible')) {
+                close();
+                return;
+            }
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                open();
+                return;
+            }
             if (!overlay.classList.contains('visible')) return;
             if (e.key === 'ArrowDown') {
                 e.preventDefault();

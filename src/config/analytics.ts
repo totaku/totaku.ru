@@ -19,7 +19,7 @@ export const analyticsServices: AnalyticsService[] = [
     },
 ];
 
-export const enabledAnalytics = analyticsServices.filter(s => s.enabled);
+export const enabledAnalytics = analyticsServices.filter((s) => s.enabled);
 
 export function hasAnalyticsConsent(): boolean {
     if (typeof window === 'undefined') return false;
@@ -29,7 +29,10 @@ export function hasAnalyticsConsent(): boolean {
 export function acceptAnalyticsConsent(): void {
     if (typeof window !== 'undefined') {
         localStorage.setItem('analytics-consent', 'accepted');
-        localStorage.setItem('analytics-consent-date', new Date().toISOString());
+        localStorage.setItem(
+            'analytics-consent-date',
+            new Date().toISOString()
+        );
     }
 }
 

@@ -1,119 +1,146 @@
 ---
 const nav = [
-  { label: 'Рукоблудие', href: '/categories/rukobludie/' },
-  { label: 'TL;DR', href: '/categories/tl-dr/' },
-  { label: 'Игры', href: '/categories/igry/' },
-  { label: 'Голубой экран', href: '/categories/goluboy-ekran/' },
-  { label: 'Места', href: '/categories/mesta/' },
+    { label: 'Рукоблудие', href: '/categories/rukobludie/' },
+    { label: 'TL;DR', href: '/categories/tl-dr/' },
+    { label: 'Игры', href: '/categories/igry/' },
+    { label: 'Голубой экран', href: '/categories/goluboy-ekran/' },
+    { label: 'Места', href: '/categories/mesta/' },
 ];
 
 const currentPath = Astro.url.pathname;
 ---
 
 <header class="header">
-  <div class="header-inner">
-    <a href="/" class="logo">Totaku<em>.</em></a>
-    <nav class="nav" aria-label="Основное меню">
-      {
-        nav.map((item) => (
-          <a
-            href={item.href}
-            aria-current={
-              currentPath.startsWith(item.href) ? 'page' : undefined
+    <div class="header-inner">
+        <a href="/" class="logo">Totaku<em>.</em></a>
+        <nav class="nav" aria-label="Основное меню">
+            {
+                nav.map((item) => (
+                    <a
+                        href={item.href}
+                        aria-current={
+                            currentPath.startsWith(item.href)
+                                ? 'page'
+                                : undefined
+                        }
+                    >
+                        {item.label}
+                    </a>
+                ))
             }
-          >
-            {item.label}
-          </a>
-        ))
-      }
-    </nav>
-    <div style="display:flex;gap:0.5rem">
-      <button
-        class="btn-icon"
-        onclick="window.openSearchModal?.()"
-        title="Поиск"
-        aria-label="Поиск"
-      >
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-      </button>
-      <a href="/rss.xml" class="btn-icon" title="RSS" aria-label="RSS фид">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-          <path
-            d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"
-          ></path>
-        </svg>
-      </a>
-      <button
-        class="btn-icon"
-        id="theme-toggle"
-        title="Переключить тему"
-        aria-label="Переключить тему"
-      >
-        <svg
-          class="icon-sun"
-          width="15"
-          height="15"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <circle cx="12" cy="12" r="5"></circle><line
-            x1="12"
-            y1="1"
-            x2="12"
-            y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line
-            x1="18.36"
-            y1="18.36"
-            x2="19.78"
-            y2="19.78"></line>
-          <line x1="1" y1="12" x2="3" y2="12"></line><line
-            x1="21"
-            y1="12"
-            x2="23"
-            y2="12"></line>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line
-            x1="18.36"
-            y1="5.64"
-            x2="19.78"
-            y2="4.22"></line>
-        </svg>
-        <svg
-          class="icon-moon"
-          width="15"
-          height="15"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-      </button>
+        </nav>
+        <div style="display:flex;gap:0.5rem">
+            <button
+                class="btn-icon"
+                onclick="window.openSearchModal?.()"
+                title="Поиск"
+                aria-label="Поиск"
+            >
+                <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <circle cx="11" cy="11" r="8"></circle><line
+                        x1="21"
+                        y1="21"
+                        x2="16.65"
+                        y2="16.65"></line>
+                </svg>
+            </button>
+            <a
+                href="/rss.xml"
+                class="btn-icon"
+                title="RSS"
+                aria-label="RSS фид"
+            >
+                <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                >
+                    <path
+                        d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"
+                    ></path>
+                </svg>
+            </a>
+            <button
+                class="btn-icon"
+                id="theme-toggle"
+                title="Переключить тему"
+                aria-label="Переключить тему"
+            >
+                <svg
+                    class="icon-sun"
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <circle cx="12" cy="12" r="5"></circle><line
+                        x1="12"
+                        y1="1"
+                        x2="12"
+                        y2="3"></line><line x1="12" y1="21" x2="12" y2="23"
+                    ></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line
+                        x1="18.36"
+                        y1="18.36"
+                        x2="19.78"
+                        y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line><line
+                        x1="21"
+                        y1="12"
+                        x2="23"
+                        y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line
+                        x1="18.36"
+                        y1="5.64"
+                        x2="19.78"
+                        y2="4.22"></line>
+                </svg>
+                <svg
+                    class="icon-moon"
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                    ></path>
+                </svg>
+            </button>
+        </div>
     </div>
-  </div>
 </header>
 
 <script>
-  const btn = document.getElementById('theme-toggle');
+    const btn = document.getElementById('theme-toggle');
 
-  function applyTheme(theme: string) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  }
+    function applyTheme(theme: string) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }
 
-  btn?.addEventListener('click', () => {
-    const next =
-      document.documentElement.getAttribute('data-theme') === 'dark'
-        ? 'light'
-        : 'dark';
-    applyTheme(next);
-  });
+    btn?.addEventListener('click', () => {
+        const next =
+            document.documentElement.getAttribute('data-theme') === 'dark'
+                ? 'light'
+                : 'dark';
+        applyTheme(next);
+    });
 </script>

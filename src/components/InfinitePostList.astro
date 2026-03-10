@@ -3,114 +3,123 @@ import type { CollectionEntry } from 'astro:content';
 import PostCard from '@/components/PostCard.astro';
 
 interface Props {
-  posts: CollectionEntry<'posts'>[];
-  initialCount?: number;
-  batchSize?: number;
+    posts: CollectionEntry<'posts'>[];
+    initialCount?: number;
+    batchSize?: number;
 }
 
 const { posts, initialCount = 9, batchSize = 6 } = Astro.props;
 ---
 
 <div class="posts-wrap">
-  <div id="posts-grid" class="posts-grid">
-    {
-      posts.map((post, i) => (
-        <div
-          data-post-index={i}
-          class:list={[{ hidden: i >= initialCount }]}
-        >
-          <PostCard post={post} animDelay={(i % batchSize) * 0.06} />
-        </div>
-      ))
-    }
-  </div>
+    <div id="posts-grid" class="posts-grid">
+        {
+            posts.map((post, i) => (
+                <div
+                    data-post-index={i}
+                    class:list={[{ hidden: i >= initialCount }]}
+                >
+                    <PostCard post={post} animDelay={(i % batchSize) * 0.06} />
+                </div>
+            ))
+        }
+    </div>
 
-  <!-- Sentinel для Intersection Observer -->
-  <div id="scroll-sentinel" aria-hidden="true"></div>
+    <!-- Sentinel для Intersection Observer -->
+    <div id="scroll-sentinel" aria-hidden="true"></div>
 
-  <!-- Индикатор загрузки -->
-  <div id="posts-loader" class="posts-loader" style="display:none" aria-live="polite">
-    <span></span><span></span><span></span>
-  </div>
+    <!-- Индикатор загрузки -->
+    <div
+        id="posts-loader"
+        class="posts-loader"
+        style="display:none"
+        aria-live="polite"
+    >
+        <span></span><span></span><span></span>
+    </div>
 
-  <!-- Сообщение об окончании списка -->
-  <div id="posts-end" class="posts-end" style="display:none">
-    Это все посты
-  </div>
+    <!-- Сообщение об окончании списка -->
+    <div id="posts-end" class="posts-end" style="display:none">
+        Это все посты
+    </div>
 </div>
 
-<script define:vars={{ initialCount, batchSize }}>
-  let observer = null;
-  let currentIndex = initialCount;
-  let isLoading = false;
+<script is:inline define:vars={{ initialCount, batchSize }}>
+    let observer = null;
+    let currentIndex = initialCount;
+    let isLoading = false;
 
-  function setupInfiniteScroll() {
-    const grid = document.getElementById('posts-grid');
-    const sentinel = document.getElementById('scroll-sentinel');
-    const loader = document.getElementById('posts-loader');
-    const endMsg = document.getElementById('posts-end');
+    function setupInfiniteScroll() {
+        const grid = document.getElementById('posts-grid');
+        const sentinel = document.getElementById('scroll-sentinel');
+        const loader = document.getElementById('posts-loader');
+        const endMsg = document.getElementById('posts-end');
 
-    if (!grid || !sentinel || !loader || !endMsg) return;
-    if (grid.getAttribute('data-initialized') === 'true') return;
-    grid.setAttribute('data-initialized', 'true');
+        if (!grid || !sentinel || !loader || !endMsg) return;
+        if (grid.getAttribute('data-initialized') === 'true') return;
+        grid.setAttribute('data-initialized', 'true');
 
-    const allItems = grid.querySelectorAll('[data-post-index]');
-    const total = allItems.length;
-
-    if (currentIndex >= total) {
-      endMsg.style.display = 'block';
-      return;
-    }
-
-    function showMore() {
-      if (isLoading || currentIndex >= total) return;
-
-      isLoading = true;
-      loader.style.display = 'flex';
-
-      setTimeout(() => {
-        const end = Math.min(currentIndex + batchSize, total);
-        for (let i = currentIndex; i < end; i++) {
-          const item = allItems[i];
-          if (item) item.classList.remove('hidden');
-        }
-        currentIndex = end;
-        loader.style.display = 'none';
-        isLoading = false;
+        const allItems = grid.querySelectorAll('[data-post-index]');
+        const total = allItems.length;
 
         if (currentIndex >= total) {
-          endMsg.style.display = 'block';
-          cleanup();
+            endMsg.style.display = 'block';
+            return;
         }
-      }, 300);
+
+        function showMore() {
+            if (isLoading || currentIndex >= total) return;
+
+            isLoading = true;
+            loader.style.display = 'flex';
+
+            setTimeout(() => {
+                const end = Math.min(currentIndex + batchSize, total);
+                for (let i = currentIndex; i < end; i++) {
+                    const item = allItems[i];
+                    if (item) item.classList.remove('hidden');
+                }
+                currentIndex = end;
+                loader.style.display = 'none';
+                isLoading = false;
+
+                if (currentIndex >= total) {
+                    endMsg.style.display = 'block';
+                    cleanup();
+                }
+            }, 300);
+        }
+
+        observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (
+                        entry.isIntersecting &&
+                        !isLoading &&
+                        currentIndex < total
+                    ) {
+                        showMore();
+                    }
+                });
+            },
+            { rootMargin: '200px' }
+        );
+
+        observer.observe(sentinel);
     }
 
-    observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !isLoading && currentIndex < total) {
-            showMore();
-          }
-        });
-      },
-      { rootMargin: '200px' }
-    );
-
-    observer.observe(sentinel);
-  }
-
-  function cleanup() {
-    if (observer) {
-      observer.disconnect();
-      observer = null;
+    function cleanup() {
+        if (observer) {
+            observer.disconnect();
+            observer = null;
+        }
+        const grid = document.getElementById('posts-grid');
+        if (grid) grid.removeAttribute('data-initialized');
     }
-    const grid = document.getElementById('posts-grid');
-    if (grid) grid.removeAttribute('data-initialized');
-  }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupInfiniteScroll);
-  } else {
-    setupInfiniteScroll();
-  }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupInfiniteScroll);
+    } else {
+        setupInfiniteScroll();
+    }
 </script>
