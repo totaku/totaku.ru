@@ -1,15 +1,12 @@
 ---
 title: "Нахальный принц и кошка-несмеяна"
 date: 2013-03-21T10:25:00+03:00
-lastmod: 2020-10-27T01:34:46+03:00
 draft: false
-keywords: "голубой экран, аниме, этти, комедия, школа"
 description: "Девочки в купальниках, эротические журналы, полуобнаженные девочки, да просто девочки. Большие/средние/маленькие груди, титьки, сиськи, арбузики, мммм, какая прелесть."
 
-tags: ["anime"]
+tags: ["anime", "голубой экран", "аниме", "этти", "комедия", "школа"]
 categories: ["Голубой экран"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/prints-izvrashchiennosti-i-niesmieiushchaiasia-koshka.jpg"

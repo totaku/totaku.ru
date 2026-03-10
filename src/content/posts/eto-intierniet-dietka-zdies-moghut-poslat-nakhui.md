@@ -1,15 +1,12 @@
 ---
 title: "Это интернет, детка. Здесь могут послать нахуй."
 date: 2016-10-15T18:18:00+03:00
-lastmod: 2020-11-03T01:05:26+03:00
 draft: false
-keywords: "разное, интернет, безопасность, глупость"
 description: "Вот один мой знакомый, который не понаслышке знаком с IT и должен прекрасно понимать, что если ты что-то выложил в открытый доступ об этом знают все."
 
-tags: ["stupid","security"]
+tags: ["stupid", "security", "разное", "интернет", "безопасность", "глупость"]
 categories: ["TL;DR"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/eto-intierniet-dietka-zdies-moghut-poslat-nakhui.jpg"

@@ -1,15 +1,12 @@
 ---
 title: "Бойцовский клуб"
 date: 2018-10-29T08:02:00+03:00
-lastmod: 2020-11-03T05:42:31+03:00
 draft: false
-keywords: "голубой экран, цитаты"
 description: "Цитата ил фильма или книги Бойцовский клуб"
 
-tags: ["quotes","books"]
+tags: ["quotes", "books", "голубой экран", "цитаты"]
 categories: ["TL;DR"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/bojtsovskij-klub.jpg"

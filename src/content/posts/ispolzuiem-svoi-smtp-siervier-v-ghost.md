@@ -1,15 +1,12 @@
 ---
 title: "Используем свой smtp сервер в Ghost"
 date: 2017-01-13T20:00:00+03:00
-lastmod: 2020-11-03T02:13:11+03:00
 draft: false
-keywords: "рукоблудие, ghost, SMTP"
 description: "Официальная документация Ghost предлагает выбрать из 3 smtp серверов: Gmail, Amazon SES, Mailgun. В ней не слова не говорится, о собственном smpt сервере."
 
-tags: ["ghost","smtp"]
+tags: ["ghost", "smtp", "рукоблудие", "SMTP"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/ispolzuiem-svoi-smtp-siervier-v-ghost.jpg"

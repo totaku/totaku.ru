@@ -1,15 +1,12 @@
 ---
 title: "Как создать собственную тему Drupal 9 за 9 простых шагов"
 date: 2022-05-17T16:20:18+03:00
-lastmod: 2022-05-17T16:20:18+03:00
 draft: true
-keywords: "drupal"
 description: ""
 
 tags: ["drupal"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 ---

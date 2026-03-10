@@ -1,15 +1,12 @@
 ---
 title: "Установка Oh My ZSH в Ubuntu"
 date: 2016-08-17T17:46:00+03:00
-lastmod: 2020-10-27T03:32:23+03:00
 draft: false
-keywords: "рукоблудие, линукс, ubuntu, zsh, консоль"
 description: "Oh My ZSH! — это фреймворк с открытым исходным кодом, предназначенный для управления конфигурацией оболочки ZSH."
 
-tags: ["linux","zsh","terminal"]
+tags: ["linux", "zsh", "terminal", "рукоблудие", "линукс", "ubuntu", "консоль"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/ustanovka-oh-my-zsh-v-ubuntu.jpg"

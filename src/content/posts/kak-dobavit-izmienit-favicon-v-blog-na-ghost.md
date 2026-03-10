@@ -1,15 +1,12 @@
 ---
 title: "Как добавить/изменить Favicon в блог на Ghost"
 date: 2017-07-03T11:49:04+03:00
-lastmod: 2020-11-03T03:51:46+03:00
 draft: false
-keywords: "рукоблудие, ghost, favicon"
 description: "Некоторые шаги могу отличается от ваших, потому что местоположение favicon зависит от настроек темы. В этом примере я буду использовать стандартную тему Casper."
 
-tags: ["ghost","favicon"]
+tags: ["ghost", "favicon", "рукоблудие"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/kak-dobavit-izmienit-favicon-v-blog-na-ghost.jpg"

@@ -1,15 +1,12 @@
 ---
 title: "Cброс пароля mysql через командную строку"
 date: 2018-01-16T07:14:58+03:00
-lastmod: 2020-11-03T04:37:44+03:00
 draft: false
-keywords: "рукоблудие, linux, MySQL"
 description: "Консоль ван лав. В ней можно делать всякое а можно просто запустить mc  и радоваться жизни ^_^ Но сегодня я поведаю вам, как сбросить пароль любого пользователя MySQL в этой самой консоли."
 
-tags: []
+tags: ["рукоблудие", "linux", "MySQL"]
 categories: []
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/cbros-parolia-mysql-chieriez-komandnuiu-stroku.jpg"

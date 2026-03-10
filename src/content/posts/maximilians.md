@@ -1,15 +1,12 @@
 ---
 title: "Maximilian's"
 date: 2013-08-04T11:47:00+03:00
-lastmod: 2020-10-27T01:56:24+03:00
 draft: false
-keywords: "место, ресторан, Челябинск"
 description: "Не так давно с пафосом в Челябинске открылся настоящий баварский ресторан-пивоварня Maximilian’s. И вот, в прошедшую пятницу мы с друзьями решили посетить это славное место."
 
-tags: ["restaurant"]
+tags: ["restaurant", "место", "ресторан", "Челябинск"]
 categories: ["Места"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/maximilians.jpg"

@@ -1,15 +1,12 @@
 ---
 title: "Убийственная коллекция CSS Reset — стилей"
 date: 2016-02-10T17:01:00+03:00
-lastmod: 2020-10-27T02:58:59+03:00
 draft: false
-keywords: "рукоблудие, CSS"
 description: "Использование CSS-стилей в семантической разметке (X)HTML является важным ключом к современным методам веб-дизайна. В идеальном мире каждый браузер будет интерпретировать и применять все CSS правила одинаково."
 
-tags: ["css"]
+tags: ["css", "рукоблудие", "CSS"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: true
 featuredImage: "./images/cover/ubiistviennaia-kolliektsiia-css-reset-stiliei.jpg"

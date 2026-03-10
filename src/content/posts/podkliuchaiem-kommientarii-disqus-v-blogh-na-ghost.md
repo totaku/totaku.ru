@@ -1,15 +1,12 @@
 ---
 title: "Подключаем комментарии Disqus в блог на Ghost"
 date: 2016-12-28T18:50:00+03:00
-lastmod: 2020-11-03T02:05:00+03:00
 draft: false
-keywords: "рукоблудие, ghost, disqus"
 description: "Для начала нужно зарегистрировать на сайте Disqus. Там нет ничего сложного, думаю вы справитесь."
 
-tags: ["ghost","disqus"]
+tags: ["ghost", "disqus", "рукоблудие"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/podkliuchaiem-kommientarii-disqus-v-blogh-na-ghost.jpg"

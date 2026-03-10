@@ -1,15 +1,12 @@
 ---
 title: "Прощай, детка, прощай"
 date: 2012-11-22T10:00:00+03:00
-lastmod: 2020-10-27T01:06:08+03:00
 draft: false
-keywords: "голубой экран, детектив, драма, фильм"
 description: "Отличный фильм. Аффлеки молодцы. Если не смотрели то стоит посмотреть."
 
-tags: ["movie"]
+tags: ["movie", "голубой экран", "детектив", "драма", "фильм"]
 categories: ["Голубой экран"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/proshchai-dietka-proshchai.jpg"

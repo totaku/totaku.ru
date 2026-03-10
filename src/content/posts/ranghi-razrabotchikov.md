@@ -1,15 +1,12 @@
 ---
 title: "Ранги разработчиков"
 date: 2016-02-20T17:10:00+03:00
-lastmod: 2020-10-27T03:18:40+03:00
 draft: false
-keywords: "разное, программисты"
 description: "Конечно ранг разработчика – это достаточно абстрактное понятие, но я выскажу свое мнение по данному вопросу, оно не привязано ни к какой теории, а базируется лишь на моём опыте."
 
-tags: []
+tags: ["разное", "программисты"]
 categories: ["TL;DR"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/ranghi-razrabotchikov.jpg"

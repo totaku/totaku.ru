@@ -1,15 +1,12 @@
 ---
 title: "Генерируем favicon с помощью Gulp"
 date: 2017-02-10T10:00:31+03:00
-lastmod: 2020-11-03T02:49:04+03:00
 draft: false
-keywords: "рукоблудие, gulp, favicon"
 description: "Инструкция предполагает, что вы знакомы с Gulp и у вас уже есть проект. Если не знакомы, то для начала можете почитать как создать Gulp проект."
 
-tags: ["gulp","favicon"]
+tags: ["gulp", "favicon", "рукоблудие"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/gienieriruiem-favicon-s-pomoshchiu-gulp.png"

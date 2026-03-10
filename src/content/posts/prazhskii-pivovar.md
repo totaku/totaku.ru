@@ -1,15 +1,12 @@
 ---
 title: "Пражский пивовар"
 date: 2012-12-19T10:08:00+03:00
-lastmod: 2020-10-27T01:08:56+03:00
 draft: false
-keywords: "место, ресторан, Челябинск, таракан"
 description: "Есть у меня один милый друг, который очень любит вкусно поесть. Я бы не сказал, что он много ест, просто он любит поесть вкусно. И вот в прошлую пятницу мы с ним решили встретиться."
 
-tags: ["restaurant","che"]
+tags: ["restaurant", "che", "место", "ресторан", "Челябинск", "таракан"]
 categories: ["Места"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/prazhskii-pivovar.jpg"

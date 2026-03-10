@@ -1,15 +1,12 @@
 ---
 title: "Брудершафт"
 date: 2013-03-18T10:15:00+03:00
-lastmod: 2020-10-27T01:26:25+03:00
 draft: false
-keywords: "место, Челябинск, бар"
 description: "Не так давно совершил очередное путешествие в этот славный немецкий ресторан. Назвать его отличным или даже хорошим язык, к сожалению, не поворачивается."
 
-tags: ["bar","che"]
+tags: ["bar", "che", "место", "Челябинск", "бар"]
 categories: ["Места"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/brudiershaft.jpg"

@@ -1,15 +1,12 @@
 ---
 title: "ISPmanager или секс за деньги"
 date: 2017-01-23T10:13:00+03:00
-lastmod: 2020-11-03T02:39:08+03:00
 draft: false
-keywords: "рукоблудие, линукс, панель управления"
 description: "Решил я опробовать сию панель. Оговорюсь сразу опыта с панелями у меня 0, точнее я ставил VestaCP на локалхост поиграться и все. Один человек долго долго рассказывал какая же она клевая, покупай и все."
 
-tags: ["ispmanager"]
+tags: ["ispmanager", "рукоблудие", "линукс", "панель управления"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/ispmanager-ili-sieks-za-dienghi.png"

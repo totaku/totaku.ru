@@ -1,15 +1,12 @@
 ---
 title: "Большая маленькая ложь"
 date: 2017-09-16T20:18:39+03:00
-lastmod: 2020-11-03T04:13:49+03:00
 draft: false
-keywords: "голубой экран, сериал, драма"
 description: "Большая маленькая ложь он же Big Little Lies охуительный 7 серийный сериал!"
 
-tags: ["tv"]
+tags: ["tv", "голубой экран", "сериал", "драма"]
 categories: ["Голубой экран"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/bolshaia-malienkaia-lozh.jpg"

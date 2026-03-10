@@ -1,15 +1,12 @@
 ---
 title: "Меняем пути"
 date: 2014-03-02T12:21:00+03:00
-lastmod: 2020-10-27T02:08:11+03:00
 draft: false
-keywords: "рукоблудие, drupal, модули"
 description: "Чем-то меня это все не устраивало, не хотелось мне стандартных путей, как то пошло это."
 
-tags: ["drupal","module"]
+tags: ["drupal", "module", "рукоблудие", "модули"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/mieniaiem-puti.jpg"

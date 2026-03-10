@@ -1,15 +1,12 @@
 ---
 title: "nginxconfig.io — сайт, который поможет настроить веб-сервер nginx"
 date: 2018-02-13T05:23:04+03:00
-lastmod: 2020-11-03T04:46:40+03:00
 draft: false
-keywords: "рукоблудие, nginx"
 description: "Nginx — это прекрасный быстрый веб-сервер, на котором работает что-то около половины интернета. Увы, достоинство, которым nginx не обладает, — это простота настройки."
 
-tags: ["nginx"]
+tags: ["nginx", "рукоблудие"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/nginxconfig-io-sait-kotoryi-pomozhiet-nastroit-vieb-siervier-nginx.jpg"

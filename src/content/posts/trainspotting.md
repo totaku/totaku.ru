@@ -1,15 +1,12 @@
 ---
 title: "На игле"
 date: 2018-06-14T14:55:41+03:00
-lastmod: 2020-11-03T05:36:17+03:00
 draft: false
-keywords: "голубой экран, цитаты"
 description: "Цитаты из фильма На игле / Trainspotting"
 
-tags: ["quotes","movie"]
+tags: ["quotes", "movie", "голубой экран", "цитаты"]
 categories: ["TL;DR"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/trainspotting.jpg"

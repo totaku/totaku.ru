@@ -1,15 +1,12 @@
 ---
 title: "Телеграмм"
 date: 2020-11-03T07:03:35+03:00
-lastmod: 2020-11-03T07:03:35+03:00
 draft: false
-keywords: "telegram, каналы"
 description: "Просто списочек моих телеграм каналов и чатов. Дуров — верни стену!"
 
-tags: ["telegram"]
+tags: ["telegram", "каналы"]
 categories: ["TL;DR"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/telegram.jpg"

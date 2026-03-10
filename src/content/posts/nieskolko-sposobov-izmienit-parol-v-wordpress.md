@@ -1,15 +1,12 @@
 ---
 title: "Несколько способов изменить пароль в WordPress"
 date: 2017-11-23T11:05:50+03:00
-lastmod: 2020-11-03T04:24:38+03:00
 draft: false
-keywords: "рукоблудие, wordpress, PHP, MySQL, копипаста"
 description: "Восстанавливаем пароль в Wordpress одного из самых популярных движков для блогов."
 
-tags: ["wordpress","php","mysql"]
+tags: ["wordpress", "php", "mysql", "рукоблудие", "PHP", "MySQL", "копипаста"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/nieskolko-sposobov-izmienit-parol-v-wordpress.jpg"

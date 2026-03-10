@@ -1,15 +1,12 @@
 ---
 title: "Обновляем Ghost 0.11.x до Ghost 1.0"
 date: 2017-07-28T12:12:03+03:00
-lastmod: 2020-11-03T03:54:21+03:00
 draft: false
-keywords: "рукоблудие, ghost"
 description: "Вчера анонсировали версию Ghost 1.0. Посмотрев на изменения я решил обновиться. Если вы тоже хотите это сделать, то это статья для вас. Ну а если вы хотите первый раз установить Ghost, то часть этой статьи тоже вам подойдет. Погнали!"
 
-tags: ["ghost"]
+tags: ["ghost", "рукоблудие"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/kak-obnovit-ghost-0-11-x-do-ghost-1-0.jpg"

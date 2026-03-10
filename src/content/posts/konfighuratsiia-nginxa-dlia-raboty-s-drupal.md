@@ -1,15 +1,12 @@
 ---
 title: "Конфигурация nginx'а для работы с Drupal"
 date: 2017-01-27T06:30:00+03:00
-lastmod: 2020-11-03T02:41:41+03:00
 draft: false
-keywords: "рукоблудие, nginx, drupal"
 description: "Пример конфигурации nginx для Drupal."
 
-tags: ["nginx","drupal"]
+tags: ["nginx", "drupal", "рукоблудие"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/konfighuratsiia-nginxa-dlia-raboty-s-drupal.png"

@@ -1,15 +1,12 @@
 ---
 title: "Shank 2"
 date: 2012-08-26T10:41:00+03:00
-lastmod: 2020-10-27T00:37:54+03:00
 draft: false
-keywords: "Shank 2, игра, платформер, экшен, кровь, супер"
 description: "Все история как обычно завязана на мести. В первой части мстим за убийство девочки, во второй спасаем какую-то тетки и просто отрываемся."
 
-tags: ["platformer"]
+tags: ["platformer", "Shank 2", "игра", "платформер", "экшен", "кровь", "супер"]
 categories: ["Игры"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/shank-2.jpg"

@@ -1,15 +1,12 @@
 ---
 title: "Стадии отокизма"
 date: 2014-11-19T13:59:00+03:00
-lastmod: 2020-10-27T02:30:04+03:00
 draft: false
-keywords: "разное, юмор"
 description: "В мохнатые годы написал сие чудо, потом оно разошлось по интернету, сменило название и даже попало на няш."
 
-tags: ["lol","аниме"]
+tags: ["lol", "аниме", "разное", "юмор"]
 categories: ["TL;DR"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/stadii-otokizma.jpg"

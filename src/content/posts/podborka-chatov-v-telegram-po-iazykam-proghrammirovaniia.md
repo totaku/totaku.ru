@@ -1,15 +1,12 @@
 ---
 title: "Подборка чатов в Telegram по языкам программирования"
 date: 2016-11-11T18:26:00+03:00
-lastmod: 2020-11-03T01:32:50+03:00
 draft: false
-keywords: "рукоблудие, телеграм"
 description: "Подборка телеграм чатов и каналов про программированию."
 
-tags: ["telegram"]
+tags: ["telegram", "рукоблудие", "телеграм"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/podborka-chatov-v-telegram-po-iazykam-proghrammirovaniia.png"

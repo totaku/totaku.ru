@@ -1,15 +1,12 @@
 ---
 title: "Исправляем ошибку perl: warning: Setting locale failed в Ubuntu/Debian"
 date: 2017-01-17T19:34:16+03:00
-lastmod: 2020-11-03T02:19:01+03:00
 draft: false
-keywords: "рукоблудие, ubuntu, консоль, линукс, debian"
 description: "Обычно на свежеустановленном Debian/Ubuntu появляется ошибка (например при установке пакетов)."
 
-tags: ["terminal","linux"]
+tags: ["terminal", "linux", "рукоблудие", "ubuntu", "консоль", "линукс", "debian"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/ispravliaiem-oshibku-perl-warning-setting-locale-failed-v-ubuntu-debian.jpg"

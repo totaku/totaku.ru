@@ -1,15 +1,12 @@
 ---
 title: "Nginx и https, получаем класс А+"
 date: 2015-03-19T16:19:00+03:00
-lastmod: 2020-10-27T02:39:02+03:00
 draft: false
-keywords: "рукоблудие, линукс, nginx, SSL"
 description: "Как в nginx настроить HTTPS, чтобы при проверке в SSL Labs получить рейтинг А+ и обезопасить себя от последних багов с помощью выпиливания SSL"
 
-tags: ["nginx","ssl"]
+tags: ["nginx", "ssl", "рукоблудие", "линукс", "SSL"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/nginx-i-https-poluchaiem-klass-a.jpg"

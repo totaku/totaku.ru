@@ -1,15 +1,12 @@
 ---
 title: "Сверхъестественное"
 date: 2017-02-18T16:57:00+03:00
-lastmod: 2020-11-03T03:01:38+03:00
 draft: false
-keywords: "голубой экран, сериал"
 description: "Сейчас я смотрю, ну как смотрю, просматриваю 10 сезон. И вы знаете, с момента как я несколько лет назад на него болт положил и до 10 сезона там не поменялось ничего!"
 
-tags: ["tv"]
+tags: ["tv", "голубой экран", "сериал"]
 categories: ["Голубой экран"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/supernatural.jpg"

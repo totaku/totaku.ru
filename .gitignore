@@ -13,3 +13,8 @@ node_modules/
 
 # OS
 .DS_Store
+prototypes/
+ref/
+
+.zed/
+.vscode/

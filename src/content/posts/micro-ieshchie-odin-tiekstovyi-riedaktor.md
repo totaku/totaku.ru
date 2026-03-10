@@ -1,15 +1,12 @@
 ---
 title: "Micro — еще один текстовый редактор"
 date: 2016-10-01T18:05:00+03:00
-lastmod: 2020-10-27T03:53:23+03:00
 draft: false
-keywords: "рукоблудие, линукс, консоль, текстовый редактор"
 description: "Наткнулся на Micro. Это просто офигенный редактор для терминала. Micro как вы догадались это преемник nano, но в отличии от nano в нем вы без проблем сможете работать часами и не испытывать дискомфорта."
 
-tags: ["linux","terminal","textedit"]
+tags: ["linux", "terminal", "textedit", "рукоблудие", "линукс", "консоль", "текстовый редактор"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/micro-ieshchie-odin-tiekstovyi-riedaktor.png"

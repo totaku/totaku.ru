@@ -1,15 +1,12 @@
 ---
 title: "Установка Docker и Docker-compose на Ubuntu 24.04"
 date: 2024-04-30T15:35:19+03:00
-lastmod: 2024-04-30T16:42:01+03:00
 draft: false
-keywords: "рукоблудие, docker, docker-compose, ubuntu"
 description: "В этом посте я расскажу как быстро и просто установить Docker и Docker-compose на Ubuntu 24.04"
 
-tags: ["docker", "docker-compose", "ubuntu"]
+tags: ["docker", "docker-compose", "ubuntu", "рукоблудие"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: true
 featuredImage: "./images/cover/ustanovka-docker-i-docker-compose-na-ubuntu-24-04.jpg"

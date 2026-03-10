@@ -1,15 +1,12 @@
 ---
 title: "Установка LEMP с помощью Docker'а"
 date: 2017-08-02T15:19:52+03:00
-lastmod: 2020-11-03T04:03:36+03:00
 draft: false
-keywords: "рукоблудие, docker, LEMP, MySQL, docker-compose, PHP, composer"
 description: "Не так давно из всех углов доносились крики о докоре шморек. А я тогда использовал на локалхосте Vagrant и не понимал нафига мне переходить на Docker."
 
-tags: ["docker", "lemp", "mysql", "docker-compose", "php", "composer"]
+tags: ["docker", "lemp", "mysql", "docker-compose", "php", "composer", "рукоблудие", "LEMP", "MySQL", "PHP"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: true
 featuredImage: "./images/cover/ustanovka-lemp-s-pomoshchiu-dockera.png"

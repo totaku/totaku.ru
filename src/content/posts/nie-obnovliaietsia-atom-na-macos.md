@@ -1,15 +1,12 @@
 ---
 title: "Не обновляется Atom на macOS? Чиним это дерьмо!"
 date: 2018-01-18T07:35:16+03:00
-lastmod: 2020-11-03T04:44:55+03:00
 draft: false
-keywords: "рукоблудие, Atom, macOS"
 description: "Решаем проблему Could not create temporary directory: Permission denied при обновление Atom на macOS. "
 
-tags: ["atom","macos"]
+tags: ["atom", "macos", "рукоблудие", "Atom", "macOS"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/nie-obnovliaietsia-atom-na-macos.png"

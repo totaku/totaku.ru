@@ -1,15 +1,12 @@
 ---
 title: "Устанавливаем Drush 8 используя Composer"
 date: 2016-02-21T17:17:00+03:00
-lastmod: 2020-10-27T03:22:49+03:00
 draft: false
-keywords: "drupal, рукоблудие, drush"
 description: "В чатике DrupalRu узнал, что есть уже Drush 8 и люди им пользуется."
 
-tags: ["drupal","drush","terminal"]
+tags: ["drupal", "drush", "terminal", "рукоблудие"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/ustanavlivaiem-drush-8-ispolzuia-composer.png"

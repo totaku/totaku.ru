@@ -1,15 +1,12 @@
 ---
 title: "…А в душе я танцую"
 date: 2015-03-23T16:27:00+03:00
-lastmod: 2020-10-27T02:44:48+03:00
 draft: false
-keywords: "голубой экран, фильм, драма"
 description: "Это отличный фильм. Не стану советовать, решать только вам готовы ли вы смотреть как 2 инвалида радуется жизни и борются с проблемами или нет."
 
-tags: ["movie"]
+tags: ["movie", "голубой экран", "фильм", "драма"]
 categories: ["Голубой экран"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/a-v-dushie-ia-tantsuiu.png"

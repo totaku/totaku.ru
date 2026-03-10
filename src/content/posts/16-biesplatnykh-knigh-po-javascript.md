@@ -1,15 +1,12 @@
 ---
 title: "16 бесплатных книг по JavaScript"
 date: 2017-05-31T10:43:58+03:00
-lastmod: 2020-11-03T03:36:05+03:00
 draft: false
-keywords: "рукоблудие, для начинающих, JavaScript, книги"
 description: "Коллекция бесплатных электронных книг для тех, кто хочет изучить JavaScript. Книги предоставляются в различных цифровых форматах: PDF, EPUB, HTML и др."
 
-tags: ["javascript","books","newbie"]
+tags: ["javascript", "books", "newbie", "рукоблудие", "для начинающих", "JavaScript", "книги"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/16-biesplatnykh-knigh-po-javascript.jpg"

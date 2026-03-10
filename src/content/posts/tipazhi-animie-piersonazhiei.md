@@ -1,15 +1,12 @@
 ---
 title: "Типажи аниме-персонажей"
 date: 2013-04-28T10:46:00+03:00
-lastmod: 2020-10-27T01:43:50+03:00
 draft: false
-keywords: "разное, аниме"
 description: "Обычный японский школьник(ОЯШ) — он чаще всего носит очки, причём большие круглые или квадратные. Внешность его самая, что ни на есть стандартная."
 
-tags: ["anime"]
+tags: ["anime", "разное", "аниме"]
 categories: ["TL;DR"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/tipazhi-animie-piersonazhiei.jpg"

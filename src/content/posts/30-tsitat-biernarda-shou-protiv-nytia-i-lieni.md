@@ -1,15 +1,12 @@
 ---
 title: "30 цитат Бернарда Шоу против нытья и лени"
 date: 2015-12-12T16:58:00+03:00
-lastmod: 2020-10-27T02:53:17+03:00
 draft: false
-keywords: "цитаты, разное, Бернард Шоу"
 description: "Бернард Шоу — единственный человек, удостоенный одновременно и Нобелевской премии в области литературы, и премии «Оскар» за сценарий фильма «Пигмалион»."
 
-tags: ["people","quotes"]
+tags: ["people", "quotes", "цитаты", "разное", "Бернард Шоу"]
 categories: ["TL;DR"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/30-tsitat-biernarda-shou-protiv-nytia-i-lieni.jpg"

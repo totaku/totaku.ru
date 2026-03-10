@@ -1,15 +1,12 @@
 ---
 title: "Самые шокирующие убийства Карателя"
 date: 2018-03-28T08:51:56+03:00
-lastmod: 2020-11-03T05:04:35+03:00
 draft: false
-keywords: "разное, комикс, супергерой, Каратель"
 description: "ТВ адаптация комикса о Карателе уже доступна для просмотра. Казалось бы, в современном мире, где каждый день кто-то в кого-то стреляет, трудно удивить персонажем с кучей стволов."
 
-tags: ["comics"]
+tags: ["comics", "разное", "комикс", "супергерой", "Каратель"]
 categories: ["TL;DR"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/samyie-shokiruiushchiie-ubiistva-karatielia.jpg"

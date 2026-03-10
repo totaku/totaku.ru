@@ -1,15 +1,12 @@
 ---
 title: "Шашлычная у Карена"
 date: 2016-05-11T17:41:00+03:00
-lastmod: 2020-10-27T03:27:39+03:00
 draft: false
-keywords: "место, Челябинск, шашлык"
 description: "Не так давно узнал о существовании сего заведения, а сегодня жутко захотел шашлыка и решил там заказать. Какую же я совершил ошибку, забегая вперед, скажу — я наелся."
 
-tags: ["che"]
+tags: ["che", "место", "Челябинск", "шашлык"]
 categories: ["Места"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/shashlychnaia-u-kariena.jpg"

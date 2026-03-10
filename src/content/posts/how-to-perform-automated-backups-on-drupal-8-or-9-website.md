@@ -1,15 +1,12 @@
 ---
 title: "Делаем автоматическое резервное копирование сайта на Drupal 8/9"
 date: 2021-04-13T20:32:18+03:00
-lastmod: 2021-04-13T23:32:18+03:00
 draft: false
-keywords: "drupal, terminal, drush"
 description: "Несколько способов автоматического резервного копирования сайтов на Drupal 8/9. На самом деле не все так сложно как кажется. Даже не обязательно иметь доступ к терминалу."
 
-tags: ["drupal", "terminal"]
+tags: ["drupal", "terminal", "drush"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: true
 featuredImage: "./images/cover/how-to-perform-automated-backups-on-drupal-8-or-9-website.jpg"

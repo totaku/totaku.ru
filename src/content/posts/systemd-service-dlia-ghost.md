@@ -1,15 +1,12 @@
 ---
 title: "Systemd service для Ghost"
 date: 2017-02-05T10:58:13+03:00
-lastmod: 2020-11-03T02:43:28+03:00
 draft: false
-keywords: "ghost, systemd, linux, рукоблудие"
 description: "Простой Systemd service для Ghost."
 
-tags: ["ghost","linux"]
+tags: ["ghost", "linux", "systemd", "рукоблудие"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/systemd-service-dlia-ghost.png"

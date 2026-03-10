@@ -1,15 +1,12 @@
 ---
 title: "Docker и Drupal 9 — как быстро их свести"
 date: 2020-12-21T16:38:03+03:00
-lastmod: 2020-12-21T16:38:03+03:00
 draft: false
-keywords: "docker, drupla 9, ddev"
 description: "Устанавливаем Drupal 9 использую DDEV для локальной разработки."
 
-tags: ["docker","drupal"]
+tags: ["docker", "drupal", "drupla 9", "ddev"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: true
 featuredImage: "./images/cover/drupal-9-docker.jpg"

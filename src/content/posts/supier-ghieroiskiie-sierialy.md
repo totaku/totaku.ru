@@ -1,15 +1,12 @@
 ---
 title: "Супер геройские сериалы"
 date: 2017-12-21T10:47:21+03:00
-lastmod: 2020-11-03T04:29:59+03:00
 draft: false
-keywords: "голубой экран, сериал, супергерой"
 description: "Подборка супергеройских сериалов с толикой моего мнения."
 
-tags: ["tv","superhero"]
+tags: ["tv", "superhero", "голубой экран", "сериал", "супергерой"]
 categories: ["Голубой экран"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/supier-ghieroiskiie-sierialy.jpg"

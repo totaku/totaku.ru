@@ -1,15 +1,12 @@
 ---
 title: "Установка Docker и Docker-compose на Ubuntu 18.04"
 date: 2018-06-07T07:07:48+03:00
-lastmod: 2020-11-03T05:17:32+03:00
 draft: false
-keywords: "рукоблудие, docker, docker-compose, ubuntu"
 description: "В этом посте я расскажу как быстро и просто установить Docker и Docker-compose на Ubuntu 18.04"
 
-tags: ["docker", "docker-compose", "ubuntu"]
+tags: ["docker", "docker-compose", "ubuntu", "рукоблудие"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: true
 featuredImage: "./images/cover/ustanovka-docker-i-docker-compose-v-ubuntu-18-04.png"

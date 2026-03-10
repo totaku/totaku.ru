@@ -1,15 +1,12 @@
 ---
 title: "Ко-оп Portal 2"
 date: 2012-08-19T10:37:00+03:00
-lastmod: 2020-10-27T00:35:21+03:00
 draft: false
-keywords: "Portal 2, игры"
 description: "Из двух порталов я прошел только первый, да и то лишь тогда когда весь мир уже играл и восхвалял второй. А про ко-оп вообще говорить не приходится, я в него просто никогда не играл."
 
-tags: ["co-op"]
+tags: ["co-op", "Portal 2", "игры"]
 categories: ["Игры"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/ko-op-portal-2.jpg"

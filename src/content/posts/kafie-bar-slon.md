@@ -1,15 +1,12 @@
 ---
 title: "Кафе-бар «Слон»"
 date: 2012-07-30T10:23:00+03:00
-lastmod: 2020-10-26T22:55:53+03:00
 draft: false
-keywords: "Челябинск, бар, кафе-бар «Слон»"
 description: "Не так давно мы с любимой посетили кафе-бар «Слон» с целью покурить кальян. Про саму вечеринку я уже написал, ну а сейчас пара слов о заведении. Заведение очень приятное."
 
-tags: ["bar","che"]
+tags: ["bar", "che", "Челябинск", "бар", "кафе-бар «Слон»"]
 categories: ["Места"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/kafie-bar-slon.jpg"

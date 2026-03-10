@@ -1,15 +1,12 @@
 ---
 title: "Войти в IT"
 date: 2017-06-11T19:08:16+03:00
-lastmod: 2020-11-03T03:40:33+03:00
 draft: false
-keywords: "для начинающих, рукоблудие, копипаста"
 description: "Что нужно для входа в IT. И нужно ли оно вам в целом."
 
-tags: ["newbie"]
+tags: ["newbie", "для начинающих", "рукоблудие", "копипаста"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: true
 featuredImage: "./images/cover/voiti-v-it.jpg"

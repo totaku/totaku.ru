@@ -1,15 +1,12 @@
 ---
 title: "Бесплатные фотостоки"
 date: 2016-11-19T18:37:00+03:00
-lastmod: 2020-11-03T01:38:56+03:00
 draft: false
-keywords: "фотостоки, фото, для редактора, бесплатно"
 description: "Сегодня хочу поделиться с вами не большой коллекцией сайтов с качественными и бесплатными изображениями. "
 
-tags: []
+tags: ["фотостоки", "фото", "для редактора", "бесплатно"]
 categories: []
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/biesplatnyie-fotostoki.jpg"

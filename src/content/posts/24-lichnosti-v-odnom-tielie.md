@@ -1,15 +1,12 @@
 ---
 title: "24 личности в одном теле"
 date: 2015-03-01T14:07:00+03:00
-lastmod: 2020-10-27T02:32:00+03:00
 draft: false
-keywords: "разное, люди"
 description: "Билли Миллиган родился в 1955 и через некоторое время попал во все учебники психиатрии. Обычно раздвоение личности предполагает, что внутри одного тела находятся две личности, чаще всего конфликтующие между собой."
 
-tags: ["people"]
+tags: ["people", "разное", "люди"]
 categories: ["TL;DR"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/24-lichnosti-v-odnom-tielie.jpg"

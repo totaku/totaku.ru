@@ -18,10 +18,9 @@ const dateFormatted = post.data.date.toLocaleDateString('ru-RU', {
   month: '2-digit',
   year: 'numeric',
 });
-
 ---
 
-<a class="card" href={`/${post.id}/`} style={`animation-delay:${animDelay}s`}>
+<article class="card" style={`animation-delay:${animDelay}s`}>
   <div class="card-cover">
     {
       post.data.featuredImage ? (
@@ -41,7 +40,9 @@ const dateFormatted = post.data.date.toLocaleDateString('ru-RU', {
     }
   </div>
   <div class="card-body">
-    <div class="card-title">{post.data.title}</div>
+    <div class="card-title">
+      <a class="card-link" href={`/${post.id}/`}>{post.data.title}</a>
+    </div>
     {
       post.data.description && (
         <div class="card-desc">{post.data.description}</div>
@@ -49,12 +50,7 @@ const dateFormatted = post.data.date.toLocaleDateString('ru-RU', {
     }
     <div class="card-footer">
       <span class="card-date">{dateFormatted}</span>
-      <span
-        class="card-cat"
-        data-href={`/categories/${catSlug}/`}
-        onclick="event.stopPropagation();window.location.href=this.dataset.href"
-        >{catName}</span
-      >
+      <a class="card-cat" href={`/categories/${catSlug}/`}>{catName}</a>
     </div>
   </div>
-</a>
+</article>

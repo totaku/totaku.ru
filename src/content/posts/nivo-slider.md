@@ -1,15 +1,12 @@
 ---
 title: "Nivo Slider"
 date: 2015-03-02T14:12:00+03:00
-lastmod: 2020-10-27T02:37:12+03:00
 draft: false
-keywords: "рукоблудие, drupal, модули"
 description: "Делая сайт для «любимой» работы, я решил использовать Nivo Slider, ведь слайды — это так модно. На родном сайте ничего не говорится про друпал."
 
-tags: ["drupal","module"]
+tags: ["drupal", "module", "рукоблудие", "модули"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/nivo-slider.jpg"

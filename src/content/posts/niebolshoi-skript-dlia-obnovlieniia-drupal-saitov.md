@@ -1,15 +1,12 @@
 ---
 title: "Небольшой скрипт для обновления Drupal сайтов"
 date: 2016-11-16T18:32:00+03:00
-lastmod: 2020-11-03T01:36:46+03:00
 draft: false
-keywords: "рукоблудие, линукс, drupal, bash"
 description: "Есть у меня один клиент к которому несколько раз в месяц нужно заходить на сервер и обновлять Drupal."
 
-tags: ["drupal", "terminal", "drush"]
+tags: ["drupal", "terminal", "drush", "рукоблудие", "линукс", "bash"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/niebolshoi-skript-dlia-obnovlieniia-drupal-saitov.png"

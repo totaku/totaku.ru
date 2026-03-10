@@ -1,15 +1,12 @@
 ---
 title: "Включаем поддержку UTF8MB4 в Drupal 7"
 date: 2016-11-23T18:44:00+03:00
-lastmod: 2020-11-03T01:57:20+03:00
 draft: false
-keywords: "рукоблудие, drupal, MySQL"
 description: "Drupal 7 с версии 7.50, научился поддерживать UTF8MB4, но по умолчанию оно не работает."
 
-tags: ["drupal","mysql"]
+tags: ["drupal", "mysql", "рукоблудие", "MySQL"]
 categories: ["Рукоблудие"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/vkliuchaiem-poddierzhku-utf8mb4-v-drupal-7.png"

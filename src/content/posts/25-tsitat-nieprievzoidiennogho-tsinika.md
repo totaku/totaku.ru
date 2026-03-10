@@ -1,15 +1,12 @@
 ---
 title: "25 цитат непревзойденного циника"
 date: 2015-12-12T16:54:00+03:00
-lastmod: 2020-10-27T02:48:10+03:00
 draft: false
-keywords: "цитаты, разное, Джордж Карлин"
 description: "Джордж Карлин — единственный, кому американцы позволили смеяться над собой. И, кажется, они ни разу об этом не пожалели."
 
-tags: ["people","quotes"]
+tags: ["people", "quotes", "цитаты", "разное", "Джордж Карлин"]
 categories: ["TL;DR"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/25-tsitat-nieprievzoidiennogho-tsinika.jpg"

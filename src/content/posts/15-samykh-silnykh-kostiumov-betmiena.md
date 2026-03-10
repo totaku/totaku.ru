@@ -1,15 +1,12 @@
 ---
 title: "15 самых сильных костюмов Бэтмена"
 date: 2017-01-22T15:44:17+03:00
-lastmod: 2020-11-03T02:29:42+03:00
 draft: false
-keywords: "разное, комикс, супергерой, Бэтмен"
 description: "Сегодня я хочу представить вам перевод статьи одного зарубежного портала о 15 самых мощных костюмах Бэтмена."
 
-tags: ["comics","batman"]
+tags: ["comics", "batman", "разное", "комикс", "супергерой", "Бэтмен"]
 categories: ["TL;DR"]
 
-hiddenFromHomePage: false
 
 toc: false
 featuredImage: "./images/cover/15-samykh-silnykh-kostiumov-betmiena.jpg"
