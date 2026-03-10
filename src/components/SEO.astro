@@ -47,10 +47,15 @@ let ogImageUrl: string | undefined;
 let ogImageWidth: number | undefined;
 let ogImageHeight: number | undefined;
 
-if (post?.data.featuredImage) {
+if (post) {
+  // Use generated OG image for all posts
+  ogImageUrl = `${siteUrl}/og/${post.id}.png`;
+  ogImageWidth = 1200;
+  ogImageHeight = 630;
+} else if ((Astro.props as any).featuredImage) {
   try {
     const img = await getImage({
-      src: post.data.featuredImage,
+      src: (Astro.props as any).featuredImage,
       width: 1200,
       format: 'webp',
     });
@@ -152,7 +157,7 @@ const jsonLd =
       {ogImageHeight && (
         <meta property="og:image:height" content={String(ogImageHeight)} />
       )}
-      <meta property="og:image:type" content="image/webp" />
+      <meta property="og:image:type" content={post ? 'image/png' : 'image/webp'} />
     </>
   )
 }
