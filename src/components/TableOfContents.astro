@@ -1,0 +1,171 @@
+---
+interface Heading {
+    depth: number;
+    slug: string;
+    text: string;
+}
+
+interface GroupedHeading extends Heading {
+    children: Heading[];
+}
+
+interface Props {
+    headings: Heading[];
+    initiallyOpen?: boolean;
+}
+
+const { headings, initiallyOpen = true } = Astro.props;
+
+const filtered = headings.filter(h => h.depth === 2 || h.depth === 3);
+
+const grouped: GroupedHeading[] = [];
+let currentH2: GroupedHeading | null = null;
+
+filtered.forEach(h => {
+    if (h.depth === 2) {
+        currentH2 = { ...h, children: [] };
+        grouped.push(currentH2);
+    } else if (h.depth === 3 && currentH2) {
+        currentH2.children.push(h);
+    }
+});
+---
+
+{grouped.length > 0 && (
+    <div class="toc-wrapper">
+        <details open={initiallyOpen}>
+            <summary class="toc-summary">
+                <span class="toc-label">Содержание</span>
+                <svg class="toc-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6"/>
+                </svg>
+            </summary>
+            <nav class="toc-body" aria-label="Оглавление статьи">
+                <ul class="toc-list">
+                    {grouped.map(h2 => (
+                        <li class="toc-h2">
+                            <a href={`#${h2.slug}`}>{h2.text}</a>
+                            {h2.children.length > 0 && (
+                                <ul>
+                                    {h2.children.map(h3 => (
+                                        <li class="toc-h3">
+                                            <a href={`#${h3.slug}`}>{h3.text}</a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+        </details>
+    </div>
+)}
+
+<style>
+    .toc-wrapper {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+    }
+
+    .toc-summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.875rem 1.125rem;
+        cursor: pointer;
+        user-select: none;
+        list-style: none;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.2s;
+    }
+
+    details[open] .toc-summary {
+        border-bottom-color: var(--border);
+    }
+
+    .toc-summary::-webkit-details-marker { display: none; }
+    .toc-summary::marker { display: none; }
+
+    .toc-label {
+        font-size: 0.6875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-muted);
+    }
+
+    .toc-arrow {
+        width: 1rem;
+        height: 1rem;
+        color: var(--text-muted);
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transition: transform 0.2s;
+        flex-shrink: 0;
+    }
+
+    details[open] .toc-arrow {
+        transform: rotate(180deg);
+    }
+
+    .toc-body {
+        padding: 0.75rem 1.125rem 1rem;
+        animation: tocFadeIn 0.2s ease;
+    }
+
+    @keyframes tocFadeIn {
+        from { opacity: 0; transform: translateY(-0.25rem); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .toc-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .toc-h2 > a {
+        display: block;
+        padding: 0.3rem 0;
+        font-size: 0.875rem;
+        color: var(--text-dim);
+        text-decoration: none;
+        transition: color 0.15s;
+        line-height: 1.4;
+    }
+
+    .toc-h2 > a:hover { color: var(--accent); }
+
+    .toc-h2 > ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .toc-h3 > a {
+        display: block;
+        padding: 0.2rem 0 0.2rem 1rem;
+        font-size: 0.8125rem;
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.15s;
+        line-height: 1.4;
+    }
+
+    .toc-h3 > a::before {
+        content: '–';
+        margin-right: 0.4rem;
+        color: var(--border-mid);
+    }
+
+    .toc-h3 > a:hover { color: var(--text-dim); }
+</style>

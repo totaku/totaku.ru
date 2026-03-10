@@ -5,6 +5,9 @@ import { getCollection } from 'astro:content';
 import { Picture } from 'astro:assets';
 import BaseLayout from './BaseLayout.astro';
 import DisqusComments from '@/components/DisqusComments.astro';
+import TableOfContents from '@/components/TableOfContents.astro';
+import PostNavigation from '@/components/PostNavigation.astro';
+import ShareButtons from '@/components/ShareButtons.astro';
 import { transliterate } from '@/utils/transliterate';
 
 interface Props {
@@ -30,13 +33,6 @@ const idx = allPosts.findIndex((p) => p.id === post.id);
 const prevPost = idx < allPosts.length - 1 ? allPosts[idx + 1] : null;
 const nextPost = idx > 0 ? allPosts[idx - 1] : null;
 
-// ToC
-const tocItems = headings.filter((h) => h.depth === 2 || h.depth === 3);
-let h2n = 0;
-const tocWithNum = tocItems.map((h) => {
-  if (h.depth === 2) h2n++;
-  return { ...h, num: h.depth === 2 ? `${h2n}.` : '' };
-});
 ---
 
 <BaseLayout
@@ -108,39 +104,7 @@ const tocWithNum = tocItems.map((h) => {
       )
     }
 
-    {
-      tocWithNum.length > 0 && (
-        <div class="post-toc" id="post-toc" open>
-          <button class="post-toc-toggle" id="toc-toggle">
-            Оглавление
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </button>
-          <div class="post-toc-body" id="toc-body">
-            <ul class="post-toc-list">
-              {tocWithNum.map((h) => (
-                <li class={h.depth === 3 ? 'toc-h3' : ''}>
-                  <a href={`#${h.slug}`}>
-                    {h.depth === 2 && <span class="post-toc-num">{h.num}</span>}
-                    {h.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )
-    }
+    <TableOfContents headings={headings} />
 
     <div class="prose">
       <slot />
@@ -158,56 +122,8 @@ const tocWithNum = tocItems.map((h) => {
       )
     }
 
-    <nav class="post-nav">
-      {
-        prevPost ? (
-          <a href={`/${prevPost.id}/`} class="post-nav-link prev">
-            <span class="post-nav-label">
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
-              Предыдущий
-            </span>
-            <span class="post-nav-title">{prevPost.data.title}</span>
-          </a>
-        ) : (
-          <span />
-        )
-      }
-      {
-        nextPost ? (
-          <a href={`/${nextPost.id}/`} class="post-nav-link next">
-            <span class="post-nav-label">
-              Следующий
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <polyline points="9 18 15 12 9 6" />
-              </svg>
-            </span>
-            <span class="post-nav-title">{nextPost.data.title}</span>
-          </a>
-        ) : (
-          <span />
-        )
-      }
-    </nav>
+    <ShareButtons url={postUrl} title={post.data.title} />
+    <PostNavigation prevPost={prevPost} nextPost={nextPost} />
 
     <div class="comments">
       <h2 class="comments-title">Комментарии</h2>
@@ -246,17 +162,4 @@ const tocWithNum = tocItems.map((h) => {
     wrapper.appendChild(btn);
   });
 
-  // ToC коллапс
-  const toc = document.getElementById('post-toc');
-  const tocBody = document.getElementById('toc-body');
-  document.getElementById('toc-toggle')?.addEventListener('click', () => {
-    const isOpen = toc?.hasAttribute('open');
-    if (isOpen) {
-      tocBody!.style.display = 'none';
-      toc!.removeAttribute('open');
-    } else {
-      tocBody!.style.display = '';
-      toc!.setAttribute('open', '');
-    }
-  });
 </script>

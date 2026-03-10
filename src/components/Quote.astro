@@ -1,0 +1,86 @@
+---
+interface Props {
+    author?: string;
+    variant?: 'border' | 'corners';
+}
+
+const { author, variant = 'border' } = Astro.props;
+---
+
+<blockquote class:list={['quote', variant === 'corners' ? 'quote-corners' : 'quote-border']}>
+    <p class={author ? 'mb-3' : ''}><slot /></p>
+    {author && <footer class="quote-author">{author}</footer>}
+</blockquote>
+
+<style>
+    .quote p {
+        font-size: 1.0625rem;
+        font-style: italic;
+        color: var(--text);
+        line-height: 1.7;
+        margin-bottom: 0;
+    }
+
+    .quote-author {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        font-style: normal;
+    }
+
+    .quote-author::before {
+        content: '— ';
+    }
+
+    /* Вариант border-left */
+    .quote-border {
+        position: relative;
+        padding: 1.75rem 2rem;
+        margin: 0;
+        border-left: 3px solid var(--accent);
+        background: color-mix(in srgb, var(--bg-card) 60%, transparent);
+        border-radius: 0 0.375rem 0.375rem 0;
+    }
+
+    .quote-border .quote-author {
+        margin-top: 0.875rem;
+    }
+
+    /* Вариант с угловыми скобками */
+    .quote-corners {
+        position: relative;
+        padding: 2rem 2.25rem;
+        margin: 0;
+    }
+
+    .quote-corners::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-top: 2px solid var(--accent);
+        border-left: 2px solid var(--accent);
+    }
+
+    .quote-corners::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-bottom: 2px solid var(--accent);
+        border-right: 2px solid var(--accent);
+    }
+
+    .quote-corners p {
+        font-size: 1.125rem;
+        color: var(--text);
+    }
+
+    .quote-corners .quote-author {
+        margin-top: 0.875rem;
+        text-align: right;
+    }
+</style>

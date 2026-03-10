@@ -1,0 +1,68 @@
+---
+---
+
+<div id="reading-progress-container" aria-hidden="true">
+    <div id="reading-progress-bar"></div>
+</div>
+
+<style>
+    #reading-progress-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        height: 3px;
+        background: transparent;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    #reading-progress-bar {
+        height: 100%;
+        width: 0%;
+        background: var(--accent);
+        transition: width 0.1s linear;
+    }
+</style>
+
+<script>
+    function init() {
+        const bar = document.getElementById('reading-progress-bar');
+        const container = document.getElementById('reading-progress-container');
+        if (!bar || !container) return;
+
+        let ticking = false;
+
+        function update() {
+            const scrollTop = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = maxScroll > 0 ? (scrollTop / maxScroll) * 100 : 0;
+
+            bar!.style.width = `${Math.min(pct, 100)}%`;
+            container!.style.opacity = scrollTop > 50 ? '1' : '0';
+        }
+
+        function onScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => { update(); ticking = false; });
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', update, { passive: true });
+        update();
+
+        document.addEventListener('astro:before-swap', () => {
+            window.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', update);
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+</script>

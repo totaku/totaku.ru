@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint src",
@@ -17,6 +17,8 @@
     "astro-embed": "^0.12.0",
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^1.1.0",
+    "node-html-parser": "^7.1.0",
+    "pagefind": "^1.4.0",
     "photoswipe": "^5.4.4",
     "sharp": "^0.34.5"
   },
