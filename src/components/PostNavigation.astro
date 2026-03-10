@@ -82,15 +82,16 @@ const { prevPost, nextPost } = Astro.props;
     @media (min-width: 640px) {
         .post-nav-component {
             flex-direction: row;
+            align-items: stretch;
         }
     }
 
     .post-nav-item {
         flex: 1;
+        display: flex;
     }
 
     .post-nav-item--right {
-        display: flex;
         justify-content: flex-end;
     }
 
@@ -99,7 +100,7 @@ const { prevPost, nextPost } = Astro.props;
         flex-direction: column;
         gap: 0.375rem;
         text-decoration: none;
-        max-width: 100%;
+        width: 100%;
     }
 
     .post-nav-label {
