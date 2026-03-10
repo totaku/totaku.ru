@@ -6,7 +6,7 @@ import InfinitePostList from '@/components/InfinitePostList.astro';
 
 const allPosts = await getCollection(
   'posts',
-  ({ data }) => !data.draft && !data.hiddenFromHomePage
+  ({ data }) => !data.draft
 );
 allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---

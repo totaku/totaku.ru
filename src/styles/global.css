@@ -390,6 +390,7 @@ img {
 .card {
   display: flex;
   flex-direction: column;
+  height: 100%;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -841,6 +842,23 @@ img {
   color: var(--text);
   scroll-margin-top: 80px;
 }
+.prose h4 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 1.4em 0 0.4em;
+  color: var(--text);
+  scroll-margin-top: 80px;
+}
+.prose h5,
+.prose h6 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: 1.2em 0 0.4em;
+  color: var(--text-dim);
+  scroll-margin-top: 80px;
+}
 .prose a {
   color: var(--accent);
   text-decoration: underline;
@@ -852,6 +870,22 @@ img {
   border-radius: 4px;
   padding: 0.1em 0.4em;
   font-size: 0.875em;
+  color: var(--text);
+}
+.prose pre {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin: 1.5em 0;
+  min-width: 0;
+}
+.prose pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.875rem;
   color: var(--text);
 }
 [data-theme='dark'] .prose pre {
@@ -867,23 +901,6 @@ img {
   color: var(--shiki-light) !important;
 }
 
-.prose pre {
-  background: #1a1b2e;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 1.25rem;
-  overflow-x: auto;
-  margin: 1.5em 0;
-  min-width: 0;
-}
-.prose pre code {
-  background: none;
-  border: none;
-  padding: 0;
-  font-size: 0.875rem;
-  color: #e2e8f0;
-}
-
 /* кнопка копирования */
 .code-block {
   position: relative;
@@ -897,8 +914,8 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--border);
+  border: 1px solid var(--border-mid);
   border-radius: 6px;
   cursor: pointer;
   color: var(--text-muted);
@@ -916,7 +933,7 @@ img {
 }
 .code-block-copy:hover {
   color: var(--text);
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--bg-secondary);
 }
 .code-block-copy.copied {
   color: #4caf72;

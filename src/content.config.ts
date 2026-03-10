@@ -9,13 +9,11 @@ const posts = defineCollection({
       date: z.coerce.date(),
       lastmod: z.coerce.date().optional(),
       draft: z.boolean().default(false),
-      keywords: z.string().optional(),
       description: z.string().optional(),
       featuredImage: image().optional(),
       tags: z.array(z.string()).default([]),
       categories: z.array(z.string()).default([]),
-      hiddenFromHomePage: z.boolean().default(false),
-      toc: z.boolean().default(false),
+toc: z.boolean().default(false),
     }),
 });
 

@@ -52,7 +52,7 @@
 
             <!-- Footer -->
             <div class="search-footer">
-                <kbd>ESC</kbd> — закрыть &nbsp;·&nbsp; <kbd>⌘K</kbd> — открыть
+                <kbd>↑↓</kbd> — выбрать &nbsp;·&nbsp; <kbd>↵</kbd> — открыть &nbsp;·&nbsp; <kbd>ESC</kbd> — закрыть
             </div>
         </div>
     </div>
@@ -238,6 +238,11 @@
         padding: 0 0.15rem;
         border-radius: 0.125rem;
     }
+
+    :global(.search-result.active) {
+        border-color: var(--accent);
+        background: var(--bg-card);
+    }
 </style>
 
 <script>
@@ -278,6 +283,24 @@
         if (!overlay || !input || !list) return;
 
         let timer: ReturnType<typeof setTimeout>;
+        let activeIndex = -1;
+
+        function getLinks(): HTMLAnchorElement[] {
+            return Array.from(list!.querySelectorAll<HTMLAnchorElement>('.search-result'));
+        }
+
+        function setActive(index: number) {
+            const links = getLinks();
+            if (!links.length) return;
+            activeIndex = Math.max(0, Math.min(index, links.length - 1));
+            links.forEach((a, i) => a.classList.toggle('active', i === activeIndex));
+            links[activeIndex].scrollIntoView({ block: 'nearest' });
+        }
+
+        function clearActive() {
+            getLinks().forEach(a => a.classList.remove('active'));
+            activeIndex = -1;
+        }
 
         function open() {
             overlay!.style.display = 'flex';
@@ -329,6 +352,7 @@
                     li.appendChild(a);
                     list!.appendChild(li);
                 }
+                clearActive();
                 setState('results');
             } catch { setState('no-results'); }
         }
@@ -341,8 +365,21 @@
         closeBtn?.addEventListener('click', close);
         overlay.addEventListener('click', e => { if (e.target === overlay || (e.target as Element).closest('.search-container') === e.target) close(); });
         document.addEventListener('keydown', e => {
-            if (e.key === 'Escape' && overlay.classList.contains('visible')) close();
-            if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); open(); }
+            if (e.key === 'Escape' && overlay.classList.contains('visible')) { close(); return; }
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); open(); return; }
+            if (!overlay.classList.contains('visible')) return;
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                setActive(activeIndex + 1);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                setActive(activeIndex - 1);
+            } else if (e.key === 'Enter') {
+                const links = getLinks();
+                if (activeIndex >= 0 && links[activeIndex]) {
+                    links[activeIndex].click();
+                }
+            }
         });
 
         window.openSearchModal = open;

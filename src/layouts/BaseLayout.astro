@@ -11,8 +11,6 @@ import '@/styles/global.css';
 interface Props {
   title: string;
   description?: string;
-  keywords?: string;
-  tags?: string[];
   canonical?: string;
   post?: CollectionEntry<'posts'>;
   type?: 'website' | 'article';
@@ -22,8 +20,6 @@ interface Props {
 const {
   title,
   description,
-  keywords,
-  tags,
   canonical,
   post,
   type,
@@ -46,8 +42,6 @@ const {
     <SEO
       title={title}
       description={description}
-      keywords={keywords}
-      tags={tags}
       canonical={canonical}
       post={post}
       type={type}

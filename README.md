@@ -48,7 +48,6 @@ tags: ["css", "tutorial"]     # теги
 categories: ["Веб"]           # категории (используется первая)
 keywords: "ключевые слова"    # для мета-тега keywords
 toc: false                    # показывать оглавление
-hiddenFromHomePage: false      # скрыть с главной
 ---
 ```
 

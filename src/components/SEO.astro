@@ -5,8 +5,6 @@ import { getImage } from 'astro:assets';
 interface Props {
   title: string;
   description?: string;
-  keywords?: string;
-  tags?: string[];
   canonical?: string;
   post?: CollectionEntry<'posts'>;
   type?: 'website' | 'article';
@@ -15,8 +13,6 @@ interface Props {
 const {
   title,
   description,
-  keywords,
-  tags = [],
   canonical,
   post,
   type = 'website',
@@ -30,11 +26,20 @@ const twitterSite = '@totaku';
 
 const pageTitle = title === siteTitle ? title : `${title} — ${siteTitle}`;
 const pageDescription = description || siteDescription;
-const pageKeywords =
-  keywords ||
-  (tags.length > 0
-    ? tags.join(', ')
-    : 'drupal, программирование, сериалы, аниме, игры');
+const rawKeywords = [
+  ...(post?.data.tags ?? []),
+  ...(post?.data.categories ?? []),
+];
+const seen = new Set<string>();
+const keywordParts = rawKeywords.filter((k) => {
+  const lower = k.toLowerCase();
+  if (seen.has(lower)) return false;
+  seen.add(lower);
+  return true;
+});
+const pageKeywords = keywordParts.length > 0
+  ? keywordParts.join(', ')
+  : 'drupal, программирование, сериалы, аниме, игры';
 const pageCanonical = canonical || Astro.url.href;
 
 // OG image
@@ -85,8 +90,8 @@ const jsonLd =
               ],
             }
           : {}),
-        ...(post.data.tags.length > 0
-          ? { keywords: post.data.tags.join(', ') }
+        ...(keywordParts.length > 0
+          ? { keywords: keywordParts.join(', ') }
           : {}),
         url: pageCanonical,
         datePublished,
@@ -96,8 +101,8 @@ const jsonLd =
           name: authorName,
         },
         publisher: {
-          '@type': 'Organization',
-          name: siteTitle,
+          '@type': 'Person',
+          name: authorName,
         },
         description: postDescription,
       }
