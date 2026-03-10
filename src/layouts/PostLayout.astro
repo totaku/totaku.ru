@@ -23,6 +23,13 @@ const dateFormatted = post.data.date.toLocaleDateString('ru-RU', {
     year: 'numeric',
 });
 const dateIso = post.data.date.toISOString();
+
+const lastmod = post.data.lastmod;
+const isUpdated = lastmod && lastmod.getTime() !== post.data.date.getTime();
+const lastmodFormatted = isUpdated
+    ? lastmod.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
+    : null;
+const lastmodIso = isUpdated ? lastmod.toISOString() : null;
 const postUrl = new URL(`/${post.id}/`, Astro.site).href;
 
 // Пред/след
@@ -72,22 +79,32 @@ const nextPost = idx > 0 ? allPosts[idx - 1] : null;
         <h1 class="post-title">{post.data.title}</h1>
 
         <div class="post-meta">
-            <time datetime={dateIso}>{dateFormatted}</time>
+            <div class="post-meta-dates">
+                <time datetime={dateIso}>{dateFormatted}</time>
+                {
+                    isUpdated && (
+                        <>
+                            <span class="post-meta-dot">·</span>
+                            <span class="post-meta-updated">
+                                обновлено{' '}
+                                <time datetime={lastmodIso!}>{lastmodFormatted}</time>
+                            </span>
+                        </>
+                    )
+                }
+            </div>
             {
                 post.data.tags.length > 0 && (
-                    <>
-                        <span class="post-meta-dot">·</span>
-                        <div class="post-meta-tags">
-                            {post.data.tags.map((tag) => (
-                                <a
-                                    href={`/tags/${transliterate(tag)}/`}
-                                    class="post-tag"
-                                >
-                                    {tag}
-                                </a>
-                            ))}
-                        </div>
-                    </>
+                    <div class="post-meta-tags">
+                        {post.data.tags.map((tag) => (
+                            <a
+                                href={`/tags/${transliterate(tag)}/`}
+                                class="post-tag"
+                            >
+                                {tag}
+                            </a>
+                        ))}
+                    </div>
                 )
             }
         </div>
