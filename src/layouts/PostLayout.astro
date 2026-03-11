@@ -27,7 +27,11 @@ const dateIso = post.data.date.toISOString();
 const lastmod = post.data.lastmod;
 const isUpdated = lastmod && lastmod.getTime() !== post.data.date.getTime();
 const lastmodFormatted = isUpdated
-    ? lastmod.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
+    ? lastmod.toLocaleDateString('ru-RU', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric',
+      })
     : null;
 const lastmodIso = isUpdated ? lastmod.toISOString() : null;
 const postUrl = new URL(`/${post.id}/`, Astro.site).href;
@@ -87,7 +91,9 @@ const nextPost = idx > 0 ? allPosts[idx - 1] : null;
                             <span class="post-meta-dot">·</span>
                             <span class="post-meta-updated">
                                 обновлено{' '}
-                                <time datetime={lastmodIso!}>{lastmodFormatted}</time>
+                                <time datetime={lastmodIso!}>
+                                    {lastmodFormatted}
+                                </time>
                             </span>
                         </>
                     )

@@ -21,8 +21,8 @@ const accent = '#a855f7';
             stroke-linejoin="round"
             aria-hidden="true"
         >
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-            <circle cx="12" cy="12" r="3" />
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
         </svg>
         <span class="spoiler-title">{title}</span>
         <svg
@@ -37,7 +37,7 @@ const accent = '#a855f7';
             class="spoiler-chevron"
             aria-hidden="true"
         >
-            <path d="M9 18l6-6-6-6" />
+            <path d="M9 18l6-6-6-6"></path>
         </svg>
     </summary>
     <div class="spoiler-body">
@@ -47,12 +47,18 @@ const accent = '#a855f7';
 
 <style>
     .spoiler {
-        border: 1px solid color-mix(in srgb, var(--spoiler-accent) 35%, transparent);
+        border: 1px solid
+            color-mix(in srgb, var(--spoiler-accent) 35%, transparent);
         border-left: 4px solid var(--spoiler-accent);
-        background: color-mix(in srgb, var(--spoiler-accent) 10%, var(--bg-card));
+        background: color-mix(
+            in srgb,
+            var(--spoiler-accent) 10%,
+            var(--bg-card)
+        );
         border-radius: 0 0.5rem 0.5rem 0;
         margin: 2rem 0;
-        box-shadow: 0 1px 4px color-mix(in srgb, var(--spoiler-accent) 12%, transparent);
+        box-shadow: 0 1px 4px
+            color-mix(in srgb, var(--spoiler-accent) 12%, transparent);
     }
 
     .spoiler-summary {
