@@ -1,6 +1,7 @@
 ---
 title: "Установка Docker и Docker-compose на Ubuntu 24.04"
 date: 2024-04-30T15:35:19+03:00
+lastmod: 2026-03-11T15:35:19+03:00
 draft: false
 description: "В этом посте я расскажу как быстро и просто установить Docker и Docker-compose на Ubuntu 24.04"
 
@@ -50,7 +51,7 @@ echo \
 sudo apt update
 ```    
 
-Теперь надо убедится, что все нормально и установка будет из репозитория Docker, а не Ubuntu:
+Теперь надо убедиться, что все нормально и установка будет из репозитория Docker, а не Ubuntu:
 ```bash
 apt-cache policy docker-ce
 ```    
@@ -82,7 +83,7 @@ sudo apt install docker-ce
 
 ### Проверяем работает ли Docker
 
-Для начала узнаел, что там с Docker’ом:
+Для начала узнаем, что там с Docker’ом:
 ```bash
 sudo systemctl status docker
 ```    
@@ -91,7 +92,7 @@ sudo systemctl status docker
 ```bash
 ● docker.service - Docker Application Container Engine
      Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
-     Active: active (running) since Fri 2022-04-01 21:30:25 UTC; 22s ago
+     Active: active (running) since Mon 2024-04-29 10:15:42 UTC; 22s ago
 TriggeredBy: ● docker.socket
        Docs: https://docs.docker.com
    Main PID: 7854 (dockerd)
@@ -141,11 +142,11 @@ docker run hello-world
 
 ## Устанавливаем Docker-compose
 
-Запускаем эту команду для установки последней версии docker-compose, проверить какая версия является последней можно [тут](https://github.com/docker/compose/releases):
+Запускаем эту команду для установки последней версии docker-compose. Актуальную версию всегда можно посмотреть на [странице релизов](https://github.com/docker/compose/releases). На момент написания статьи последняя версия — `v5.1.0`:
 ```bash
 mkdir -p ~/.docker/cli-plugins/
-curl -SL https://github.com/docker/compose/releases/download/v2.27.0/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
-```    
+curl -SL https://github.com/docker/compose/releases/download/v5.1.0/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
+```
 
 Делаем файл запускаемым:
 ```bash
@@ -161,7 +162,7 @@ docker compose version
 
 Увидим плюс минус:
 ```bash
-Docker Compose version v2.27.0
+Docker Compose version v5.1.0
 ```    
 
 Собственно все. Удачи!
