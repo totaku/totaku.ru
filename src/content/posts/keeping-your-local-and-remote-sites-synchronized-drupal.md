@@ -3,11 +3,8 @@ title: "Синхронизация локальных и рабочих сайт
 date: 2022-05-17T15:10:44+03:00
 draft: false
 description: "Как синхронизировать локальную и рабочую копию сайта на Drupal 8/9. Да все очень просто и логично!"
-
 tags: ["drupal", "drush", "drupal 9", "синхронизация", "разработка"]
 categories: ["Рукоблудие"]
-
-
 toc: false
 featuredImage: "./images/cover/keeping-your-local-and-remote-sites-synchronized-drupal.jpeg"
 ---

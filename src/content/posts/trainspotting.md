@@ -3,11 +3,8 @@ title: "На игле"
 date: 2018-06-14T14:55:41+03:00
 draft: false
 description: "Цитаты из фильма На игле / Trainspotting"
-
-tags: ["quotes", "movie", "голубой экран", "цитаты"]
+tags: ["цитаты", "фильм"]
 categories: ["TL;DR"]
-
-
 toc: false
 featuredImage: "./images/cover/trainspotting.jpg"
 ---
@@ -24,4 +21,4 @@ Swanney taught us to respect the National Health Service, for it was the source 
 — It's Iggy Pop.
 — Whatever. I mean, the guy's dead anyway.
 — Iggy Pop is not dead. He toured last year.
-— The point is, you've got to find something new. 
+— The point is, you've got to find something new.

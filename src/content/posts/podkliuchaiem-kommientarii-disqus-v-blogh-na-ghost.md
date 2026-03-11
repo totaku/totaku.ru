@@ -3,11 +3,8 @@ title: "Подключаем комментарии Disqus в блог на Ghos
 date: 2016-12-28T18:50:00+03:00
 draft: false
 description: "Для начала нужно зарегистрировать на сайте Disqus. Там нет ничего сложного, думаю вы справитесь."
-
-tags: ["ghost", "disqus", "рукоблудие"]
+tags: ["ghost", "disqus"]
 categories: ["Рукоблудие"]
-
-
 toc: false
 featuredImage: "./images/cover/podkliuchaiem-kommientarii-disqus-v-blogh-na-ghost.jpg"
 ---

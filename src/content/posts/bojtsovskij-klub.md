@@ -3,11 +3,8 @@ title: "Бойцовский клуб"
 date: 2018-10-29T08:02:00+03:00
 draft: false
 description: "Цитата ил фильма или книги Бойцовский клуб"
-
-tags: ["quotes", "books", "голубой экран", "цитаты"]
+tags: ["книги", "цитаты"]
 categories: ["TL;DR"]
-
-
 toc: false
 featuredImage: "./images/cover/bojtsovskij-klub.jpg"
 ---

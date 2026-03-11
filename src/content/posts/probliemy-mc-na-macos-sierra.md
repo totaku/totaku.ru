@@ -3,11 +3,8 @@ title: "Проблемы mc на macOS Sierra"
 date: 2017-11-14T07:03:33+03:00
 draft: false
 description: "Проблема старая, а решил только что. С переездом на macOS Sierra у меня перестал запускаться Midnight Commander под рутом."
-
-tags: ["macos", "mc", "terminal", "macOS", "bash", "shell", "рукоблудие"]
+tags: ["macos", "mc", "терминал", "bash", "shell"]
 categories: ["Рукоблудие"]
-
-
 toc: false
 featuredImage: "./images/cover/probliemy-mc-na-macos-sierra.png"
 ---

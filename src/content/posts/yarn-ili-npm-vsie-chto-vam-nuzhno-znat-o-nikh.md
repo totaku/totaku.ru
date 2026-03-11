@@ -3,11 +3,8 @@ title: "Yarn или npm: все, что вам нужно знать о них"
 date: 2020-07-29T16:31:18+03:00
 draft: false
 description: "Yarn это новый менеджер пакетов, совместно созданный Facebook,  Google, Exponent и Tilde."
-
-tags: ["javascript", "yarn", "рукоблудие", "JavaScript"]
+tags: ["javascript", "yarn"]
 categories: ["Рукоблудие"]
-
-
 toc: false
 featuredImage: "./images/cover/yarn-ili-npm-vsie-chto-vam-nuzhno-znat-o-nikh.png"
 ---

@@ -3,11 +3,8 @@ title: "Ошибка 413 Request Entity Too Large"
 date: 2016-10-05T18:12:00+03:00
 draft: false
 description: "По умолчании в nginx стоит ограничение 1m на размер тела от клиента и при загрузке файла больше 1м клиент получает эту ошибку."
-
-tags: ["nginx", "рукоблудие", "линукс"]
+tags: ["nginx", "линукс"]
 categories: ["Рукоблудие"]
-
-
 toc: false
 featuredImage: "./images/cover/oshibka-413-request-entity-too-large.jpg"
 ---

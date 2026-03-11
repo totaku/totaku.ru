@@ -3,11 +3,8 @@ title: "WordPress + Markdown друзья навсегда"
 date: 2017-05-27T11:20:23+03:00
 draft: false
 description: "Небольшая инструкция о том как начать писать посты в WordPress и оформлять их в разметке Markdown или MD, как ее называют в сокращенном варианте."
-
-tags: ["markdown", "wordpress", "рукоблудие"]
+tags: ["markdown", "wordpress"]
 categories: ["Рукоблудие"]
-
-
 toc: false
 featuredImage: "./images/cover/wordpress-markdown-druzia-navsieghda.png"
 ---

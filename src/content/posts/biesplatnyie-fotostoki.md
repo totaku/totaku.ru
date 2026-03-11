@@ -3,11 +3,8 @@ title: "Бесплатные фотостоки"
 date: 2016-11-19T18:37:00+03:00
 draft: false
 description: "Сегодня хочу поделиться с вами не большой коллекцией сайтов с качественными и бесплатными изображениями. "
-
 tags: ["фотостоки", "фото", "для редактора", "бесплатно"]
-categories: []
-
-
+categories: ["Рукоблудие"]
 toc: false
 featuredImage: "./images/cover/biesplatnyie-fotostoki.jpg"
 ---

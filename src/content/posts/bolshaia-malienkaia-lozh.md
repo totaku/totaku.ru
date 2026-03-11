@@ -3,11 +3,8 @@ title: "Большая маленькая ложь"
 date: 2017-09-16T20:18:39+03:00
 draft: false
 description: "Большая маленькая ложь он же Big Little Lies охуительный 7 серийный сериал!"
-
-tags: ["tv", "голубой экран", "сериал", "драма"]
+tags: ["сериал", "драма", "обзор"]
 categories: ["Голубой экран"]
-
-
 toc: false
 featuredImage: "./images/cover/bolshaia-malienkaia-lozh.jpg"
 ---

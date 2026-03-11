@@ -3,11 +3,8 @@ title: "Устанавливаем Drush 8 используя Composer"
 date: 2016-02-21T17:17:00+03:00
 draft: false
 description: "В чатике DrupalRu узнал, что есть уже Drush 8 и люди им пользуется."
-
-tags: ["drupal", "drush", "terminal", "рукоблудие"]
+tags: ["drupal", "drush", "терминал"]
 categories: ["Рукоблудие"]
-
-
 toc: false
 featuredImage: "./images/cover/ustanavlivaiem-drush-8-ispolzuia-composer.png"
 ---

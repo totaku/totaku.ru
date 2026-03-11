@@ -4,7 +4,7 @@ date: 2017-05-31T10:43:58+03:00
 draft: false
 description: "Коллекция бесплатных электронных книг для тех, кто хочет изучить JavaScript. Книги предоставляются в различных цифровых форматах: PDF, EPUB, HTML и др."
 
-tags: ["javascript", "books", "newbie", "рукоблудие", "для начинающих", "JavaScript", "книги"]
+tags: ["javascript", "рукоблудие", "для начинающих", "JavaScript", "книги"]
 categories: ["Рукоблудие"]
 
 

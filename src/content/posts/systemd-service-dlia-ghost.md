@@ -3,11 +3,8 @@ title: "Systemd service для Ghost"
 date: 2017-02-05T10:58:13+03:00
 draft: false
 description: "Простой Systemd service для Ghost."
-
-tags: ["ghost", "linux", "systemd", "рукоблудие"]
+tags: ["ghost", "линукс", "systemd"]
 categories: ["Рукоблудие"]
-
-
 toc: false
 featuredImage: "./images/cover/systemd-service-dlia-ghost.png"
 ---

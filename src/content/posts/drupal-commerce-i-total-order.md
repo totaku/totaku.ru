@@ -3,11 +3,8 @@ title: "Drupal Commerce и Total order"
 date: 2018-12-12T08:40:00+03:00
 draft: false
 description: "Если вы хоть раз делали сайт на Drupal Commerce, то сталкивались с непереводимой строкой Order Total. В сети достаточно решений этой проблемы, но вот самое простое."
-
-tags: ["drupal", "рукоблудие"]
+tags: ["drupal", "drupal commerce"]
 categories: ["Рукоблудие"]
-
-
 toc: false
 featuredImage: "./images/cover/drupal-commerce-i-total-order.jpg"
 ---

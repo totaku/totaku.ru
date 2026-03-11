@@ -3,11 +3,8 @@ title: "Как встроить Youtube в сайт на Nuxt используя
 date: 2023-12-04T16:32:18+03:00
 draft: false
 description: "Встраивать Youtube в блог с Nuxt еще никогда не было так просто. Подключите к нему пакет `lite-youtube-embed`, создайте плагин и компонент Nuxt, и все. Дальше вы сможете использовать этот компонент во всех своимх Markdown файлах."
-
-tags: ["js", "vue", "nuxt", "markdown", "drupal", "terminal", "drush"]
+tags: ["javascript", "vue", "nuxt", "markdown", "drupal", "терминал", "drush"]
 categories: ["Рукоблудие"]
-
-
 toc: true
 featuredImage: "./images/cover/how-to-embed-youtube-in-nuxt-website-via-markdown-file.jpg"
 ---

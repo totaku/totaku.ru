@@ -3,11 +3,8 @@ title: "Сверхъестественная концовка"
 date: 2012-07-31T00:12:52+03:00
 draft: false
 description: "Вот именно этим кадром надо было закончить весь сериал. Просто взять и закончить."
-
-tags: ["tv", "сериал", "Сверхъестественное"]
+tags: ["Сверхъестественное", "сериал"]
 categories: ["Голубой экран"]
-
-
 toc: false
 featuredImage: "./images/cover/svierkhiestiestviennaia-kontsovka.png"
 ---

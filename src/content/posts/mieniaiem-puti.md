@@ -3,11 +3,8 @@ title: "Меняем пути"
 date: 2014-03-02T12:21:00+03:00
 draft: false
 description: "Чем-то меня это все не устраивало, не хотелось мне стандартных путей, как то пошло это."
-
-tags: ["drupal", "module", "рукоблудие", "модули"]
+tags: ["drupal", "модули"]
 categories: ["Рукоблудие"]
-
-
 toc: false
 featuredImage: "./images/cover/mieniaiem-puti.jpg"
 ---

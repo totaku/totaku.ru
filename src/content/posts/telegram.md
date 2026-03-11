@@ -4,11 +4,8 @@ date: 2020-11-03T07:03:35+03:00
 lastmod: 2026-03-11T07:03:35+03:00
 draft: false
 description: "Просто списочек моих телеграм каналов и чатов. Дуров — верни стену!"
-
 tags: ["telegram", "каналы"]
 categories: ["TL;DR"]
-
-
 toc: false
 featuredImage: "./images/cover/telegram.jpg"
 ---

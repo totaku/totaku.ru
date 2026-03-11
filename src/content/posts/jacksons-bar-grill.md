@@ -3,11 +3,8 @@ title: "Jackson's bar & grill"
 date: 2012-11-28T10:06:00+03:00
 draft: false
 description: "Хорошее заведение, пытающееся передать дух США, в штатах не бывал, сказать получается у них это или нет не могу. Несколько залов, каждый из которых немного отличается по стилю."
-
-tags: ["bar", "che", "место", "Челябинск", "бар"]
+tags: ["Челябинск", "бар"]
 categories: ["Места"]
-
-
 toc: false
 featuredImage: "./images/cover/jacksons-bar-grill.jpg"
 ---

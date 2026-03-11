@@ -3,11 +3,8 @@ title: "Создания Nginx VirtualHost и установка Drupal одно
 date: 2017-03-28T10:18:00+03:00
 draft: false
 description: "Если ты ленивый и безумный, то этот пост для тебя! Одна команда как которая сделает все за тебя, но лучше исключительно на локалхосте."
-
-tags: ["drupal", "terminal", "рукоблудие", "bash"]
+tags: ["drupal", "терминал"]
 categories: ["Рукоблудие"]
-
-
 toc: false
 featuredImage: "./images/cover/sozdaniia-nginx-virtualhost-i-ustanovka-drupal-odnoi-komandoi.jpg"
 ---

@@ -3,11 +3,8 @@ title: "Miass Studio — ну такое"
 date: 2017-12-26T17:03:33+03:00
 draft: false
 description: "Как то раз меня жена затащила на фотосессию в [Miass Studio](http://miass-studio.ru/). В самой студии я пробыл минут 10-15, сделали совместные кадры меня и жены."
-
-tags: ["che", "место"]
+tags: ["Миасс"]
 categories: ["Места"]
-
-
 toc: false
 featuredImage: "./images/cover/miass-studio-nu-takoie.jpg"
 ---

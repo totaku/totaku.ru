@@ -3,11 +3,8 @@ title: "Войти в IT"
 date: 2017-06-11T19:08:16+03:00
 draft: false
 description: "Что нужно для входа в IT. И нужно ли оно вам в целом."
-
-tags: ["newbie", "для начинающих", "рукоблудие", "копипаста"]
+tags: ["для начинающих", "копипаста"]
 categories: ["Рукоблудие"]
-
-
 toc: true
 featuredImage: "./images/cover/voiti-v-it.jpg"
 ---

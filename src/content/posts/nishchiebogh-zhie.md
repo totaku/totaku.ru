@@ -3,11 +3,8 @@ title: "Нищебог же!"
 date: 2013-07-10T11:40:00+03:00
 draft: false
 description: "Я, конечно, редкий слоупок, но пропустить это аниме у меня не поднялась рука."
-
-tags: ["anime", "голубой экран", "аниме", "приключения", "комедия"]
+tags: ["аниме", "приключения", "комедия"]
 categories: ["Голубой экран"]
-
-
 toc: false
 featuredImage: "./images/cover/nishchiebogh-zhie.jpg"
 ---

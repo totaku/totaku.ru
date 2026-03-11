@@ -3,11 +3,8 @@ title: "Отключение прокрутки на Google картах"
 date: 2016-08-31T17:53:00+03:00
 draft: false
 description: "Скорее всего каждый из нас хоть один раз вставлял Google карты на свои страницы. Тогда вы не могли не столкнуться с проблемой: во время прокрутки страницы, если курсор попадал на карту Google, то вместо смещения страницы, начинала масштабироваться карта."
-
-tags: ["google", "maps", "Google", "карты"]
+tags: ["google", "maps", "карты"]
 categories: ["Рукоблудие"]
-
-
 toc: false
 featuredImage: "./images/cover/otkliuchieniie-prokrutki-na-google-kartakh.png"
 ---

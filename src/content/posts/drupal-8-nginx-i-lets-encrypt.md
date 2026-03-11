@@ -3,11 +3,8 @@ title: "Drupal 8, nginx и Let's Encrypt"
 date: 2019-04-04T09:50:42+03:00
 draft: false
 description: "Нашел хорошую заметку о дружбе Drupal 8, nginx и Let's Encrypt. Сделал для вас перевод."
-
-tags: ["drupal", "nginx", "let's encrypt", "ssl", "рукоблудие", "HTTPS", "перевод"]
+tags: ["drupal", "nginx", "let's encrypt", "ssl", "HTTPS", "перевод"]
 categories: ["Рукоблудие"]
-
-
 toc: false
 featuredImage: "./images/cover/drupal-8-nginx-i-lets-encrypt.jpg"
 ---

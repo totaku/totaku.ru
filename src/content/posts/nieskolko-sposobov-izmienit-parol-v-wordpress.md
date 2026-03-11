@@ -3,11 +3,8 @@ title: "Несколько способов изменить пароль в Wor
 date: 2017-11-23T11:05:50+03:00
 draft: false
 description: "Восстанавливаем пароль в Wordpress одного из самых популярных движков для блогов."
-
-tags: ["wordpress", "php", "mysql", "рукоблудие", "PHP", "MySQL", "копипаста"]
+tags: ["wordpress", "php", "mysql", "рукоблудие","копипаста"]
 categories: ["Рукоблудие"]
-
-
 toc: false
 featuredImage: "./images/cover/nieskolko-sposobov-izmienit-parol-v-wordpress.jpg"
 ---

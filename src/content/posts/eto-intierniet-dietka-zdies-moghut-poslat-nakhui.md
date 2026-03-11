@@ -4,10 +4,8 @@ date: 2016-10-15T18:18:00+03:00
 draft: false
 description: "Вот один мой знакомый, который не понаслышке знаком с IT и должен прекрасно понимать, что если ты что-то выложил в открытый доступ об этом знают все."
 
-tags: ["stupid", "security", "разное", "интернет", "безопасность", "глупость"]
+tags: ["интернет", "безопасность", "глупость"]
 categories: ["TL;DR"]
-
-
 toc: false
 featuredImage: "./images/cover/eto-intierniet-dietka-zdies-moghut-poslat-nakhui.jpg"
 ---

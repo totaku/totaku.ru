@@ -3,11 +3,8 @@ title: "Топ 20 лучших CSS3 фреймворков"
 date: 2016-11-22T18:41:00+03:00
 draft: false
 description: "CSS фреймворки — это как полуфабрикаты, первичная структура уже есть, но чтоб продукт был готов надо приложить собственные рученьки к этому."
-
-tags: ["css", "framework", "рукоблудие", "CSS", "фреймворк"]
+tags: ["css", "framework", "фреймворк"]
 categories: ["Рукоблудие"]
-
-
 toc: false
 featuredImage: "./images/cover/top-20-luchshikh-css3-frieimvorkov.png"
 ---

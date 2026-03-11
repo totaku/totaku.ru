@@ -3,11 +3,8 @@ title: "Nginx и https, получаем класс А+"
 date: 2015-03-19T16:19:00+03:00
 draft: false
 description: "Как в nginx настроить HTTPS, чтобы при проверке в SSL Labs получить рейтинг А+ и обезопасить себя от последних багов с помощью выпиливания SSL"
-
-tags: ["nginx", "ssl", "рукоблудие", "линукс", "SSL"]
+tags: ["nginx", "ssl", "линукс"]
 categories: ["Рукоблудие"]
-
-
 toc: false
 featuredImage: "./images/cover/nginx-i-https-poluchaiem-klass-a.jpg"
 ---

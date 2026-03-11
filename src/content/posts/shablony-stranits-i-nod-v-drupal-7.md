@@ -3,11 +3,8 @@ title: "Шаблоны страниц и нод в Drupal 7"
 date: 2018-01-14T13:19:30+03:00
 draft: false
 description: "Т.к. я до сих пор дружу с Drupal 7, но не все о нем помню и не все полезные ссылки у меня до сих пор сохранены, я бесчестно и без разрешения автора спиздил этот материал. Прости меня автор."
-
-tags: ["drupal", "рукоблудие", "копипаста"]
+tags: ["drupal", "копипаста"]
 categories: ["Рукоблудие"]
-
-
 toc: false
 featuredImage: "./images/cover/shablony-stranits-i-nod-v-drupal-7.jpg"
 ---

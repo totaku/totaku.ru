@@ -3,11 +3,8 @@ title: "Убираем лишний Read More"
 date: 2014-03-02T12:17:00+03:00
 draft: false
 description: "Постоянная присутствующая кнопка Read more меня бесила с самого начала."
-
-tags: ["drupal", "module", "рукоблудие", "модули"]
+tags: ["drupal", "module", "модули"]
 categories: ["Рукоблудие"]
-
-
 toc: false
 featuredImage: "./images/cover/ubiraiem-lishnii-read-more.jpg"
 ---
