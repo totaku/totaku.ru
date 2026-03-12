@@ -38,7 +38,7 @@ jobs:
                   path: |
                       .astro
                       node_modules/.astro
-                  key: ${{ runner.os }}-astro-assets-${{ hashFiles('src/content/posts/images/**/*', 'public/images/**/*', 'astro.config.mjs') }}
+                  key: ${{ runner.os }}-astro-assets-${{ hashFiles('src/content/posts/images/**/*', 'public/images/**/*', 'astro.config.mjs', 'package.json') }}
                   restore-keys: |
                       ${{ runner.os }}-astro-assets-
 
