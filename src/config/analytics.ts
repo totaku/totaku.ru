@@ -1,5 +1,6 @@
 export interface AnalyticsService {
     id: string;
+    counterId?: number;
     name: string;
     description: string;
     privacyUrl: string;
@@ -10,11 +11,12 @@ export interface AnalyticsService {
 export const analyticsServices: AnalyticsService[] = [
     {
         id: 'yandex-metrika',
+        counterId: 22869793,
         name: 'Яндекс.Метрика',
         description:
             'Сбор статистики посещений: страницы, время на сайте, источники трафика. Помогает улучшать контент и удобство сайта.',
         privacyUrl: 'https://yandex.ru/legal/confidential/',
-        enabled: false,
+        enabled: true,
         optOutUrl: 'https://yandex.ru/support/metrica/general/opt-out.html',
     },
 ];

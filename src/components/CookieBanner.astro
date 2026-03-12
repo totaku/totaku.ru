@@ -1,0 +1,105 @@
+---
+import { enabledAnalytics } from '@/config/analytics';
+
+const metrika = enabledAnalytics.find((s) => s.id === 'yandex-metrika');
+---
+
+{metrika && (
+    <>
+        <!-- Яндекс.Метрика — инициализируется только после согласия -->
+        <script is:inline define:vars={{ counterId: metrika.counterId }}>
+            window.__metrikaCounterId = counterId;
+
+            function initMetrika() {
+                if (window.__metrikaInited) return;
+                window.__metrikaInited = true;
+
+                var script = document.createElement('script');
+                script.src = 'https://mc.yandex.ru/metrika/tag.js';
+                script.async = true;
+                script.onload = function () {
+                    window.ym(window.__metrikaCounterId, 'init', {
+                        clickmap: true,
+                        trackLinks: true,
+                        accurateTrackBounce: true,
+                        webvisor: true,
+                    });
+                };
+                document.head.appendChild(script);
+            }
+
+            // Если уже дали согласие ранее — инициализируем сразу
+            if (localStorage.getItem('analytics-consent') === 'accepted') {
+                initMetrika();
+            }
+
+            window.__initMetrika = initMetrika;
+        </script>
+
+        <!-- Cookie-баннер -->
+        <div
+            id="cookie-banner"
+            role="dialog"
+            aria-label="Согласие на использование cookies"
+            class="fixed bottom-0 left-0 right-0 z-50 p-4"
+            style="display:none"
+        >
+            <div
+                class="mx-auto max-w-2xl rounded-xl border p-5"
+                style="background:var(--bg-card);border-color:var(--border-mid);box-shadow:0 -4px 32px rgba(0,0,0,0.25)"
+            >
+                <p class="text-sm leading-relaxed" style="color:var(--text-dim)">
+                    Я использую <span style="color:var(--text)">Яндекс.Метрику</span> для анализа посещаемости сайта. Данные помогают делать сайт лучше.{' '}
+                    <a
+                        href="https://yandex.ru/legal/confidential/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="underline underline-offset-2"
+                        style="color:var(--accent)"
+                    >
+                        Политика конфиденциальности Яндекса
+                    </a>
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                    <button
+                        id="cookie-accept"
+                        class="cursor-pointer rounded-lg px-4 py-2 text-sm font-medium transition-opacity hover:opacity-80"
+                        style="background:var(--accent);color:#fff"
+                    >
+                        Принять
+                    </button>
+                    <button
+                        id="cookie-decline"
+                        class="cursor-pointer rounded-lg border px-4 py-2 text-sm font-medium transition-opacity hover:opacity-80"
+                        style="border-color:var(--border-mid);color:var(--text-muted)"
+                    >
+                        Отказаться
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script is:inline>
+            (function () {
+                var banner = document.getElementById('cookie-banner');
+                var consent = localStorage.getItem('analytics-consent');
+
+                if (!consent) {
+                    banner.style.display = 'block';
+                }
+
+                document.getElementById('cookie-accept').addEventListener('click', function () {
+                    localStorage.setItem('analytics-consent', 'accepted');
+                    localStorage.setItem('analytics-consent-date', new Date().toISOString());
+                    banner.style.display = 'none';
+                    if (window.__initMetrika) window.__initMetrika();
+                });
+
+                document.getElementById('cookie-decline').addEventListener('click', function () {
+                    localStorage.setItem('analytics-consent', 'declined');
+                    banner.style.display = 'none';
+                });
+            })();
+        </script>
+    </>
+)}
