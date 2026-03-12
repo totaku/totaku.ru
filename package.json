@@ -25,8 +25,7 @@
         "pagefind": "^1.4.0",
         "photoswipe": "^5.4.4",
         "satori": "^0.25.0",
-        "sharp": "^0.34.5",
-        "zod": "^4.3.6"
+        "sharp": "^0.34.5"
     },
     "devDependencies": {
         "@tailwindcss/typography": "^0.5.19",
