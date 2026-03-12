@@ -6,6 +6,10 @@ import robotsTxt from 'astro-robots-txt';
 export default defineConfig({
     site: 'https://totaku.ru',
     trailingSlash: 'always',
+    prefetch: {
+        prefetchAll: false,
+        defaultStrategy: 'hover',
+    },
     integrations: [
         sitemap(),
         mdx(),

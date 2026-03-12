@@ -41,7 +41,7 @@ const dateFormatted = post.data.date.toLocaleDateString('ru-RU', {
     </div>
     <div class="card-body">
         <div class="card-title">
-            <a class="card-link" href={`/${post.id}/`}>{post.data.title}</a>
+            <a class="card-link" href={`/${post.id}/`} data-astro-prefetch>{post.data.title}</a>
         </div>
         {
             post.data.description && (
