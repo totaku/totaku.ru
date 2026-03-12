@@ -7,6 +7,7 @@ import BackToTop from '@/components/BackToTop.astro';
 import ReadingProgress from '@/components/ReadingProgress.astro';
 import SearchModal from '@/components/SearchModal.astro';
 import CookieBanner from '@/components/CookieBanner.astro';
+import YandexMetrika from '@/components/YandexMetrika.astro';
 import '@/styles/global.css';
 
 interface Props {
@@ -48,6 +49,7 @@ const {
                 rel="stylesheet"
             />
         </noscript>
+        <YandexMetrika />
         <SEO
             title={title}
             description={description}
