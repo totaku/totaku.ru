@@ -6,7 +6,19 @@ import robotsTxt from 'astro-robots-txt';
 export default defineConfig({
     site: 'https://totaku.ru',
     trailingSlash: 'always',
-    integrations: [sitemap(), mdx(), robotsTxt()],
+    integrations: [
+        sitemap(),
+        mdx(),
+        robotsTxt({
+            policy: [
+                {
+                    userAgent: '*',
+                    allow: '/',
+                    disallow: ['/tags/', '/categories/'],
+                },
+            ],
+        }),
+    ],
     vite: {
         plugins: [tailwindcss()],
     },
