@@ -1,0 +1,150 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { analyticsServices } from '@/config/analytics';
+
+const lastUpdated = new Date().toLocaleDateString('ru-RU', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+});
+---
+
+<BaseLayout
+    title="Политика конфиденциальности — Пермяк на Неве"
+    description="Информация о сборе и обработке данных на сайте totaku.ru"
+>
+    <div class="container">
+        <article class="prose content-width">
+            <h1>Политика конфиденциальности</h1>
+            <p class="text-sm" style="color:var(--color-text-dim)">
+                Последнее обновление: {lastUpdated}
+            </p>
+
+            <h2>Введение</h2>
+            <p>
+                Этот сайт уважает вашу конфиденциальность. Документ объясняет, какие данные собираются, зачем и как вы можете контролировать их использование.
+            </p>
+            <p>
+                Собирается <strong>минимум данных</strong>, необходимых для улучшения сайта.
+            </p>
+
+            <h2>Используемые сервисы</h2>
+            <p>На сайте используются следующие сервисы для сбора статистики:</p>
+
+            {analyticsServices.filter((s) => s.enabled).map((service) => (
+                <div
+                    class="my-4 rounded-xl border p-5"
+                    style="background:var(--color-bg-card);border-color:var(--color-border-mid)"
+                >
+                    <h3 class="mt-0">{service.name}</h3>
+                    <p class="mb-3">{service.description}</p>
+                    <div class="flex flex-wrap gap-4 text-sm">
+                        <a
+                            href={service.privacyUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style="color:var(--color-accent)"
+                        >
+                            Политика конфиденциальности
+                        </a>
+                        {service.optOutUrl && (
+                            <a
+                                href={service.optOutUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style="color:var(--color-accent)"
+                            >
+                                Как отключить
+                            </a>
+                        )}
+                    </div>
+                </div>
+            ))}
+
+            <h2>Какие данные собираются</h2>
+            <ul>
+                <li><strong>Анонимная статистика посещений:</strong> просмотренные страницы, время на сайте, источник перехода</li>
+                <li><strong>Технические данные:</strong> тип устройства, браузер, операционная система</li>
+                <li><strong>Поведение на сайте:</strong> карты кликов, скролл (через вебвизор Яндекс.Метрики)</li>
+            </ul>
+
+            <h2>Что не собирается</h2>
+            <ul>
+                <li>Личные данные (имя, email, телефон)</li>
+                <li>Финансовая информация</li>
+                <li>Точная геолокация (только регион/город)</li>
+            </ul>
+
+            <h2>Использование cookies</h2>
+            <p>Cookies используются для работы аналитики и сохранения ваших предпочтений. Все cookies анонимны и не содержат личной информации.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cookie</th>
+                        <th>Назначение</th>
+                        <th>Срок</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>analytics-consent</code></td>
+                        <td>Хранит ваше согласие на аналитику</td>
+                        <td>Бессрочно</td>
+                    </tr>
+                    <tr>
+                        <td><code>_ym_*</code></td>
+                        <td>Яндекс.Метрика</td>
+                        <td>1 год</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Ваши права</h2>
+            <p>Вы можете в любой момент отозвать согласие на аналитику:</p>
+
+            <button
+                id="revoke-consent-button"
+                class="cursor-pointer rounded-lg px-5 py-2 text-sm font-semibold transition-opacity hover:opacity-80"
+                style="background:var(--color-accent);color:#fff"
+            >
+                Отозвать согласие
+            </button>
+            <p class="text-sm" style="color:var(--color-text-dim)">
+                После отзыва страница перезагрузится и аналитика будет отключена.
+            </p>
+
+            <h2>Контакты</h2>
+            <p>
+                Если есть вопросы о конфиденциальности, пишите:
+            </p>
+            <ul>
+                <li><a href="https://t.me/totaku" target="_blank" rel="noopener noreferrer">Telegram</a></li>
+                <li><a href="mailto:admin@totaku.su">admin@totaku.su</a></li>
+            </ul>
+
+            <h2>Изменения в политике</h2>
+            <p>Политика может обновляться. Дата последнего обновления указана в начале документа.</p>
+        </article>
+    </div>
+</BaseLayout>
+
+<script>
+    function initRevokeButton() {
+        const button = document.getElementById('revoke-consent-button');
+        if (!button) return;
+
+        button.addEventListener('click', () => {
+            localStorage.removeItem('analytics-consent');
+            localStorage.removeItem('analytics-consent-date');
+            alert('Согласие на аналитику отозвано. Страница будет перезагружена.');
+            window.location.reload();
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initRevokeButton);
+    } else {
+        initRevokeButton();
+    }
+</script>
