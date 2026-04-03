@@ -124,9 +124,39 @@ const currentPath = Astro.url.pathname;
                     ></path>
                 </svg>
             </button>
+            <button
+                class="btn-icon burger"
+                id="menu-toggle"
+                title="Меню"
+                aria-label="Открыть меню"
+                aria-expanded="false"
+            >
+                <svg class="burger-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+                <svg class="burger-close" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
         </div>
     </div>
 </header>
+
+<nav class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    {
+        nav.map((item) => (
+            <a
+                href={item.href}
+                aria-current={currentPath.startsWith(item.href) ? 'page' : undefined}
+            >
+                {item.label}
+            </a>
+        ))
+    }
+</nav>
 
 <script>
     const btn = document.getElementById('theme-toggle');
@@ -135,6 +165,22 @@ const currentPath = Astro.url.pathname;
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
     }
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    menuToggle?.addEventListener('click', () => {
+        const isOpen = mobileNav?.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Закрывать при клике на ссылку
+    mobileNav?.querySelectorAll('a').forEach((a) => {
+        a.addEventListener('click', () => {
+            mobileNav.classList.remove('open');
+            menuToggle?.setAttribute('aria-expanded', 'false');
+        });
+    });
 
     btn?.addEventListener('click', () => {
         const next =
