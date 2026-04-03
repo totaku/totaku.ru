@@ -2,7 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { analyticsServices } from '@/config/analytics';
 
-const lastUpdated = new Date().toLocaleDateString('ru-RU', {
+const lastUpdated = new Date('2026-04-03').toLocaleDateString('ru-RU', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -10,15 +10,25 @@ const lastUpdated = new Date().toLocaleDateString('ru-RU', {
 ---
 
 <BaseLayout
-    title="Политика конфиденциальности — Пермяк на Неве"
+    title="Политика конфиденциальности — Totaku"
     description="Информация о сборе и обработке данных на сайте totaku.ru"
 >
-    <div class="container">
-        <article class="prose content-width">
-            <h1>Политика конфиденциальности</h1>
-            <p class="text-sm" style="color:var(--color-text-dim)">
-                Последнее обновление: {lastUpdated}
-            </p>
+    <div class="post-wrap">
+        <a href="/" class="back-link post-back">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>На главную
+        </a>
+
+        <h1 class="post-title">Политика конфиденциальности</h1>
+
+        <div class="post-meta">
+            <div class="post-meta-dates">
+                <time>Последнее обновление: {lastUpdated}</time>
+            </div>
+        </div>
+
+        <article class="prose">
 
             <h2>Введение</h2>
             <p>
@@ -32,29 +42,16 @@ const lastUpdated = new Date().toLocaleDateString('ru-RU', {
             <p>На сайте используются следующие сервисы для сбора статистики:</p>
 
             {analyticsServices.filter((s) => s.enabled).map((service) => (
-                <div
-                    class="my-4 rounded-xl border p-5"
-                    style="background:var(--color-bg-card);border-color:var(--color-border-mid)"
-                >
-                    <h3 class="mt-0">{service.name}</h3>
-                    <p class="mb-3">{service.description}</p>
-                    <div class="flex flex-wrap gap-4 text-sm">
-                        <a
-                            href={service.privacyUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style="color:var(--color-accent)"
-                        >
-                            Политика конфиденциальности
+                <div class="service-card">
+                    <h3>{service.name}</h3>
+                    <p>{service.description}</p>
+                    <div class="service-card-links">
+                        <a href={service.privacyUrl} target="_blank" rel="noopener noreferrer">
+                            Политика конфиденциальности ↗
                         </a>
                         {service.optOutUrl && (
-                            <a
-                                href={service.optOutUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style="color:var(--color-accent)"
-                            >
-                                Как отключить
+                            <a href={service.optOutUrl} target="_blank" rel="noopener noreferrer">
+                                Как отключить ↗
                             </a>
                         )}
                     </div>
@@ -103,16 +100,13 @@ const lastUpdated = new Date().toLocaleDateString('ru-RU', {
             <h2>Ваши права</h2>
             <p>Вы можете в любой момент отозвать согласие на аналитику:</p>
 
-            <button
-                id="revoke-consent-button"
-                class="cursor-pointer rounded-lg px-5 py-2 text-sm font-semibold transition-opacity hover:opacity-80"
-                style="background:var(--color-accent);color:#fff"
-            >
-                Отозвать согласие
-            </button>
-            <p class="text-sm" style="color:var(--color-text-dim)">
-                После отзыва страница перезагрузится и аналитика будет отключена.
-            </p>
+            <div class="revoke-block">
+                <button id="revoke-consent-button" class="revoke-btn">
+                    Отозвать согласие
+                </button>
+                <span id="revoke-feedback" class="revoke-feedback"></span>
+                <p class="revoke-hint">После отзыва аналитика будет отключена.</p>
+            </div>
 
             <h2>Контакты</h2>
             <p>
@@ -129,16 +123,131 @@ const lastUpdated = new Date().toLocaleDateString('ru-RU', {
     </div>
 </BaseLayout>
 
+
+<style>
+    /* Таблица */
+    .prose table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5em 0;
+        font-size: 0.9rem;
+        font-family: 'Manrope', sans-serif;
+    }
+    .prose thead tr {
+        border-bottom: 2px solid var(--border-mid);
+    }
+    .prose th {
+        text-align: left;
+        padding: 0.6em 1em;
+        font-weight: 700;
+        color: var(--text-muted);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    .prose td {
+        padding: 0.7em 1em;
+        border-bottom: 1px solid var(--border);
+        color: var(--text-dim);
+        vertical-align: top;
+    }
+    .prose tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    /* Карточки сервисов */
+    .service-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-mid);
+        border-radius: 12px;
+        padding: 1.25rem;
+        margin: 1rem 0;
+    }
+    .service-card h3 {
+        margin: 0 0 0.4em !important;
+        font-size: 1rem !important;
+    }
+    .service-card p {
+        margin: 0 0 0.75em !important;
+        font-size: 0.9rem;
+        color: var(--text-dim);
+    }
+    .service-card-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        font-size: 0.85rem;
+        font-family: 'Manrope', sans-serif;
+    }
+    .service-card-links a {
+        color: var(--accent);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.15s;
+    }
+    .service-card-links a:hover {
+        border-color: var(--accent);
+    }
+
+    /* Кнопка отзыва */
+    .revoke-block {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin: 1.25rem 0 1.75rem;
+    }
+    .revoke-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        cursor: pointer;
+        background: transparent;
+        border: 1px solid var(--border-mid);
+        border-radius: 8px;
+        padding: 0.55rem 1.1rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        font-family: 'Manrope', sans-serif;
+        color: var(--text-muted);
+        transition: border-color 0.15s, color 0.15s;
+        width: fit-content;
+    }
+    .revoke-btn:hover:not(:disabled) {
+        border-color: var(--text-muted);
+        color: var(--text);
+    }
+    .revoke-btn:disabled {
+        opacity: 0.5;
+        cursor: default;
+    }
+    .revoke-feedback {
+        font-size: 0.8rem;
+        color: var(--text-dim);
+        font-family: 'Manrope', sans-serif;
+        min-height: 1em;
+    }
+    .revoke-hint {
+        font-size: 0.8rem !important;
+        color: var(--text-muted) !important;
+        margin: 0 !important;
+        font-family: 'Manrope', sans-serif;
+    }
+</style>
+
 <script>
     function initRevokeButton() {
         const button = document.getElementById('revoke-consent-button');
         if (!button) return;
 
+        const feedback = document.getElementById('revoke-feedback');
+
         button.addEventListener('click', () => {
             localStorage.removeItem('analytics-consent');
             localStorage.removeItem('analytics-consent-date');
-            alert('Согласие на аналитику отозвано. Страница будет перезагружена.');
-            window.location.reload();
+            button.disabled = true;
+            button.textContent = 'Отозвано';
+            if (feedback) feedback.textContent = 'Страница перезагрузится через секунду…';
+            setTimeout(() => window.location.reload(), 1200);
         });
     }
 

@@ -5,7 +5,7 @@ import mdx from '@astrojs/mdx';
 import robotsTxt from 'astro-robots-txt';
 export default defineConfig({
     site: 'https://totaku.ru',
-    trailingSlash: 'always',
+    trailingSlash: 'ignore',
     prefetch: {
         prefetchAll: false,
         defaultStrategy: 'hover',

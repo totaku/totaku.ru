@@ -2,41 +2,20 @@
 import { enabledAnalytics } from '@/config/analytics';
 ---
 
-<div
-    id="cookie-banner"
-    class="fixed bottom-6 left-6 z-50 hidden max-w-sm rounded-xl border p-5 shadow-2xl"
-    style="background:var(--color-bg-card);border-color:var(--color-border-mid)"
->
-    <div class="mb-4">
-        <h3 class="mb-2 text-base font-semibold" style="color:var(--color-text)">
-            Cookies и аналитика
-        </h3>
-        <p class="mb-3 text-sm leading-relaxed" style="color:var(--color-text-dim)">
-            Использую {enabledAnalytics.map((s) => s.name).join(' и ')} для улучшения сайта.
-        </p>
-        <a
-            href="/privacy"
-            class="text-sm underline underline-offset-2 transition-opacity hover:opacity-70"
-            style="color:var(--color-accent)"
-        >
-            Подробнее
-        </a>
-    </div>
-    <div class="flex gap-2">
-        <button
-            id="cookie-accept"
-            class="flex-1 cursor-pointer rounded-lg px-4 py-2 text-sm font-semibold transition-opacity hover:opacity-80"
-            style="background:var(--color-accent);color:#fff"
-        >
-            Принять
-        </button>
-        <button
-            id="cookie-decline"
-            class="flex-1 cursor-pointer rounded-lg border px-4 py-2 text-sm transition-opacity hover:opacity-80"
-            style="border-color:var(--color-border-mid);color:var(--color-text-muted)"
-        >
-            Отклонить
-        </button>
+<div id="cookie-banner" class="cookie-banner hidden">
+    <div class="cookie-accent-line"></div>
+    <div class="cookie-inner">
+        <div class="cookie-content">
+            <h3 class="cookie-title">Cookies и аналитика</h3>
+            <p class="cookie-text">
+                Использую {enabledAnalytics.map((s) => s.name).join(' и ')} для улучшения сайта.
+                <a href="/privacy" class="cookie-link">Подробнее</a>
+            </p>
+        </div>
+        <div class="cookie-actions">
+            <button id="cookie-accept" class="cookie-btn cookie-btn-accept">Принять</button>
+            <button id="cookie-decline" class="cookie-btn cookie-btn-decline">Отклонить</button>
+        </div>
     </div>
 </div>
 
@@ -51,19 +30,24 @@ import { enabledAnalytics } from '@/config/analytics';
         const consent = localStorage.getItem('analytics-consent');
         if (!consent) {
             banner.classList.remove('hidden');
+            banner.classList.add('animate');
         }
 
         acceptButton.addEventListener('click', () => {
             localStorage.setItem('analytics-consent', 'accepted');
             localStorage.setItem('analytics-consent-date', new Date().toISOString());
-            banner.classList.add('hidden');
+            banner.classList.remove('animate');
+            banner.classList.add('dismiss');
+            setTimeout(() => banner.classList.add('hidden'), 350);
             window.location.reload();
         });
 
         declineButton.addEventListener('click', () => {
             localStorage.setItem('analytics-consent', 'declined');
             localStorage.setItem('analytics-consent-date', new Date().toISOString());
-            banner.classList.add('hidden');
+            banner.classList.remove('animate');
+            banner.classList.add('dismiss');
+            setTimeout(() => banner.classList.add('hidden'), 350);
         });
     }
 
@@ -75,27 +59,142 @@ import { enabledAnalytics } from '@/config/analytics';
 </script>
 
 <style>
-    #cookie-banner {
-        animation: slideIn 0.4s ease-out;
+    .cookie-banner {
+        position: fixed;
+        z-index: 50;
+        font-family: 'Manrope', sans-serif;
+
+        /* Desktop: карточка внизу слева */
+        bottom: 1.5rem;
+        left: 1.5rem;
+        width: 320px;
+
+        background: var(--bg-card);
+        border: 1px solid var(--border-mid);
+        border-radius: 14px;
+        box-shadow:
+            0 4px 24px rgba(0, 0, 0, 0.4),
+            0 1px 4px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
     }
 
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translateX(-100%) translateY(20px);
+    .cookie-accent-line {
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent), transparent);
+        opacity: 0.9;
+    }
+
+    .cookie-inner {
+        padding: 1.1rem 1.25rem 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .cookie-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .cookie-title {
+        font-size: 0.875rem;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        color: var(--text);
+        margin: 0;
+    }
+
+    .cookie-text {
+        font-size: 0.8rem;
+        line-height: 1.55;
+        color: var(--text-dim);
+        margin: 0;
+    }
+
+    .cookie-link {
+        color: var(--accent);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.15s;
+        margin-left: 0.25rem;
+        white-space: nowrap;
+    }
+    .cookie-link:hover {
+        border-color: var(--accent);
+    }
+
+    .cookie-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .cookie-btn {
+        flex: 1;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        padding: 0.45rem 0.75rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        font-family: inherit;
+        transition: opacity 0.15s, transform 0.1s;
+        letter-spacing: 0.01em;
+    }
+    .cookie-btn:hover {
+        opacity: 0.85;
+    }
+    .cookie-btn:active {
+        transform: scale(0.97);
+    }
+
+    .cookie-btn-accept {
+        background: var(--accent);
+        color: #fff;
+    }
+
+    .cookie-btn-decline {
+        background: transparent;
+        border: 1px solid var(--border-mid);
+        color: var(--text-muted);
+    }
+
+    /* --- Анимации --- */
+
+    /* Desktop: выезжает снизу слева */
+    @media (min-width: 641px) {
+        .cookie-banner.animate {
+            animation: slideInDesktop 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        to {
-            opacity: 1;
-            transform: translateX(0) translateY(0);
+        .cookie-banner.dismiss {
+            animation: slideOutDesktop 0.3s ease-in forwards;
+        }
+
+        @keyframes slideInDesktop {
+            from {
+                opacity: 0;
+                transform: translateY(16px) translateX(-8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) translateX(0);
+            }
+        }
+        @keyframes slideOutDesktop {
+            to {
+                opacity: 0;
+                transform: translateY(16px) translateX(-8px);
+            }
         }
     }
 
+    /* Mobile: та же карточка, но чуть уже отступы */
     @media (max-width: 640px) {
-        #cookie-banner {
+        .cookie-banner {
             left: 1rem;
-            right: 1rem;
-            max-width: calc(100% - 2rem);
             bottom: 1rem;
+            width: calc(100% - 2rem);
+            max-width: 320px;
         }
     }
 </style>
