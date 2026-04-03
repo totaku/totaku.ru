@@ -1,10 +1,10 @@
 # totaku.ru
 
-Личный блог на [Astro 5](https://astro.build/) + MDX + Tailwind CSS v4.
+Личный блог на [Astro 6](https://astro.build/) + MDX + Tailwind CSS v4.
 
 ## Стек
 
-- **Astro 5** — фреймворк
+- **Astro 6** — фреймворк
 - **Tailwind CSS v4** через `@tailwindcss/vite` (без `tailwind.config.js`)
 - **MDX** для контента с богатыми компонентами
 - **Pagefind** — поиск по сайту (генерируется после билда)
