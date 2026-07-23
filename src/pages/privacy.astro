@@ -236,7 +236,7 @@ const lastUpdated = new Date('2026-04-03').toLocaleDateString('ru-RU', {
 
 <script>
     function initRevokeButton() {
-        const button = document.getElementById('revoke-consent-button');
+        const button = document.getElementById('revoke-consent-button') as HTMLButtonElement | null;
         if (!button) return;
 
         const feedback = document.getElementById('revoke-feedback');
