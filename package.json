@@ -1,6 +1,7 @@
 {
     "name": "totaku-ru",
     "type": "module",
+    "packageManager": "pnpm@11.5.1",
     "scripts": {
         "dev": "astro dev",
         "build": "astro build && pnpm pagefind",
