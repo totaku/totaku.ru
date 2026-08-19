@@ -252,4 +252,12 @@ const jsonLd =
     type="application/ld+json"
     set:html={JSON.stringify(jsonLd)}
 />
-{breadcrumbLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />}
+{
+    breadcrumbLd && (
+        <script
+            is:inline
+            type="application/ld+json"
+            set:html={JSON.stringify(breadcrumbLd)}
+        />
+    )
+}

@@ -15,7 +15,16 @@ const lastUpdated = new Date('2026-04-03').toLocaleDateString('ru-RU', {
 >
     <div class="post-wrap">
         <a href="/" class="back-link post-back">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
                 <polyline points="15 18 9 12 15 6"></polyline>
             </svg>На главную
         </a>
@@ -29,40 +38,63 @@ const lastUpdated = new Date('2026-04-03').toLocaleDateString('ru-RU', {
         </div>
 
         <article class="prose">
-
             <h2>Введение</h2>
             <p>
-                Этот сайт уважает вашу конфиденциальность. Документ объясняет, какие данные собираются, зачем и как вы можете контролировать их использование.
+                Этот сайт уважает вашу конфиденциальность. Документ объясняет,
+                какие данные собираются, зачем и как вы можете контролировать их
+                использование.
             </p>
             <p>
-                Собирается <strong>минимум данных</strong>, необходимых для улучшения сайта.
+                Собирается <strong>минимум данных</strong>, необходимых для
+                улучшения сайта.
             </p>
 
             <h2>Используемые сервисы</h2>
             <p>На сайте используются следующие сервисы для сбора статистики:</p>
 
-            {analyticsServices.filter((s) => s.enabled).map((service) => (
-                <div class="service-card">
-                    <h3>{service.name}</h3>
-                    <p>{service.description}</p>
-                    <div class="service-card-links">
-                        <a href={service.privacyUrl} target="_blank" rel="noopener noreferrer">
-                            Политика конфиденциальности ↗
-                        </a>
-                        {service.optOutUrl && (
-                            <a href={service.optOutUrl} target="_blank" rel="noopener noreferrer">
-                                Как отключить ↗
-                            </a>
-                        )}
-                    </div>
-                </div>
-            ))}
+            {
+                analyticsServices
+                    .filter((s) => s.enabled)
+                    .map((service) => (
+                        <div class="service-card">
+                            <h3>{service.name}</h3>
+                            <p>{service.description}</p>
+                            <div class="service-card-links">
+                                <a
+                                    href={service.privacyUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Политика конфиденциальности ↗
+                                </a>
+                                {service.optOutUrl && (
+                                    <a
+                                        href={service.optOutUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Как отключить ↗
+                                    </a>
+                                )}
+                            </div>
+                        </div>
+                    ))
+            }
 
             <h2>Какие данные собираются</h2>
             <ul>
-                <li><strong>Анонимная статистика посещений:</strong> просмотренные страницы, время на сайте, источник перехода</li>
-                <li><strong>Технические данные:</strong> тип устройства, браузер, операционная система</li>
-                <li><strong>Поведение на сайте:</strong> карты кликов, скролл (через вебвизор Яндекс.Метрики)</li>
+                <li>
+                    <strong>Анонимная статистика посещений:</strong> просмотренные
+                    страницы, время на сайте, источник перехода
+                </li>
+                <li>
+                    <strong>Технические данные:</strong> тип устройства, браузер,
+                    операционная система
+                </li>
+                <li>
+                    <strong>Поведение на сайте:</strong> карты кликов, скролл (через
+                    вебвизор Яндекс.Метрики)
+                </li>
             </ul>
 
             <h2>Что не собирается</h2>
@@ -73,7 +105,11 @@ const lastUpdated = new Date('2026-04-03').toLocaleDateString('ru-RU', {
             </ul>
 
             <h2>Использование cookies</h2>
-            <p>Cookies используются для работы аналитики и сохранения ваших предпочтений. Все cookies анонимны и не содержат личной информации.</p>
+            <p>
+                Cookies используются для работы аналитики и сохранения ваших
+                предпочтений. Все cookies анонимны и не содержат личной
+                информации.
+            </p>
 
             <table>
                 <thead>
@@ -105,24 +141,31 @@ const lastUpdated = new Date('2026-04-03').toLocaleDateString('ru-RU', {
                     Отозвать согласие
                 </button>
                 <span id="revoke-feedback" class="revoke-feedback"></span>
-                <p class="revoke-hint">После отзыва аналитика будет отключена.</p>
+                <p class="revoke-hint">
+                    После отзыва аналитика будет отключена.
+                </p>
             </div>
 
             <h2>Контакты</h2>
-            <p>
-                Если есть вопросы о конфиденциальности, пишите:
-            </p>
+            <p>Если есть вопросы о конфиденциальности, пишите:</p>
             <ul>
-                <li><a href="https://t.me/totaku" target="_blank" rel="noopener noreferrer">Telegram</a></li>
+                <li>
+                    <a
+                        href="https://t.me/totaku"
+                        target="_blank"
+                        rel="noopener noreferrer">Telegram</a>
+                </li>
                 <li><a href="mailto:admin@totaku.su">admin@totaku.su</a></li>
             </ul>
 
             <h2>Изменения в политике</h2>
-            <p>Политика может обновляться. Дата последнего обновления указана в начале документа.</p>
+            <p>
+                Политика может обновляться. Дата последнего обновления указана в
+                начале документа.
+            </p>
         </article>
     </div>
 </BaseLayout>
-
 
 <style>
     /* Таблица */
@@ -209,7 +252,9 @@ const lastUpdated = new Date('2026-04-03').toLocaleDateString('ru-RU', {
         font-weight: 600;
         font-family: 'Manrope', sans-serif;
         color: var(--text-muted);
-        transition: border-color 0.15s, color 0.15s;
+        transition:
+            border-color 0.15s,
+            color 0.15s;
         width: fit-content;
     }
     .revoke-btn:hover:not(:disabled) {
@@ -236,7 +281,9 @@ const lastUpdated = new Date('2026-04-03').toLocaleDateString('ru-RU', {
 
 <script>
     function initRevokeButton() {
-        const button = document.getElementById('revoke-consent-button') as HTMLButtonElement | null;
+        const button = document.getElementById(
+            'revoke-consent-button'
+        ) as HTMLButtonElement | null;
         if (!button) return;
 
         const feedback = document.getElementById('revoke-feedback');
@@ -246,7 +293,8 @@ const lastUpdated = new Date('2026-04-03').toLocaleDateString('ru-RU', {
             localStorage.removeItem('analytics-consent-date');
             button.disabled = true;
             button.textContent = 'Отозвано';
-            if (feedback) feedback.textContent = 'Страница перезагрузится через секунду…';
+            if (feedback)
+                feedback.textContent = 'Страница перезагрузится через секунду…';
             setTimeout(() => window.location.reload(), 1200);
         });
     }
