@@ -1,0 +1,144 @@
+---
+title: "Установка Docker и Docker Compose на Ubuntu 26.04"
+date: 2026-08-19T12:00:00+03:00
+draft: false
+description: "Убунту снова обновили, докер как ставился одной командой, так и ставится — просто чуть по-другому."
+tags: ["docker", "docker-compose", "ubuntu"]
+categories: ["Рукоблудие"]
+toc: true
+featuredImage: "./images/cover/ustanovka-docker-i-docker-compose-na-ubuntu-26-04.jpg"
+---
+
+import InfoBlock from '@/components/InfoBlock.astro';
+
+Раз в два года Canonical выкатывает новый LTS, и часть моих старых постов про установку молча превращается в археологию. В апреле вышла [Ubuntu 26.04 LTS «Resolute Raccoon»](https://ubuntu.com), докер её официально поддерживает с релиза, так что вот отдельный свежий гайд именно под неё — старый пост про 24.04 никуда не делся и всё ещё актуален для тех, кто сидит на ней. Всё ниже сверено с [актуальной документацией докера](https://docs.docker.com/engine/install/ubuntu/), а не переписано по памяти.
+
+## Установка Docker
+
+В репозитории самой Ubuntu версия Docker всегда отстаёт, поэтому по-прежнему ставим из официального репозитория Docker, а не из `apt` убунты.
+
+Сначала обновите список пакетов и поставьте пару зависимостей:
+```bash
+sudo apt update
+sudo apt install ca-certificates curl
+```
+
+Если раньше на этой машине уже стоял докер (например неофициальный `docker.io` из репозитория убунты) — снесите его, иначе он будет конфликтовать с официальными пакетами:
+```bash
+sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-compose-v2 docker-doc docker-buildx podman-docker containerd runc | cut -f1)
+```
+Если ничего такого не стояло, `apt` просто скажет, что удалять нечего, — это нормально.
+
+Добавляем GPG-ключ официального репозитория:
+```bash
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+```
+
+А вот тут главное изменение по сравнению со старым постом: раньше репозиторий добавлялся однострочником через `echo ... | tee docker.list`, теперь докер в документации сам советует новый формат deb822 — файл `.sources` вместо `.list`. Работать будет и старый способ, но раз уж переписываю пост — делаю так, как сейчас рекомендует сам докер:
+```bash
+sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Architectures: $(dpkg --print-architecture)
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
+```
+
+На Ubuntu 26.04 переменная `$UBUNTU_CODENAME` подставит `resolute`, так что репозиторий подцепится правильный автоматически, руками ничего не трогаем.
+
+Обновляем список пакетов:
+```bash
+sudo apt update
+```
+
+Убедиться, что ставиться будет именно из репозитория докера, а не откуда-то ещё, всё так же можно через:
+```bash
+apt-cache policy docker-ce
+```
+На выходе увидите что-то в духе:
+```bash
+docker-ce:
+  Installed: (none)
+  Candidate: 5:29.7.2-1~ubuntu.26.04~resolute
+  Version table:
+     5:29.7.2-1~ubuntu.26.04~resolute 500
+        500 https://download.docker.com/linux/ubuntu resolute/stable amd64 Packages
+     ...
+```
+Конкретные цифры версии у вас на момент чтения наверняка будут другими — докер обновляется часто, это нормально, главное чтобы источником был `download.docker.com`.
+
+Ставим Docker Engine и заодно containerd, buildx и Compose — да, всё одной командой, про Compose отдельно рассказываю ниже:
+```bash
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+<InfoBlock title="Если используете ufw или firewalld" variant="warning">
+    Докер сам управляет правилами iptables и может пробрасывать порты контейнеров в обход ваших правил файрвола. Это не баг новой версии, так было и раньше, просто в документации 26.04 про это явно напомнили — на всякий случай напоминаю и я.
+</InfoBlock>
+
+### Проверяем, работает ли Docker
+
+```bash
+sudo systemctl status docker
+```
+На выходе должно быть что-то вроде:
+```bash
+● docker.service - Docker Application Container Engine
+     Loaded: loaded (/lib/systemd/system/docker.service; enabled; preset: enabled)
+     Active: active (running) since ...
+TriggeredBy: ● docker.socket
+       Docs: https://docs.docker.com
+   Main PID: ... (dockerd)
+```
+Если вдруг не запустился сам — `sudo systemctl start docker`, но обычно после установки он поднимается сам.
+
+Дальше как обычно — гоняем тестовый контейнер:
+```bash
+sudo docker run hello-world
+```
+Если всё срослось, увидите знакомое:
+```bash
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+...
+```
+
+### Разрешаем не-root пользователю запускать Docker
+
+По умолчанию без `sudo` докер не даст себя запустить, но это всё так же лечится.
+
+<InfoBlock title="Лучше не стоит" variant="danger">
+    Никогда так не делайте на продакшене! Это практически выдача рутовых прав пользователю.
+</InfoBlock>
+
+```bash
+sudo usermod -aG docker ${USER}
+```
+Перелогиниваемся (или `newgrp docker`, если лень выходить из сессии) и пробуем без `sudo`:
+```bash
+docker run hello-world
+```
+
+## Про Docker Compose
+
+А вот здесь всё стало заметно проще, чем было раньше (в старом посте про 24.04 я как раз тащил бинарник руками). Приходилось скачивать Compose с гитхаба в `~/.docker/cli-plugins/` — сейчас в этом просто нет смысла: пакет `docker-compose-plugin`, который вы поставили той же командой чуть выше, уже включает актуальный Compose v2, и обновляется он потом через обычный `apt upgrade` вместе с остальным докером, без ручного скачивания новых версий с релизов на гитхабе.
+
+Проверяем, что всё на месте:
+```bash
+docker compose version
+```
+Увидите что-то вроде:
+```bash
+Docker Compose version v5.4.0
+```
+Обратите внимание — команда `docker compose`, без дефиса. Старый отдельный бинарник `docker-compose` через дефис — это версия первого поколения, её в свежей установке ставить уже не нужно, современный докер про неё даже не спрашивает.
+
+Собственно всё, ставится всё так же быстро, как и на прошлой убунте, просто пара шагов теперь выглядит немного иначе. Удачи!
